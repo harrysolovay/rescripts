@@ -43,6 +43,7 @@ npm i -D state-mint
 ```
 
 ## Basic Usage
+
 ### Customize Babel & ESLint configurations
 
 #### 1) Adjust your `package.json`
@@ -80,11 +81,12 @@ npm i -D state-mint
 ```
 
 #### 2) Add a Babel configuration at your project root
+
 Use whatever convention you prefer: `.babelrc`, `.babelrc.js`, or `babel.config.js`
 
-#### 4) Add an ESLint configuration at your project root
-Same flexibility: `.eslint`, `.eslintrc.js`, or `eslint.config.js`
+#### 3) Add an ESLint configuration at your project root
 
+Same flexibility: `.eslint`, `.eslintrc.js`, or `eslint.config.js`
 
 ## LICENSE
 
