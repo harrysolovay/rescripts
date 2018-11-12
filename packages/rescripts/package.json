@@ -2,7 +2,7 @@
   "name": "rescripts",
   "description": "[CRA 2.0+] Use react-scripts with custom Babel & ESLint configurations",
   "repository": "https://github.com/harrysolovay/rescripts",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "license": "MIT",
   "private": false,
   "bin": {
