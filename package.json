@@ -1,5 +1,7 @@
 {
 	"name": "rescripts",
+	"version": "0.0.2",
+	"license": "MIT",
 	"private": true,
 	"workspaces": [
 		"packages/*"
