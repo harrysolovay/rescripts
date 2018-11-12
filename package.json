@@ -9,6 +9,8 @@
 	},
 	"scripts": {
 		"bootstrap": "lerna bootstrap",
-		"start": "npm -C ./packages/example run start"
+		"example": "npm -C ./packages/example run start",
+		"publish": "npm run lerna publish --yes --skip-npm",
+		"postpublish": "git push && git push --tags"
 	}
 }
