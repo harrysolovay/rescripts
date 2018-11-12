@@ -15,7 +15,8 @@
 	},
 	"scripts": {
 		"bootstrap": "lerna bootstrap",
-		"example": "npm -C ./packages/example run start"
+		"example": "npm -C ./packages/example run start",
+		"format": "prettier --write **/*.{js,json,md}"
 	},
 	"husky": {
 		"hooks": {
@@ -24,7 +25,7 @@
 	},
 	"lint-staged": {
 		"*.{js,json,md}": [
-			"prettier --config ./.prettierrc --write",
+			"prettier --write",
 			"git add"
 		]
 	}
