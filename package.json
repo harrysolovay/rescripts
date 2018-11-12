@@ -8,11 +8,24 @@
 		"packages/*"
 	],
 	"devDependencies": {
-		"lerna": "^3.4.3"
+		"husky": "^1.1.3",
+		"lerna": "^3.4.3",
+		"lint-staged": "^8.0.4",
+		"prettier": "^1.15.2"
 	},
 	"scripts": {
 		"bootstrap": "lerna bootstrap",
-		"example": "npm -C ./packages/example run start",
-		"push": "git push && git push --tags"
+		"example": "npm -C ./packages/example run start"
+	},
+	"husky": {
+		"hooks": {
+			"pre-commit": "lint-staged"
+		}
+	},
+	"lint-staged": {
+		"*.{js,json,md}": [
+			"prettier --config ./.prettierrc --write ./**/*",
+			"git add"
+		]
 	}
 }

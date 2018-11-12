@@ -10,5 +10,6 @@
 	},
 	"peerDependencies": {
 		"react-scripts": "^2.0.3"
-	}
+	},
+	"devDependencies": {}
 }
