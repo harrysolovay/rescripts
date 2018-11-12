@@ -1,0 +1,37 @@
+{
+  "name": "cssdb",
+  "version": "3.2.1",
+  "description": "A comprehensive list of CSS features and their positions in the process of becoming implemented web standards",
+  "author": "Jonathan Neal <jonathantneal@hotmail.com>",
+  "license": "CC0-1.0",
+  "repository": "csstools/cssdb",
+  "homepage": "https://github.com/csstools/cssdb#readme",
+  "bugs": "https://github.com/csstools/cssdb/issues",
+  "main": "cssdb.json",
+  "files": [
+    "cssdb.json"
+  ],
+  "scripts": {
+    "start": "node tasks/start",
+    "start:nobadges": "node tasks/start --no-badges",
+    "test": "node tasks/test"
+  },
+  "devDependencies": {
+    "browserslist": "^4.1.0",
+    "caniuse-lite": "^1.0.30000883",
+    "eslit": "^5.0.0",
+    "fse": "^4.0.1",
+    "marked": "^0.5.0",
+    "node-fetch": "^2.2.0",
+    "postcss": "^7.0.2",
+    "pre-commit": "^1.2.2"
+  },
+  "keywords": [
+    "css",
+    "features",
+    "list",
+    "specifications",
+    "stages",
+    "tc39"
+  ]
+}

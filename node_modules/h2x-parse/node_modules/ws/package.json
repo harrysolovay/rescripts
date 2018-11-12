@@ -1,0 +1,46 @@
+{
+  "name": "ws",
+  "version": "6.1.0",
+  "description": "Simple to use, blazing fast and thoroughly tested websocket client and server for Node.js",
+  "keywords": [
+    "HyBi",
+    "Push",
+    "RFC-6455",
+    "WebSocket",
+    "WebSockets",
+    "real-time"
+  ],
+  "homepage": "https://github.com/websockets/ws",
+  "bugs": "https://github.com/websockets/ws/issues",
+  "repository": "websockets/ws",
+  "author": "Einar Otto Stangvik <einaros@gmail.com> (http://2x.io)",
+  "license": "MIT",
+  "main": "index.js",
+  "browser": "browser.js",
+  "files": [
+    "browser.js",
+    "index.js",
+    "lib"
+  ],
+  "scripts": {
+    "test": "eslint . && nyc --reporter=html --reporter=text mocha test/*.test.js",
+    "integration": "eslint . && mocha test/*.integration.js",
+    "lint": "eslint ."
+  },
+  "dependencies": {
+    "async-limiter": "~1.0.0"
+  },
+  "devDependencies": {
+    "benchmark": "~2.1.2",
+    "bufferutil": "~4.0.0",
+    "eslint": "~5.6.1",
+    "eslint-config-standard": "~12.0.0",
+    "eslint-plugin-import": "~2.14.0",
+    "eslint-plugin-node": "~7.0.0",
+    "eslint-plugin-promise": "~4.0.0",
+    "eslint-plugin-standard": "~4.0.0",
+    "mocha": "~5.2.0",
+    "nyc": "~13.0.1",
+    "utf-8-validate": "~5.0.0"
+  }
+}

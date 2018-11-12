@@ -1,0 +1,13 @@
+{
+	"name": "rescripts",
+	"description": "[CRA 2.0+] Use react-scripts with custom Babel & ESLint configurations",
+	"repository": "https://github.com/harrysolovay/rescripts",
+	"version": "1.0.0",
+	"license": "MIT",
+	"bin": {
+		"rescripts": "./bin/index.js"
+	},
+	"peerDependencies": {
+		"react-scripts": "^2.0.3"
+	}
+}

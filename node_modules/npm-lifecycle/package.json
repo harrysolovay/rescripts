@@ -1,0 +1,55 @@
+{
+  "name": "npm-lifecycle",
+  "version": "2.1.0",
+  "description": "JavaScript package lifecycle hook runner",
+  "main": "index.js",
+  "scripts": {
+    "prerelease": "npm t",
+    "postrelease": "npm publish && git push --follow-tags",
+    "pretest": "standard",
+    "release": "standard-version -s",
+    "test": "tap -J --coverage test/*.js",
+    "update-coc": "weallbehave -o . && git add CODE_OF_CONDUCT.md && git commit -m 'docs(coc): updated CODE_OF_CONDUCT.md'",
+    "update-contrib": "weallcontribute -o . && git add CONTRIBUTING.md && git commit -m 'docs(contributing): updated CONTRIBUTING.md'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/npm/lifecycle.git"
+  },
+  "keywords": [
+    "npm",
+    "lifecycle",
+    "hook",
+    "runner"
+  ],
+  "author": "Mike Sherov",
+  "license": "Artistic-2.0",
+  "bugs": {
+    "url": "https://github.com/npm/lifecycle/issues"
+  },
+  "homepage": "https://github.com/npm/lifecycle#readme",
+  "dependencies": {
+    "byline": "^5.0.0",
+    "graceful-fs": "^4.1.11",
+    "node-gyp": "^3.8.0",
+    "resolve-from": "^4.0.0",
+    "slide": "^1.1.6",
+    "uid-number": "0.0.6",
+    "umask": "^1.1.0",
+    "which": "^1.3.1"
+  },
+  "devDependencies": {
+    "nyc": "^12.0.2",
+    "sinon": "^6.1.5",
+    "standard": "^11.0.1",
+    "standard-version": "^4.4.0",
+    "tap": "^12.0.1",
+    "weallbehave": "^1.2.0",
+    "weallcontribute": "^1.0.8"
+  },
+  "files": [
+    "index.js",
+    "lib/spawn.js",
+    "node-gyp-bin"
+  ]
+}
