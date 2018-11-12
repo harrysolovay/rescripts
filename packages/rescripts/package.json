@@ -9,7 +9,7 @@
 		"rescripts": "./bin/index.js"
 	},
 	"peerDependencies": {
+		"react-dev-utils": "^6.1.1",
 		"react-scripts": "^2.0.3"
-	},
-	"devDependencies": {}
+	}
 }
