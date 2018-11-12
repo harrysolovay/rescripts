@@ -4,6 +4,7 @@
 	"repository": "https://github.com/harrysolovay/rescripts",
 	"version": "1.0.0",
 	"license": "MIT",
+	"private": false,
 	"bin": {
 		"rescripts": "./bin/index.js"
 	},

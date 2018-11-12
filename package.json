@@ -1,8 +1,9 @@
 {
 	"name": "rescripts",
-	"version": "0.0.2",
+	"version": "0.0.1",
 	"license": "MIT",
 	"private": true,
+	"author": "Harry Solovay <harrysolovay@gmail.com> (harrysolovay.com)",
 	"workspaces": [
 		"packages/*"
 	],
@@ -12,7 +13,6 @@
 	"scripts": {
 		"bootstrap": "lerna bootstrap",
 		"example": "npm -C ./packages/example run start",
-		"publish": "npm run lerna publish --yes --skip-npm",
-		"postpublish": "git push && git push --tags"
+		"push": "git push && git push --tags"
 	}
 }
