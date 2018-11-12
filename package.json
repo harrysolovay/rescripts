@@ -1,18 +1,31 @@
 {
-	"name": "rescripts",
-	"version": "0.0.1",
-	"license": "MIT",
-	"private": true,
-	"author": "Harry Solovay <harrysolovay@gmail.com> (harrysolovay.com)",
-	"workspaces": [
-		"packages/*"
-	],
-	"devDependencies": {
-		"lerna": "^3.4.3"
-	},
-	"scripts": {
-		"bootstrap": "lerna bootstrap",
-		"example": "npm -C ./packages/example run start",
-		"format": "prettier --write **/*.{js,json,md}"
-	}
+  "name": "rescripts",
+  "version": "0.0.1",
+  "license": "MIT",
+  "private": true,
+  "author": "Harry Solovay <harrysolovay@gmail.com> (harrysolovay.com)",
+  "workspaces": [
+    "packages/*"
+  ],
+  "devDependencies": {
+    "husky": "^1.1.3",
+    "lerna": "^3.4.3",
+    "lint-staged": "^8.0.4",
+    "prettier": "^1.15.2"
+  },
+  "scripts": {
+    "bootstrap": "lerna bootstrap",
+    "example": "npm -C ./packages/example run start"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,json}": [
+      "prettier --write",
+      "git add"
+    ]
+  }
 }
