@@ -1,1 +1,1 @@
-export {default as HelloRescripts} from './HelloRescripts'
+export {default as HelloRescripts} from './HelloRescripts';
