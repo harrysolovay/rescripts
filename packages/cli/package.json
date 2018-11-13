@@ -1,7 +1,7 @@
 {
-  "name": "rescripts",
+  "name": "@rescripts/cli",
   "description": "[CRA 2.0+] Use react-scripts with custom Babel & ESLint configurations",
-  "repository": "https://github.com/harrysolovay/rescripts",
+  "repository": "https://github.com/rescripts/rescripts",
   "version": "0.0.1",
   "license": "MIT",
   "private": false,

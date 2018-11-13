@@ -1,6 +1,6 @@
-<div align="center">
-<h1>Rescripts [IN PROGRESS]</h1>
-</div>
+<h1 align='center'>
+  <img src='readme-assets/banner.png' alt='banner' />
+</h1>
 
 <!-- LICENSE -->
 
@@ -18,6 +18,11 @@
 <!-- PRs -->
 <a href='http://makeapullrequest.com'>
   <img src='https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square' />
+</a>
+
+<!-- Lerna -->
+<a href='https://lernajs.io/'>
+  <img src='https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg' />
 </a>
 
 </p>
@@ -39,7 +44,7 @@
 #### [NPM Registry](https://www.npmjs.com/package/state-mint)
 
 ```sh
-npm i -D state-mint
+npm i -D @rescripts/cli
 ```
 
 ## Basic Usage
@@ -57,7 +62,7 @@ npm i -D state-mint
     "react": "^16.6.1",
     "react-dom": "^16.6.1",
     "react-scripts": "2.1.1"
-+   "rescripts": "^1.0.0"
++   "@rescripts/cli": "^1.0.0"
   },
   "scripts": {
 -   "start": "react-scripts start",

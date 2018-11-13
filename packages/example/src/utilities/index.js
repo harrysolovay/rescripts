@@ -1,1 +1,4 @@
-export {register as registerServiceWorker} from './serviceWorker';
+export {
+  register as registerServiceWorker,
+  unregister as unregisterServiceWorker,
+} from './serviceWorker'

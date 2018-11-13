@@ -1,1 +1,1 @@
-export default () => <div children="Hello Rescripts" />;
+export default () => <div children="Hello Rescripts" />

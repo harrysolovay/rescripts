@@ -12,6 +12,7 @@
   },
   "scripts": {
     "bootstrap": "lerna bootstrap",
-    "example": "npm -C ./packages/example run start"
+    "start": "npm -C ./packages/example run start",
+    "build": "npm -C ./packages/example run build"
   }
 }
