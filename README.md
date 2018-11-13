@@ -51,7 +51,9 @@ npm i -D @rescripts/cli
 
 ### Customize Babel & ESLint configurations
 
-#### 1) Adjust your `package.json`
+#### 1) Initialize your create-react-app project
+
+#### 2) Adjust its `package.json`
 
 ```diff
 {
@@ -85,11 +87,11 @@ npm i -D @rescripts/cli
 }
 ```
 
-#### 2) Add a Babel configuration at your project root
+#### 3) Add a Babel configuration at your project root
 
 Use whatever convention you prefer: `.babelrc`, `.babelrc.js`, or `babel.config.js`
 
-#### 3) Add an ESLint configuration at your project root
+#### 4) Add an ESLint configuration at your project root
 
 Same flexibility: `.eslint`, `.eslintrc.js`, or `eslint.config.js`
 
