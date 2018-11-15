@@ -1,6 +1,11 @@
 {
-  "packages": ["packages/*"],
-  "version": "0.0.1",
+  "packages": [
+    "packages/cli",
+    "packages/utilities",
+    "packages/rescripts/*",
+    "packages/examples/*"
+  ],
+  "version": "0.0.0",
   "npmClient": "yarn",
   "useWorkspaces": true
 }

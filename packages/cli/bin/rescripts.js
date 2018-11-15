@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+'use strict'
 
 process.on('unhandledRejection', err => {
   throw err
@@ -15,12 +16,13 @@ const nodeArgs = scriptIndex > 0 ? args.slice(0, scriptIndex) : []
 
 switch (script) {
   case 'build':
+  case 'eject':
   case 'start':
   case 'test': {
     const result = spawn.sync(
       'node',
       nodeArgs
-        .concat(require.resolve('../' + script))
+        .concat(require.resolve('../scripts/' + script))
         .concat(args.slice(scriptIndex + 1)),
       {stdio: 'inherit'},
     )

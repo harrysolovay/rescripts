@@ -1,18 +1,32 @@
 {
   "name": "rescripts",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "license": "MIT",
   "private": true,
   "author": "Harry Solovay <harrysolovay@gmail.com> (harrysolovay.com)",
+  "keywords": [
+    "rescript",
+    "rescripts",
+    "cra",
+    "create-react-app",
+    "create",
+    "react",
+    "app",
+    "scripts",
+    "cli",
+    "customization",
+    "custom",
+    "configuration",
+    "config",
+    "override"
+  ],
   "workspaces": [
-    "packages/*"
+    "packages/cli",
+    "packages/utilities",
+    "packages/rescripts/*",
+    "packages/examples/*"
   ],
   "devDependencies": {
     "lerna": "^3.4.3"
-  },
-  "scripts": {
-    "bootstrap": "lerna bootstrap",
-    "start": "npm -C ./packages/example run start",
-    "build": "npm -C ./packages/example run build"
   }
 }

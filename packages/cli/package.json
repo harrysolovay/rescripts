@@ -1,15 +1,12 @@
 {
   "name": "@rescripts/cli",
-  "description": "[CRA 2.0+] Use react-scripts with custom Babel & ESLint configurations",
-  "repository": "https://github.com/rescripts/rescripts",
-  "version": "0.0.1",
-  "license": "MIT",
-  "private": false,
+  "version": "0.1.0",
   "bin": {
-    "rescripts": "./bin/index.js"
+    "rescripts": "./bin/rescripts.js"
   },
-  "peerDependencies": {
-    "react-dev-utils": "^6.1.1",
-    "react-scripts": "^2.0.3"
+  "license": "MIT",
+  "dependencies": {
+    "@rescripts/rescript-default": "^0.1.0",
+    "@rescripts/utilities": "^0.1.0"
   }
 }
