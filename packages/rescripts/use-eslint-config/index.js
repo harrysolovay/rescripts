@@ -1,4 +1,6 @@
-const {existsInAppRoot} = require('@rescripts/utilities')
+const {paths, existsInAppRoot} = require('@rescripts/utilities')
+const {appPackageJson} = paths
+const {eslintConfig} = require(appPackageJson)
 
 module.exports = {
   webpack: config => {
@@ -9,23 +11,29 @@ module.exports = {
       eslintOptions.baseConfig = {}
     }
 
-    for (let fileName of ['.eslintrc', '.eslintrc.js', 'eslint.config.js']) {
-      if (existsInAppRoot(fileName)) {
-        switch (fileName) {
-          case '.eslintrc': {
-            clearESLintConfig()
-            eslintOptions.useEslintrc = true
-            break
-          }
-          case '.eslintrc.js':
-          case 'eslint.config.js': {
-            clearESLintConfig()
-            const eslintConfigPath = `${paths.appPath}/${fileName}`
-            eslintOptions.baseConfig = require(eslintConfigPath)
-            break
-          }
-          default: {
-            break
+    if (eslintConfig) {
+      // module resolution mapping?
+      clearESLintConfig()
+      eslintOptions.baseConfig = eslintConfig
+    } else {
+      for (let fileName of ['.eslintrc', '.eslintrc.js', 'eslint.config.js']) {
+        if (existsInAppRoot(fileName)) {
+          switch (fileName) {
+            case '.eslintrc': {
+              clearESLintConfig()
+              eslintOptions.useEslintrc = true
+              break
+            }
+            case '.eslintrc.js':
+            case 'eslint.config.js': {
+              clearESLintConfig()
+              const eslintConfigPath = `${paths.appPath}/${fileName}`
+              eslintOptions.baseConfig = require(eslintConfigPath)
+              break
+            }
+            default: {
+              break
+            }
           }
         }
       }

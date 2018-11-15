@@ -8,7 +8,7 @@ const reactScriptsPaths = require(join(
   'config/paths',
 ))
 
-const {ownPath} = reactScriptsPaths
+const {appPath, ownPath, appNodeModules} = reactScriptsPaths
 
 const paths = {
   ...reactScriptsPaths,
@@ -17,7 +17,6 @@ const paths = {
 }
 
 const {existsSync} = require('fs')
-const {appPath} = paths
 const existsInAppRoot = fileName => existsSync(join(appPath, fileName))
 
 const resolveRelativeOrNodeModule = pathOrName =>

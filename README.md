@@ -79,9 +79,9 @@ npm i -D rescripts
 +   "test": "rescripts test",
 -   "eject": "react-scripts eject"
   },
-- "eslintConfig": {
--   "extends": "react-app"
-- },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
   "browserslist": [
     ">0.2%",
     "not dead",
@@ -95,9 +95,9 @@ npm i -D rescripts
 
 Add custom configurations for Babel and/or/nor ESLint at your project's root director. For file name, use whatever convention you prefer:
 
-**Babel:** `.babelrc`, `.babelrc.js`, or `babel.config.js`
+**Babel:** `.babelrc`, `.babelrc.js`, `babel.config.js`, or in your `package.json`'s `"babel"` field
 
-**ESLint:** `.eslint`, `.eslintrc.js`, or `eslint.config.js`
+**ESLint:** `.eslint`, `.eslintrc.js`, `eslint.config.js`, or in your `package.json`'s `"eslintConfig"` field
 
 Or specify the configuration in your package.json:
 
@@ -120,12 +120,12 @@ Or specify the configuration in your package.json:
     "test": "rescripts test"
   },
 - "eslintConfig": {
--   "extends": "./path/to/config.js",
+-   "extends": "react-app",
 -   "rules": {
 -     "some-rule": [1, "always"]
 -   }
 - },
-- "babelConfig": {
+- "babel": {
 -   "presets": [
 -     "react-app"
 -   ],
