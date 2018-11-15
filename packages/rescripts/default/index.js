@@ -1,5 +1,5 @@
 module.exports = {
-  presets: [
+  rescripts: [
     require('@rescripts/rescript-use-babel-config'),
     require('@rescripts/rescript-use-eslint-config'),
   ],

@@ -20,6 +20,11 @@ const {existsSync} = require('fs')
 const {appPath} = paths
 const existsInAppRoot = fileName => existsSync(join(appPath, fileName))
 
+const resolveRelativeOrNodeModule = pathOrName =>
+  existsInAppRoot(pathOrName)
+    ? join(appPath, pathOrName)
+    : join(appNodeModules, pathOrName)
+
 const compose = (...fns) => arg =>
   fns.reduce((accumulator, fn) => fn(accumulator), arg)
 
@@ -29,11 +34,24 @@ const monkeyPatch = (configPath, rescript) => {
   require.cache[require.resolve(configPath)].exports = rescriptedConfig
 }
 
+const error = (messageOrFn, ...args) => {
+  const message =
+    typeof messageOrFn === 'function'
+      ? messageOrFn(args)
+      : typeof messageOrFn === 'string'
+      ? messageOrFn
+      : 'invalid argument passed to error'
+  console.error(message)
+  process.exit(1)
+}
+
 module.exports = {
   paths,
   existsInAppRoot,
+  resolveRelativeOrNodeModule,
   compose,
   noop,
   idf,
   monkeyPatch,
+  error,
 }
