@@ -49,15 +49,13 @@ Rescripts tackles this same probem for CRA 2.0+ in a way that is compatible with
 
 ## Installation
 
-### [NPM Registry](https://www.npmjs.com/package/rescripts)
-
 ```sh
 npm i -D rescripts
 ```
 
 ## Basic Usage
 
-### 1) Replace `react-scripts` calls with `rescripts` calls
+#### 1) Replace `react-scripts` calls with `rescripts` calls
 
 ```diff
 {
@@ -93,7 +91,7 @@ npm i -D rescripts
 }
 ```
 
-### 2) Add custom Babel & ESLint configs
+#### 2) Add custom Babel & ESLint configs
 
 Add custom configurations for Babel and/or/nor ESLint at your project's root director. For file name, use whatever convention you prefer:
 
@@ -205,15 +203,13 @@ Point to a "rescript" (configuration file) from your `package.json`:
 ],
 ```
 
-### Config file
+### Config File
 
 #### Example
 
 ```js
 module.exports = {
-  presets: [
-    require('@rescripts/preset-default'),
-  ],
+  presets: [require('@rescripts/preset-default')],
   webpack: config => {
     // [do something to the config]
     return config
@@ -257,10 +253,9 @@ module.exports => {
 
 ## Rescripts
 
-* [rescript-default](https://github.com), 
-* [rescript-lighthouse](https://github.com), 
-* [rescript-image-compression](https://github.com), 
-
+- [rescript-default](https://github.com),
+- [rescript-lighthouse](https://github.com),
+- [rescript-image-compression](https://github.com),
 
 ## Miscellaneous
 
@@ -270,11 +265,10 @@ Thank you for checking out (maybe even building software with) Rescripts. If you
 
 Big shout out to...
 
-* [Devan Beitel](https://github.com/DevanB), for helping work out the quirks
-* [Nilan Marktanner](https://github.com/marktani), an inspirational human being
-* [Daniel Shaffer](https://github.com/danielshaffer), learning Vue instead of React ;)
-* [Weiliy](https://github.com/weiliy), the original owner of the NPM name
+- [Nilan Marktanner](https://github.com/marktani), an inspirational human being
+- [Daniel Shaffer](https://github.com/danielshaffer), learning Vue instead of React ;)
+- [Weiliy](https://github.com/weiliy), the original owner of the NPM name
 
 This library has been released under the [MIT license](../blob/master/LICENSE)
 
-**SO DO WHATEVER THE $%#@ YOU WANT WITH IT!!!**
+**SO DO WHATEVER THE \$%#@ YOU WANT WITH IT!!!**
