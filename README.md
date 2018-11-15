@@ -95,9 +95,9 @@ npm i -D rescripts
 
 Add custom configurations for Babel and/or/nor ESLint at your project's root director. For file name, use whatever convention you prefer:
 
-**Babel:** `.babelrc`, `.babelrc.js`, `babel.config.js`, or in your `package.json`'s `"babel"` field
+**Babel:** `.babelrc`, `.babelrc.js`, or `babel.config.js`
 
-**ESLint:** `.eslint`, `.eslintrc.js`, `eslint.config.js`, or in your `package.json`'s `"eslintConfig"` field
+**ESLint:** `.eslint`, `.eslintrc.js`, or `eslint.config.js`
 
 Or specify the configuration in your package.json:
 
