@@ -151,7 +151,7 @@ Note: when specifying the destination of a config/preset from your package.json,
 Rescripts exposes three main configurable processes of CRA:
 
 1. **Webpack** is responsible for both development and production builds. This is likely where the bulk of your rescripting will go.
-2. **Development server**––you'll want to configure `devServer` if you need to make use of proxying or are working with APIs that request assets of your site.
+2. **Development server**––you'll want to configure `devServer` if you need to make use of proxying or are working with APIs that request assets of your site in development.
 3. **Jest** is for testing your application. Be weary... it can be volatile. If you look at [the testing script](https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/scripts/test.js) in `react-scripts`, you'll find comments about plans for a more stable replacement. Until then, Jest usage might require some keyboard blood & tears. Please file issues!
 
 ### Configuration
