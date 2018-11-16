@@ -202,16 +202,16 @@ Point to a "rescript" (configuration file) from your `package.json`:
 ... or point to a rescript in node_modules:
 
 ```diff
-"rescripts": "@rescripts/preset-lighthouse",
++ "rescripts": "@rescripts/preset-lighthouse",
 ```
 
 ... or point to multiple rescripts:
 
 ```diff
-"rescripts": [
-  "@rescripts/preset-default",
-  "@rescripts/preset-lighthouse"
-],
++ "rescripts": [
++   "@rescripts/preset-default",
++   "@rescripts/preset-lighthouse"
++ ],
 ```
 
 ### Config File
