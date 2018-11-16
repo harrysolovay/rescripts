@@ -1,3 +1,4 @@
+// DOESN'T WORK YET
 // TODO: make jest configurable
 
 process.env.BABEL_ENV = 'test'

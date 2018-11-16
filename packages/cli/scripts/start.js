@@ -1,22 +1,36 @@
 process.env.BABEL_ENV = 'development'
 process.env.NODE_ENV = 'development'
 
-const compose = require('../compose')
+const composeRescripts = require('../composeRescripts')
 const rootRescript = require('../rootRescript')
-const [webpack, devServer] = compose(
-  rootRescript,
+const [webpack, devServer] = composeRescripts(rootRescript, [
   'webpack',
   'devServer',
-)
+])
 
-const {paths, monkeyPatch} = require('@rescripts/utilities')
 const {join} = require('path')
+const {paths, monkeyPatch, createLogs} = require('@rescripts/utilities')
 const {ownConfigsPath, ownScriptsPath} = paths
 
-const webpackConfigDevPath = join(ownConfigsPath, 'webpack.config.dev')
-monkeyPatch(webpackConfigDevPath, webpack)
+const webpackConfigPath = join(ownConfigsPath, 'webpack.config.dev')
+const patchedWebpackConfig = monkeyPatch(webpackConfigPath, webpack)
 
 const devServerConfigPath = join(ownConfigsPath, 'webpackDevServer.config')
-monkeyPatch(devServerConfigPath, devServer)
+const patchedDevServerConfig = monkeyPatch(devServerConfigPath, devServer)
+
+const {writeLogsTo} = rootRescript[0]
+if (writeLogsTo) {
+  const {inspect} = require('util')
+  createLogs(writeLogsTo, [
+    {
+      fileName: `webpack.config.dev.js`,
+      contents: inspect(patchedWebpackConfig),
+    },
+    {
+      fileName: `webpackDevServer.config.js`,
+      contents: String(patchedDevServerConfig),
+    },
+  ])
+}
 
 require(join(ownScriptsPath, 'start'))

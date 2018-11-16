@@ -37,7 +37,7 @@
 
 - 🎩 take advantage of cutting-edge software that hasn't made its way into CRA
 
-- 🥳 pick and choose from a vast collection of "rescripts" (presets/plugins)
+- 🥳 pick and choose from a vast collection of "rescripts" (conceptually similar to Babel presets)
 
 ## Background
 
@@ -167,18 +167,29 @@ By default, rescripts will look for a rescripts.js file in the root directory of
 | `devServer` | () => (proxy, allowedHost) => DevServerConfig | Returns a function that calls the supplied (via sole argument) function and returns the altered value      | decide how you want your development server to behave––alternatively, disable this and create your own (for instance with a little docker + NGINX magic) |  |
 | `jest`      | Array\<FillInLater>                           |                                                                                                            |                                                                                                                                                          |  |
 
-<details>
-<summary>view example `rescript.js`</summary>
+#### Example rescript
 
-```jsx
+```js
 module.exports = {
-  presets: [require('@rescripts/preset-default')],
+  rescripts: [
+    // composing rescripts from node_modules
+    require('@rescripts/rescript-default'),
+    require('@rescripts/rescript-lighthouse'),
+    // relative paths will also work
+    require('./path/to/rescript'),
+  ],
   webpack: config => {
-    // do something to the config
-    return config
+    // good practice to create (and later on return) a copy of the original
+    const reconfig = {...config}
+    // edit the config (in this example, we disable webpack's caching mechanism)
+    reconfig.module.rules[2].oneOf[1].options.cacheDirectory = false
+    // return the updated config
+    return reconfig
   },
   devServer: configFn => (proxy, allowedHost) => ({
+    // destructure the options returned
     ...configFn(proxy, allowedHost),
+    // and override the headers prop for CORS
     headers: {
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Methods': 'GET, PUT, POST, DELETE, PATCH, OPTIONS',
@@ -189,11 +200,11 @@ module.exports = {
 }
 ```
 
-</details>
+Note: the rescripts will be applied before the rescript in which they are specified (in sequential order).
 
 #### Point to your rescript(s)
 
-Point to a "rescript" (configuration file) from your `package.json`:
+By default, rescripts will scan your project's root directory for a "rescripts.js" file. You can also explicitly point to a rescript from your `package.json`:
 
 ```diff
 {
@@ -226,15 +237,15 @@ Point to a "rescript" (configuration file) from your `package.json`:
 ... or point to a rescript in node_modules:
 
 ```diff
-+ "rescripts": "@rescripts/preset-lighthouse",
++ "rescripts": "@rescripts/rescript-lighthouse",
 ```
 
 ... or point to multiple rescripts:
 
 ```diff
 + "rescripts": [
-+   "@rescripts/preset-default",
-+   "@rescripts/preset-lighthouse"
++   "@rescripts/rescript-default",
++   "@rescripts/rescript-lighthouse"
 + ],
 ```
 
@@ -255,9 +266,9 @@ To differentiate between development and production reconfiguration, go ahead an
 
 ```js
 module.exports => {
-  "presets": [
+  "rescript": [
     process.env.NODE_ENV === 'production' &&
-      require('@rescripts/preset-image-compression')
+      require('@rescripts/rescript-image-compression')
   ]
 }
 ```

@@ -1,6 +1,11 @@
-const {compose} = require('@rescripts/utilities')
+const {resolveRelativeOrNodeModule, compose} = require('@rescripts/utilities')
 
-module.exports = (rootRescript, ...which) => {
+const normalizeRescriptEntry = rescript =>
+  typeof rescript === 'string'
+    ? require(resolveRelativeOrNodeModule(rescript))
+    : rescript
+
+module.exports = (rootRescript, which) => {
   const indices = Object.assign(
     {},
     ...which.map(p => ({[p]: which.indexOf(p)})),
@@ -9,9 +14,13 @@ module.exports = (rootRescript, ...which) => {
 
   const applyRescripts = rescript => {
     const rescripts = Array.isArray(rescript)
-      ? rescript
+      ? rescript.map(normalizeRescriptEntry)
+      : typeof rescript === 'string'
+      ? [normalizeRescriptEntry(rescript)]
       : rescript.rescripts
-      ? rescript.rescripts
+      ? Array.isArray(rescript.rescripts)
+        ? rescript.rescripts
+        : [rescript.rescripts]
       : false
 
     rescripts &&

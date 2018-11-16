@@ -3,6 +3,20 @@ const idf = arg => arg
 
 const {join} = require('path')
 
+const {existsSync, mkdirSync, writeFileSync} = require('fs')
+
+const createLogs = (destination, toLog) => {
+  !existsSync(destination) && mkdirSync(destination)
+
+  toLog.forEach(({fileName, contents}) => {
+    writeFileSync(
+      join(destination, fileName),
+      `module.exports = ${contents}`,
+      'utf-8',
+    )
+  })
+}
+
 const reactScriptsPaths = require(join(
   join(require.resolve('react-scripts/package.json'), '..'),
   'config/paths',
@@ -16,7 +30,6 @@ const paths = {
   ownScriptsPath: join(ownPath, 'scripts'),
 }
 
-const {existsSync} = require('fs')
 const existsInAppRoot = fileName => existsSync(join(appPath, fileName))
 
 const resolveRelativeOrNodeModule = pathOrName =>
@@ -31,6 +44,7 @@ const monkeyPatch = (configPath, rescript) => {
   const config = require(configPath)
   const rescriptedConfig = rescript(config)
   require.cache[require.resolve(configPath)].exports = rescriptedConfig
+  return rescriptedConfig
 }
 
 const error = (messageOrFn, ...args) => {
@@ -45,6 +59,7 @@ const error = (messageOrFn, ...args) => {
 }
 
 module.exports = {
+  createLogs,
   paths,
   existsInAppRoot,
   resolveRelativeOrNodeModule,
