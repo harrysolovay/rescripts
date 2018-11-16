@@ -264,7 +264,7 @@ module.exports => {
 
 ## Rescripts
 
-- [rescript-default](https://github.com),
+- [rescript-default](https://github.com) – scans for Babel and ESLint configurations and uses them if preset
 - [rescript-lighthouse](https://github.com),
 - [rescript-image-compression](https://github.com),
 
@@ -278,7 +278,7 @@ Big shout out to...
 
 - [Nilan Marktanner](https://github.com/marktani), an inspirational human being
 - [Daniel Shaffer](https://github.com/danielshaffer), learning Vue instead of React ;)
-- [Weiliy](https://github.com/weiliy), the original owner of the NPM name
+- [Weiliy](https://github.com/weiliy), the original owner of the NPM name 'rescripts'
 
 This library has been released under the [MIT license](../blob/master/LICENSE)
 
