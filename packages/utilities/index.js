@@ -1,13 +1,9 @@
-const noop = () => {}
-const idf = arg => arg
-
-const {join} = require('path')
-
+const paths = require('./paths')
 const {existsSync, mkdirSync, writeFileSync} = require('fs')
+const {join} = require('path')
 
 const createLogs = (destination, toLog) => {
   !existsSync(destination) && mkdirSync(destination)
-
   toLog.forEach(({fileName, contents}) => {
     writeFileSync(
       join(destination, fileName),
@@ -17,35 +13,8 @@ const createLogs = (destination, toLog) => {
   })
 }
 
-const reactScriptsPaths = require(join(
-  join(require.resolve('react-scripts/package.json'), '..'),
-  'config/paths',
-))
-
-const {appPath, ownPath, appNodeModules} = reactScriptsPaths
-
-const paths = {
-  ...reactScriptsPaths,
-  ownConfigsPath: join(ownPath, 'config'),
-  ownScriptsPath: join(ownPath, 'scripts'),
-}
-
-const existsInAppRoot = fileName => existsSync(join(appPath, fileName))
-
-const resolveRelativeOrNodeModule = pathOrName =>
-  existsInAppRoot(pathOrName)
-    ? join(appPath, pathOrName)
-    : join(appNodeModules, pathOrName)
-
 const compose = (...fns) => arg =>
   fns.reduce((accumulator, fn) => fn(accumulator), arg)
-
-const monkeyPatch = (configPath, rescript) => {
-  const config = require(configPath)
-  const rescriptedConfig = rescript(config)
-  require.cache[require.resolve(configPath)].exports = rescriptedConfig
-  return rescriptedConfig
-}
 
 const error = (messageOrFn, ...args) => {
   const message =
@@ -59,13 +28,8 @@ const error = (messageOrFn, ...args) => {
 }
 
 module.exports = {
+  ...paths,
   createLogs,
-  paths,
-  existsInAppRoot,
-  resolveRelativeOrNodeModule,
   compose,
-  noop,
-  idf,
-  monkeyPatch,
   error,
 }

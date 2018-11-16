@@ -8,6 +8,8 @@ const {appPath, appPackageJson} = paths
 const {rescripts} = require(appPackageJson)
 const {join} = require('path')
 
+// TODO: error if multiple configs
+
 const rescriptPaths = rescripts
   ? typeof rescripts === 'string'
     ? [resolveRelativeOrNodeModule(rescripts)]
