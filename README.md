@@ -265,8 +265,8 @@ module.exports => {
 ## Rescripts
 
 - [rescript-default](https://github.com) – scans for Babel and ESLint configurations and uses them if preset
-- [rescript-lighthouse](https://github.com),
-- [rescript-image-compression](https://github.com),
+- [rescript-lighthouse](https://github.com) – optimizations for higher lighthouse scores
+- [rescript-image-compression](https://github.com) – (configurable) compresses your images
 
 ## Miscellaneous
 
