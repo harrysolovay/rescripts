@@ -160,12 +160,36 @@ Rescripts exposes the three main configurable processes of CRA:
 
 By default, rescripts will look for a rescripts.js file in the root directory of your app. This file (a "rescript") should export an object with any combination of the following:
 
-| property    | type & return                                            | description                                                                                                                                        | purpose                                                                                                                                                  |
-| ----------- | -------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `rescripts` | Array\<string> => void                                   | Relative or node modules paths to other "rescripts" to be applied before the current (in sequential order)                                         | Allows for a more modular composition of rescripts                                                                                                       |  |
-| `webpack`   | WebpackConfig => Modified                                | This function takes in the webpack configuration, transforms it, and returns the new config                                                        | Allows you to edit your Webpack development and production configurations as a single object                                                             |  |
-| `devServer` | () => (proxy, allowedHost) => () => (proxy, allowedHost) | Returns a function that calls the supplied (via sole argument) function, alters the returned value, and returns a function that returns that value | decide how you want your development server to behave––alternatively, disable this and create your own (for instance with a little docker + NGINX magic) |  |
-| `jest`      | Array\<FillInLater>                                      |                                                                                                                                                    |                                                                                                                                                          |  |
+| property    | type & return                                            | description                                                                                                | purpose                                                                                                                                                  |
+| ----------- | -------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `rescripts` | Array\<string> => void                                   | Relative or node modules paths to other "rescripts" to be applied before the current (in sequential order) | Allows for a more modular composition of rescripts                                                                                                       |  |
+| `webpack`   | WebpackConfig => Modified                                | This function takes in the webpack configuration, transforms it, and returns the new config                | Allows you to edit your Webpack development and production configurations as a single object                                                             |  |
+| `devServer` | () => (proxy, allowedHost) => () => (proxy, allowedHost) | Returns a function that calls the supplied (via sole argument) function and returns the altered value      | decide how you want your development server to behave––alternatively, disable this and create your own (for instance with a little docker + NGINX magic) |  |
+| `jest`      | Array\<FillInLater>                                      |                                                                                                            |                                                                                                                                                          |  |
+
+<details>
+<summary>view example `rescript.js`</summary>
+
+```jsx
+module.exports = {
+  presets: [require('@rescripts/preset-default')],
+  webpack: config => {
+    // do something to the config
+    return config
+  },
+  devServer: configFn => (proxy, allowedHost) => ({
+    ...configFn(proxy, allowedHost),
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, PUT, POST, DELETE, PATCH, OPTIONS',
+      'Access-Control-Allow-Headers':
+        'X-Requested-With, Content-Type, Authorization',
+    },
+  }),
+}
+```
+
+</details>
 
 #### Point to your rescript(s)
 
@@ -212,30 +236,6 @@ Point to a "rescript" (configuration file) from your `package.json`:
 +   "@rescripts/preset-default",
 +   "@rescripts/preset-lighthouse"
 + ],
-```
-
-### Config File
-
-#### Example
-
-```js
-module.exports = {
-  presets: [require('@rescripts/preset-default')],
-  webpack: config => {
-    // do something to the config
-    return config
-  },
-  devServer: configFn => (proxy, allowedHost) => {
-    const config = configFn(proxy, allowedHost)
-    config.headers = {
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Methods': 'GET, PUT, POST, DELETE, PATCH, OPTIONS',
-      'Access-Control-Allow-Headers':
-        'X-Requested-With, Content-Type, Authorization',
-    }
-    return config
-  },
-}
 ```
 
 #### Webpack-only
