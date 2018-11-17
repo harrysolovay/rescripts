@@ -1,12 +1,13 @@
 {
   "name": "@rescripts/rescript-use-babel-config",
-  "version": "1.0.2",
+  "version": "0.0.1",
   "main": "index.js",
   "license": "MIT",
   "publishConfig": {
     "access": "public"
   },
+  "private": false,
   "peerDependencies": {
-    "@rescripts/utilities": "1.0.0"
+    "@rescripts/utilities": "0.0.1"
   }
 }

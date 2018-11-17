@@ -1,15 +1,17 @@
 {
   "name": "@rescripts/cli",
-  "version": "1.0.2",
-  "publishConfig": {
-    "access": "public"
-  },
+  "version": "0.0.1",
   "bin": {
     "rescripts": "./bin/rescripts.js"
   },
   "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "private": false,
   "dependencies": {
-    "@rescripts/rescript-default": "^1.0.2",
-    "@rescripts/utilities": "1.0.0"
+    "react-scripts": "2.1.1",
+    "@rescripts/rescript-default": "0.0.1",
+    "@rescripts/utilities": "0.0.1"
   }
 }

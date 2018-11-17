@@ -1,13 +1,14 @@
 {
   "name": "@rescripts/rescript-default",
-  "version": "1.0.2",
+  "version": "0.0.1",
   "main": "index.js",
   "license": "MIT",
   "publishConfig": {
     "access": "public"
   },
+  "private": false,
   "dependencies": {
-    "@rescripts/rescript-use-babel-config": "^1.0.2",
-    "@rescripts/rescript-use-eslint-config": "^1.0.2"
+    "@rescripts/rescript-use-babel-config": "0.0.1",
+    "@rescripts/rescript-use-eslint-config": "0.0.1"
   }
 }

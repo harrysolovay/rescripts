@@ -1,6 +1,6 @@
 {
   "name": "@rescripts/utilities",
-  "version": "1.0.2",
+  "version": "0.0.1",
   "main": "index.js",
   "license": "MIT",
   "publishConfig": {
