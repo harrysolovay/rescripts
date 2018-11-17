@@ -1,6 +1,6 @@
 {
   "name": "@rescripts/utilities",
-  "version": "0.0.1",
+  "version": "0.0.2-alpha.52+e11a4be2",
   "main": "index.js",
   "license": "MIT",
   "publishConfig": {
@@ -9,5 +9,5 @@
   "peerDependencies": {
     "react-scripts": "^2.1.1"
   },
-  "gitHead": "3caf961f17e39440cb6b69813180a4a4bf1fb40f"
+  "gitHead": "e11a4be2f64aa7c64174283f993fc3f26fea0b63"
 }
