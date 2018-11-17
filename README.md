@@ -32,7 +32,7 @@
 
 <!-- SemVer -->
 <a href='https://semver.org/'>
-  <img src='https://img.shields.io/badge/semver-2.0.0-blue.svg?maxAge=2592000'/>
+  <img src='https://img.shields.io/badge/semver-0.0.2-blue.svg?maxAge=2592000'/>
 </a>
 
 </p>
