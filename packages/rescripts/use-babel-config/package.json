@@ -1,6 +1,6 @@
 {
   "name": "@rescripts/rescript-use-babel-config",
-  "version": "0.0.2-alpha.52+e11a4be2",
+  "version": "0.0.2-alpha.53+afb3d3f9",
   "main": "index.js",
   "license": "MIT",
   "publishConfig": {
@@ -10,5 +10,5 @@
   "peerDependencies": {
     "@rescripts/utilities": "0.0.1"
   },
-  "gitHead": "e11a4be2f64aa7c64174283f993fc3f26fea0b63"
+  "gitHead": "afb3d3f9b6e3fc5fff2e70b84a919c2b832bf6a7"
 }
