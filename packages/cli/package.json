@@ -1,6 +1,6 @@
 {
   "name": "@rescripts/cli",
-  "version": "0.0.2-alpha.54+d90fdfff",
+  "version": "0.0.2-alpha.55+0adf780b",
   "bin": {
     "rescripts": "./bin/rescripts.js"
   },
@@ -10,9 +10,9 @@
   },
   "private": false,
   "dependencies": {
-    "@rescripts/rescript-default": "^0.0.2-alpha.54+d90fdfff",
-    "@rescripts/utilities": "^0.0.2-alpha.54+d90fdfff",
+    "@rescripts/rescript-default": "^0.0.2-alpha.55+0adf780b",
+    "@rescripts/utilities": "^0.0.2-alpha.55+0adf780b",
     "react-scripts": "2.1.1"
   },
-  "gitHead": "d90fdfffb7cf42a35eb0e7f61721245aa979bbeb"
+  "gitHead": "0adf780bbb8f137cf88ed583f3c64e57a6be42bf"
 }
