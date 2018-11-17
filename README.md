@@ -6,13 +6,13 @@
 
 <p align='center'>
 
-<a href='https://github.com/harrysolovay/rescripts/blob/master/LICENSE'>
+<!--<a href='https://github.com/rescripts/rescripts/blob/master/LICENSE'>
   <img src='https://img.shields.io/npm/l/rescripts.svg?style=flat-square' />
-</a>
+</a>-->
 
-<!-- NPM -->
-<a href='https://www.npmjs.com/package/rescripts'>
-  <img src='https://img.shields.io/npm/v/rescripts.svg?style=flat-square' />
+<!-- LICENSE -->
+<a href=''>
+  <img src='https://img.shields.io/packagist/l/doctrine/orm.svg' />
 </a>
 
 <!-- PRs -->
@@ -23,6 +23,16 @@
 <!-- Lerna -->
 <a href='https://lernajs.io/'>
   <img src='https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg' />
+</a>
+
+<!-- NPM -->
+<a href='https://www.npmjs.com/package/rescripts'>
+  <img src='https://img.shields.io/npm/v/rescripts.svg?style=flat-square' />
+</a>
+
+<!-- SemVer -->
+<a href='https://semver.org/'>
+  <img src='https://img.shields.io/badge/semver-2.0.0-blue.svg?maxAge=2592000'/>
 </a>
 
 </p>
@@ -38,6 +48,21 @@
 - 🎩 take advantage of cutting-edge software that hasn't made its way into CRA
 
 - 🥳 dozens of open-source "rescripts" (conceptually similar to Babel presets)
+
+## Guide
+
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
+- [Background](#background)
+- [Installation](#installation)
+- [Basic Usage](#basic-usage)
+- [Advanced Configuration](#advanced-configuration)
+- [Rescripts](#rescripts)
+- [Miscellaneous](#miscellaneous)
+- [Acknowledgements](#acknowledgements)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ## Background
 
