@@ -1,13 +1,14 @@
 {
   "name": "@rescripts/utilities",
-  "version": "0.0.2-alpha.53+afb3d3f9",
+  "version": "0.0.2-alpha.54+d90fdfff",
   "main": "index.js",
   "license": "MIT",
+  "private": false,
   "publishConfig": {
     "access": "public"
   },
   "peerDependencies": {
     "react-scripts": "^2.1.1"
   },
-  "gitHead": "afb3d3f9b6e3fc5fff2e70b84a919c2b832bf6a7"
+  "gitHead": "d90fdfffb7cf42a35eb0e7f61721245aa979bbeb"
 }

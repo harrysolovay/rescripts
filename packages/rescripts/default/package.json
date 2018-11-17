@@ -1,6 +1,6 @@
 {
   "name": "@rescripts/rescript-default",
-  "version": "0.0.2-alpha.53+afb3d3f9",
+  "version": "0.0.2-alpha.54+d90fdfff",
   "main": "index.js",
   "license": "MIT",
   "publishConfig": {
@@ -8,8 +8,8 @@
   },
   "private": false,
   "dependencies": {
-    "@rescripts/rescript-use-babel-config": "^0.0.2-alpha.53+afb3d3f9",
-    "@rescripts/rescript-use-eslint-config": "^0.0.2-alpha.53+afb3d3f9"
+    "@rescripts/rescript-use-babel-config": "^0.0.2-alpha.54+d90fdfff",
+    "@rescripts/rescript-use-eslint-config": "^0.0.2-alpha.54+d90fdfff"
   },
-  "gitHead": "afb3d3f9b6e3fc5fff2e70b84a919c2b832bf6a7"
+  "gitHead": "d90fdfffb7cf42a35eb0e7f61721245aa979bbeb"
 }
