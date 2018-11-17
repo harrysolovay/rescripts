@@ -11,7 +11,7 @@
 </a>-->
 
 <!-- LICENSE -->
-<a href=''>
+<a href='https://github.com/rescripts/rescripts/blob/master/LICENSE'>
   <img src='https://img.shields.io/packagist/l/doctrine/orm.svg' />
 </a>
 
@@ -26,8 +26,8 @@
 </a>
 
 <!-- NPM -->
-<a href='https://www.npmjs.com/package/rescripts'>
-  <img src='https://img.shields.io/npm/v/rescripts.svg?style=flat-square' />
+<a href='https://www.npmjs.com/package/@rescripts/cli'>
+  <img src='https://img.shields.io/npm/v/@rescripts/cli.svg?style=flat-square' />
 </a>
 
 <!-- SemVer -->
