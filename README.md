@@ -29,7 +29,7 @@
 
 <hr />
 
-> Advance your [CRA (create-react-app)](https://github.com/facebook/create-react-app) project configurations. No ejecting, no custom react-scripts fork, no more limitations.
+> Advance your [create-react-app](https://github.com/facebook/create-react-app) project configurations. No ejecting, no custom react-scripts fork, no more limitations.
 
 ## Highlights
 
@@ -37,19 +37,19 @@
 
 - 🎩 take advantage of cutting-edge software that hasn't made its way into CRA
 
-- 🥳 pick and choose from a vast collection of "rescripts" (conceptually similar to Babel presets)
+- 🥳 dozens of open-source "rescripts" (conceptually similar to Babel presets)
 
 ## Background
 
 [CRA (create-react-app)](https://github.com/facebook/create-react-app) provides a first-class React developer experience. For building single-page web apps, it's not only the fastest boostrap––it's also the most carefully-curated, well-supported, and feature-fledged. There is a downside, however: in an effort to create stability and simplicity for beginners, it excludes many configuration options and newer technologies (such as Babel transformations based on early-stage [TC39](https://github.com/tc39) proposals). CRA comes with an "eject" script which––once irreversibly run––allows customization of the "start", "build", and "test" scripts, along with their corresponding configurations. While this does allow you some DX freedom, it isn't always preferable; ejection makes it impossible to upgrade to new versions of `react-scripts`, and it exposes a lot of tedious, knarly-lookin' code. Rescripts is for developers who don't want to eject or worry about configuration, but still want to use cutting-edge developer tooling.
 
-Tim Arney's [react-app-rewired](https://github.com/timarney/react-app-rewired) was––in my humble opinion––the first piece of open source to successfully and reliably solve this problem with CRA. On top of offering a solution, it led to many "rewires" (community-made plugins for simpler setup). But––when CRA 2.0 came around––there were some breaking changes. Not to mention, the react-app-rewired DX was something to be simplified. And now... without further adieu.. enter Rescripts.
+Tim Arney's [react-app-rewired](https://github.com/timarney/react-app-rewired) was––in my humble opinion––the first piece of open source to successfully and reliably solve this problem with CRA. On top of offering a solution, it led to many "rewires" (community-made plugins for simpler setup). But––when CRA 2.0 came around––there were some breaking changes. Not to mention, the react-app-rewired DX was something to be further simplified. And now... without further adieu.. enter Rescripts.
 
-Rescripts tackles this same probem for CRA 2.0+ in a way that is compatible with rewires built for react-app-rewired. It introduces a default "rescript" (similar to a rewire) which automatically scans your project for the existence of ESLint and Babel configurations. Rescripts are loaded in a modular style, with a DX similar to that of Babel preset loading. The default rescript also installs must-have optimizations, which result in higher lighthouse scores (aka. better performance and shorter load times). Rescripts is highly configurable, yet can be used in two (extremely simple) steps. If you end up liking this library, please tweet at [@gearon](https://twitter.com/dan_abramov) requesting a `rescript-everything-i-did-not-include` package 🤩
+Rescripts tackles this same probem for CRA 2.0+ in a way that is compatible with rewires built for react-app-rewired. It introduces a default "rescript" (similar to a rewire) which automatically scans your project for the existence of ESLint and Babel configurations. Rescripts are loaded in a modular style, with a DX similar to that of Babel preset loading. The default rescript also installs must-have optimizations, which result in higher lighthouse scores (aka. better performance and shorter load times). Rescripts is highly configurable, yet can be used in two (extremely simple) steps. If you end up liking this library, please tweet at [@gearon](https://twitter.com/dan_abramov) requesting a `rescripts-everything-i-did-not-include` package 🤩
 
 ## Installation
 
-Install `@rescripts/cli` as a dev dependency. Although it might––depending on your configuration––affect code transformation, it doesn't by default intermingle any code with yours. For the opposite perspective (installing as a regular dependency), check out [this discussion](https://github.com/facebook/create-react-app/pull/2657).
+Install `@rescripts/cli` as a dev dependency.
 
 ```sh
 yarn add -D @rescripts/cli
@@ -93,7 +93,7 @@ yarn add -D @rescripts/cli
 
 #### 2) Add custom Babel & ESLint configs
 
-Add custom configurations for Babel and/or/nor ESLint at your project's root director. For file name, use whatever convention you prefer:
+Add custom configurations for Babel and/or/nor ESLint at your project's root directory. For file name, use whatever convention you prefer:
 
 **Babel:** `.babelrc`, `.babelrc.js`, or `babel.config.js`
 
@@ -151,8 +151,8 @@ Note: when specifying the destination of a config/preset from your package.json,
 Rescripts exposes the three main configurable processes of CRA:
 
 1. **Webpack** is responsible for both development and production builds. This is likely where the bulk of your rescripting will go.
-2. **Development server**––you'll want to configure `devServer` if you need to make use of proxying or are working with APIs that request assets of your site in development (aka. allowing CORS).
-3. **Jest** is for testing your application. Rescripts take care of prepping any custom babel configuration to play well with Jest. If you look at [the testing script](https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/scripts/test.js) in `react-scripts`, you'll find comments about plans for a more stable replacement. Keyboard blood & tears may ensue. Please file issues!
+2. **Development server**
+3. **Jest**––Rescripts takes care of prepping any custom babel configuration to play well with Jest. If you look at [the testing script](https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/scripts/test.js) in `react-scripts`, you'll find comments about plans for a more stable replacement. Keyboard blood & tears may ensue. Please file issues!
 
 ### Configuration
 
