@@ -263,7 +263,7 @@ If your reconfiguration targets Webpack only, your rescript can directly export 
 ```js
 module.exports = config => {
   const reconfig = {...config}
-  // do something reconfig
+  // do something to `reconfig`
   return reconfig
 }
 ```
