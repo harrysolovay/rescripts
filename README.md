@@ -169,6 +169,8 @@ By default, rescripts will look for a rescripts.js file in the root directory of
 
 #### Example rescript
 
+`rescript-example.js`
+
 ```js
 module.exports = {
   rescripts: [
@@ -189,7 +191,7 @@ module.exports = {
   devServer: configFn => (proxy, allowedHost) => ({
     // destructure the options returned
     ...configFn(proxy, allowedHost),
-    // and override the headers prop for CORS
+    // and override the headers to enable CORS
     headers: {
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Methods': 'GET, PUT, POST, DELETE, PATCH, OPTIONS',
@@ -200,7 +202,12 @@ module.exports = {
 }
 ```
 
-Note: the rescripts will be applied before the rescript in which they are specified (in sequential order).
+Note: rescripts are applied before the rescript in which they are specified (in sequential order). In the example above rescripts get applied like this:
+
+1. `@rescripts/rescript-default`
+2. `@rescripts/rescript-lighthouse`
+3. `./path/to/rescript`
+4. `rescript-example.js`
 
 #### Point to your rescript(s)
 
@@ -254,15 +261,16 @@ By default, rescripts will scan your project's root directory for a "rescripts.j
 If your reconfiguration targets Webpack only, your rescript can directly export the Webpack function:
 
 ```js
-module.exports = () => {
-  // do something to the config
-  return config
+module.exports = config => {
+  const reconfig = {...config}
+  // do something reconfig
+  return reconfig
 }
 ```
 
 #### Development vs. Production
 
-To differentiate between development and production reconfiguration, go ahead and reference environment variables as necessary.
+To differentiate between development and production reconfiguration, go ahead and reference environment variables as necessary. For example:
 
 ```js
 module.exports => {
