@@ -9,7 +9,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@rescripts/rescript-default": "^1.0.0",
-    "@rescripts/utilities": "^1.0.0"
+    "@rescripts/rescript-default": "1.0.0",
+    "@rescripts/utilities": "1.0.0"
   }
 }

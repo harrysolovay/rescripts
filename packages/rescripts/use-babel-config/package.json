@@ -7,6 +7,6 @@
     "access": "public"
   },
   "peerDependencies": {
-    "@rescripts/utilities": "^0.1.0"
+    "@rescripts/utilities": "1.0.0"
   }
 }
