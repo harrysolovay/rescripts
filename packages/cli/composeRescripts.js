@@ -6,6 +6,9 @@ const normalizeRescriptEntry = rescript =>
     : rescript
 
 module.exports = (rootRescript, which) => {
+  console.log(rootRescript)
+  process.exit(1)
+
   const indices = Object.assign(
     {},
     ...which.map(p => ({[p]: which.indexOf(p)})),

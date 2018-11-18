@@ -120,9 +120,9 @@ yarn add -D @rescripts/cli
 
 Add custom configurations for Babel and/or/nor ESLint at your project's root directory. For file name, use whatever convention you prefer:
 
-**Babel:** `.babelrc`, `.babelrc.js`, or `babel.config.js`
+**Babel:** `.babelrc`, `.babelrc.js`, `.babelrc.json`, or `babel.config.js`
 
-**ESLint:** `.eslint`, `.eslintrc.js`, or `eslint.config.js`
+**ESLint:** `.eslint`, `.eslintrc.js`, `.eslintrc.json`, or `eslint.config.js`
 
 Or specify the configuration in your package.json:
 
@@ -168,6 +168,54 @@ Or specify the configuration in your package.json:
 ```
 
 Note: when specifying the destination of a config/preset from your package.json, you cannot specify an rc file (only accepts js or json formats).
+
+#### Specifying ESLint plugin & config paths
+
+When specifying ESLint plugin & config paths, be sure to wrap the path with `require.resolve` (might need to convert your file to an `.eslintrc.js` or `eslint.config.js`). You don't need to do this for your Babel configurations (Babel handles module resolution by recursively tracking the parent preset path).
+
+This `.eslintrc.js`, for instance...
+
+```js
+module.exports = {
+  extends: './path/to/config/.eslint-config.js',
+}
+```
+
+... will produce the following error...
+
+```sh
+Failed to compile.
+
+./src/index.js
+Error: Cannot find module 'eslint-config-path/to/config/.eslint-config.js'  . In /Users/harrysolovay/Desktop/rescripts/packages/examples/basic/.babel-preset.js
+Referenced from:
+    at Array.reduceRight (<anonymous>)
+```
+
+..., which can be fixed with...
+
+```js
+module.exports = {
+  extends: require.resolve('./path/to/config/.eslint-config.js'),
+}
+```
+
+Although you don't need to do this for your babel configuration paths, it's recommended:
+
+`.babelrc.js`
+
+```js
+const {BABEL_ENV} = process.env
+
+{
+  "preset": [
+    "react-app",
+    BABEL_ENV === 'development'
+      ? require.resolve('./.babelrc.dev.js')
+      : require.resolve('./.babelrc.prod.js')
+  ]
+}
+```
 
 ## Advanced Configuration
 

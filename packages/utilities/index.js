@@ -27,9 +27,20 @@ const error = (messageOrFn, ...args) => {
   process.exit(1)
 }
 
+const isLiteral = inQuestion => {
+  if (typeof inQuestion !== 'object' || inQuestion === null) return false
+  let test = inQuestion
+  while (!false) {
+    if (Object.getPrototypeOf((test = Object.getPrototypeOf(test))) === null)
+      break
+  }
+  return Object.getPrototypeOf(inQuestion) === test
+}
+
 module.exports = {
   ...paths,
   createLogs,
   compose,
   error,
+  isLiteral,
 }

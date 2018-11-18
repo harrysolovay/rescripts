@@ -1,0 +1,14 @@
+{
+  "name": "@rescripts/rescript-webpack-pwa-manifest",
+  "version": "0.0.1",
+  "main": "index.js",
+  "license": "MIT",
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@rescripts/utilities": "^0.0.2-alpha.57+9533a6cc",
+    "webpack-pwa-manifest": "^3.7.1"
+  }
+}

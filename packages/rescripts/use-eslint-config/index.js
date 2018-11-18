@@ -9,6 +9,7 @@ module.exports = config => {
     [!!pkgEslintConfig, 'package.json "eslintConfig" field'],
     [existsInAppRoot('.eslintrc'), '.eslintrc file'],
     [existsInAppRoot('.eslintrc.js'), '.eslintrc.js file'],
+    [existsInAppRoot('.eslintrc.json'), '.eslintrc.json file'],
     [existsInAppRoot('eslint.config.js'), 'eslint.config.js file'],
   ]
     .filter(([exists]) => exists)
@@ -34,6 +35,7 @@ module.exports = config => {
         break
       }
       case '.eslintrc.js file':
+      case '.eslintrc.json file':
       case 'eslint.config.js file': {
         const [fileName] = source.split(' ')
         const eslintConfigPath = join(appPath, fileName)

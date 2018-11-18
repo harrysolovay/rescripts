@@ -9,6 +9,7 @@ module.exports = config => {
     [!!pkgBabel, 'package.json "babel" field'],
     [existsInAppRoot('.babelrc'), '.babelrc file'],
     [existsInAppRoot('.babelrc.js'), '.babelrc.js file'],
+    [existsInAppRoot('.babelrc.json'), '.babelrc.json file'],
     [existsInAppRoot('babel.config.js'), 'babel.config.js file'],
   ]
     .filter(([exists]) => exists)
@@ -35,6 +36,7 @@ module.exports = config => {
         break
       }
       case '.babelrc.js file':
+      case '.babelrc.json file':
       case 'babel.config.js file': {
         const [fileName] = source.split(' ')
         const babelConfigPath = join(appPath, fileName)
