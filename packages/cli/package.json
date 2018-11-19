@@ -12,6 +12,7 @@
   "dependencies": {
     "@rescripts/rescript-default": "^0.0.2-alpha.57+9533a6cc",
     "@rescripts/utilities": "^0.0.2-alpha.57+9533a6cc",
+    "glob": "^7.1.3",
     "react-scripts": "2.1.1"
   },
   "gitHead": "9533a6cc9e336a9ec38b6f0dca8097f6bfda190d"

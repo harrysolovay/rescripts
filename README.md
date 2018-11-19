@@ -362,7 +362,7 @@ module.exports => {
 
 ## Miscellaneous
 
-Thank you for checking out (maybe even building software with) Rescripts. If you have any bug reports or feature ideas, please go ahead and file an issue. If you have any other questions, comments, etc., please reach out to harrysolovay@gmail.com.
+Thank you for checking out (and maybe even building software with) Rescripts. If you have any bug reports or feature ideas, please go ahead and file an issue. If you have any other questions, comments, etc., please reach out to harrysolovay@gmail.com.
 
 ## Acknowledgements
 

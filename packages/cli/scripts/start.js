@@ -1,16 +1,13 @@
 process.env.BABEL_ENV = 'development'
 process.env.NODE_ENV = 'development'
 
-const composeRescripts = require('../composeRescripts')
+const buildTree = require('../buildTree')
 const rootRescript = require('../rootRescript')
 const {paths, createLogs} = require('@rescripts/utilities')
 const {join} = require('path')
 const monkeyPatch = require('../monkeyPatch')
 
-const [webpack, devServer] = composeRescripts(rootRescript, [
-  'webpack',
-  'devServer',
-])
+const [webpack, devServer] = buildTree(rootRescript, ['webpack', 'devServer'])
 
 const {ownConfigsPath, ownScriptsPath} = paths
 
