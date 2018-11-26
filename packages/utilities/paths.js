@@ -1,28 +1,107 @@
+const {reduce, keys, compose} = require('ramda')
+const reactScriptsPaths = require('react-scripts/config/paths')
 const {join} = require('path')
-const {existsSync} = require('fs')
+const {readFileSync} = require('fs')
 
-const reactScriptsPaths = require(join(
-  join(require.resolve('react-scripts/package.json'), '..'),
-  'config/paths',
-))
-
-const {appPath, ownPath, appNodeModules} = reactScriptsPaths
-
-const paths = {
-  ...reactScriptsPaths,
-  ownConfigsPath: join(ownPath, 'config'),
-  ownScriptsPath: join(ownPath, 'scripts'),
+const rekeyMap = {
+  dotenv: 'env',
+  appPath: 'root',
+  appBuild: 'build',
+  appPublic: 'public',
+  appHtml: 'html',
+  appIndexJs: 'index',
+  appPackageJson: 'package',
+  appSrc: 'src',
+  appTsConfig: 'tsconfig',
+  yarnLockFile: 'lock',
+  testsSetup: 'setupTests',
+  proxySetup: 'setupProxy',
+  appNodeModules: 'nodeModules',
+  publicUrl: 'publicUrl',
+  servedPath: 'served',
+  ownPath: 'reactScripts',
+  ownNodeModules: 'reactScriptsNodeModules',
+  appTypeDeclarations: 'typeDefinitions',
+  ownTypeDeclarations: 'reactScriptsTypeDefinitions',
+  moduleFileExtensions: 'extensions',
 }
 
-const existsInAppRoot = fileName => existsSync(join(appPath, fileName))
+const configs = {
+  webpackConfigDev: 'config/webpack.config.dev',
+  webpackConfigProd: 'config/webpack.config.prod',
+  webpackDevServerConfig: 'config/webpackDevServer.config.js',
+  createJestConfig: 'scripts/utils/createJestConfig',
+}
 
-const resolveRelativeOrNodeModule = pathOrName =>
-  existsInAppRoot(pathOrName)
-    ? join(appPath, pathOrName)
-    : join(appNodeModules, pathOrName)
+const scripts = ['start', 'build', 'test']
+
+const paths = {
+  // improve path key names
+  ...reduce(
+    (accumulator, key) => ({
+      ...accumulator,
+      [rekeyMap[key]]: reactScriptsPaths[key],
+    }),
+    {},
+    keys(reactScriptsPaths),
+  ),
+
+  // configurations
+  ...reduce(
+    (accumulator, key) => ({
+      ...accumulator,
+      [key]: join(reactScriptsPaths.ownPath, configs[key]),
+    }),
+    {},
+    keys(configs),
+  ),
+
+  // scripts
+  ...reduce(
+    (accumulator, key) => ({
+      ...accumulator,
+      [key]: join(reactScriptsPaths.ownPath, 'scripts', key),
+    }),
+    {},
+    scripts,
+  ),
+}
+
+const makeSafe = loader => p => {
+  try {
+    return loader(p)
+  } catch (e) {
+    return null
+  }
+}
+const load = makeSafe(p => require(p))
+const loadRaw = makeSafe(p => {
+  const raw = readFileSync(p)
+  return JSON.parse(raw)
+})
+
+const createFromLoader = (loader, prefix) =>
+  compose(
+    loader,
+    m => join(prefix, m),
+  )
+const {root, reactScriptsNodeModules} = paths
+const loadFromRoot = createFromLoader(load, root)
+const loadRawFromRoot = createFromLoader(loadRaw, root)
+const loadFromNodeModulesOrRoot = m => load(m) || loadFromRoot(m)
+const loadFromPackageField = field => loadFromRoot('package')[field]
+const loadFromReactScriptsNodeModules = createFromLoader(
+  load,
+  reactScriptsNodeModules,
+)
 
 module.exports = {
   paths,
-  existsInAppRoot,
-  resolveRelativeOrNodeModule,
+  load,
+  loadRaw,
+  loadFromRoot,
+  loadRawFromRoot,
+  loadFromNodeModulesOrRoot,
+  loadFromPackageField,
+  loadFromReactScriptsNodeModules,
 }

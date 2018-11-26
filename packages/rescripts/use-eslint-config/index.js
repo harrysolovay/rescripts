@@ -1,52 +1,49 @@
-const {paths, existsInAppRoot, error} = require('@rescripts/utilities')
-const {join} = require('path')
+const {keys, type, reduce, assocPath, dissocPath} = require('ramda')
+const {
+  loadFromPackageField,
+  loadFromNodeModulesOrRoot,
+  error,
+} = require('@rescripts/utilities')
 
-module.exports = config => {
-  const {appPackageJson, appPath} = paths
-  const {eslintConfig: pkgEslintConfig} = require(appPackageJson)
+const optionsPath = ['module', 'rules', 1, 'use', 0, 'options']
 
-  const sources = [
-    [!!pkgEslintConfig, 'package.json "eslintConfig" field'],
-    [existsInAppRoot('.eslintrc'), '.eslintrc file'],
-    [existsInAppRoot('.eslintrc.js'), '.eslintrc.js file'],
-    [existsInAppRoot('.eslintrc.json'), '.eslintrc.json file'],
-    [existsInAppRoot('eslint.config.js'), 'eslint.config.js file'],
-  ]
-    .filter(([exists]) => exists)
-    .map(([truth, sourceName]) => sourceName)
+const clearDefaults = webpackConfig =>
+  dissocPath([...optionsPath, 'baseConfig'], webpackConfig)
 
-  sources.length > 1 &&
-    error(`Conflicting ESLint configurations: ${sources.join(', ')}`)
+const useEslintrc = webpackConfig =>
+  assocPath([...optionsPath, 'useEslintrc'], true, clearDefaults(webpackConfig))
 
-  const [source] = sources
-  if (source) {
-    const reconfig = {...config}
-    const options = reconfig.module.rules[1].use[0].options
+const useEslintConfig = (eslintConfig, webpackConfig) =>
+  reduce(
+    (accumulator, key) =>
+      assocPath([...optionsPath, key], eslintConfig[key], webpackConfig),
+    webpackConfig,
+    keys(eslintConfig),
+  )
 
-    options.baseConfig = {}
-
-    switch (source) {
-      case 'package.json "eslintConfig" field': {
-        Object.assign(options.baseConfig, pkgEslintConfig)
-        break
-      }
-      case '.eslintrc file': {
-        options.useEslintrc = true
-        break
-      }
-      case '.eslintrc.js file':
-      case '.eslintrc.json file':
-      case 'eslint.config.js file': {
-        const [fileName] = source.split(' ')
-        const eslintConfigPath = join(appPath, fileName)
-        const eslintConfig = require(eslintConfigPath)
-        Object.assign(options.baseConfig, eslintConfig)
-        break
+module.exports = options => webpackConfig => {
+  switch (type(options)) {
+    case 'String': {
+      switch (options) {
+        case '.eslintrc': {
+          return useEslintrc(webpackConfig)
+        }
+        case 'package':
+        case 'package.json': {
+          const eslintConfig = loadFromPackageField('eslintConfig')
+          return useEslintConfig(eslintConfig, webpackConfig)
+        }
+        default: {
+          const eslintConfig = loadFromNodeModulesOrRoot(options)
+          return useEslintConfig(eslintConfig, webpackConfig)
+        }
       }
     }
-
-    return reconfig
+    case 'Object': {
+      return useEslintConfig(options, webpackConfig)
+    }
+    default: {
+      error('must specify eslint config entry')
+    }
   }
-
-  return config
 }

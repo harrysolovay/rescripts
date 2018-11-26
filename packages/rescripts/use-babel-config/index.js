@@ -1,53 +1,53 @@
-const {paths, existsInAppRoot, error} = require('@rescripts/utilities')
-const {join} = require('path')
+const {type, keys, reduce, assocPath, dissocPath} = require('ramda')
+const {
+  loadFromPackageField,
+  loadFromNodeModulesOrRoot,
+  error,
+} = require('@rescripts/utilities')
 
-module.exports = config => {
-  const {appPackageJson, appPath} = paths
-  const {babel: pkgBabel} = require(appPackageJson)
+const optionsPath = ['module', 'rules', 2, 'oneOf', 1, 'options']
 
-  const sources = [
-    [!!pkgBabel, 'package.json "babel" field'],
-    [existsInAppRoot('.babelrc'), '.babelrc file'],
-    [existsInAppRoot('.babelrc.js'), '.babelrc.js file'],
-    [existsInAppRoot('.babelrc.json'), '.babelrc.json file'],
-    [existsInAppRoot('babel.config.js'), 'babel.config.js file'],
-  ]
-    .filter(([exists]) => exists)
-    .map(([truth, sourceName]) => sourceName)
+const clearDefaults = webpackConfig =>
+  reduce(
+    (accumulator, key) => dissocPath([...optionsPath, key], accumulator),
+    webpackConfig,
+    ['presets', 'plugins'],
+  )
 
-  sources.length > 1 &&
-    error(`Conflicting Babel configurations: ${sources.join(', ')}`)
+const useBabelrc = webpackConfig =>
+  assocPath([...optionsPath, 'babelrc'], true, clearDefaults(webpackConfig))
 
-  const [source] = sources
-  if (source) {
-    const reconfig = {...config}
-    const options = reconfig.module.rules[2].oneOf[1].options
+const useBabelConfig = (babelConfig, webpackConfig) =>
+  reduce(
+    (accumulator, key) =>
+      assocPath([...optionsPath, key], babelConfig[key], webpackConfig),
+    webpackConfig,
+    keys(babelConfig),
+  )
 
-    delete options.presets
-    delete options.plugins
-
-    switch (source) {
-      case 'package.json "babel" field': {
-        Object.assign(options, pkgBabel)
-        break
-      }
-      case '.babelrc file': {
-        options.babelrc = true
-        break
-      }
-      case '.babelrc.js file':
-      case '.babelrc.json file':
-      case 'babel.config.js file': {
-        const [fileName] = source.split(' ')
-        const babelConfigPath = join(appPath, fileName)
-        const babelConfig = require(babelConfigPath)
-        Object.assign(options, babelConfig)
-        break
+module.exports = options => webpackConfig => {
+  switch (type(options)) {
+    case 'String': {
+      switch (options) {
+        case '.babelrc': {
+          return useBabelrc(webpackConfig)
+        }
+        case 'package':
+        case 'package.json': {
+          const babelConfig = loadFromPackageField('babel')
+          return useBabelConfig(babelConfig, webpackConfig)
+        }
+        default: {
+          const babelConfig = loadFromNodeModulesOrRoot(options)
+          return useBabelConfig(babelConfig, webpackConfig)
+        }
       }
     }
-
-    return reconfig
+    case 'Object': {
+      return useBabelConfig(options, webpackConfig)
+    }
+    default: {
+      error('must specify babel config entry')
+    }
   }
-
-  return config
 }

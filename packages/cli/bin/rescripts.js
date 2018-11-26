@@ -1,5 +1,6 @@
 #!/usr/bin/env node
-'use strict'
+
+//TODO: clean this the hell up
 
 process.on('unhandledRejection', err => {
   throw err
@@ -22,7 +23,7 @@ switch (script) {
     const result = spawn.sync(
       'node',
       nodeArgs
-        .concat(require.resolve('../scripts/' + script))
+        .concat(require.resolve(`../scripts/${script}`))
         .concat(args.slice(scriptIndex + 1)),
       {stdio: 'inherit'},
     )
@@ -46,7 +47,7 @@ switch (script) {
     break
   }
   default:
-    console.log('Unknown script "' + script + '".')
+    console.log(`Unknown script "${script}".`)
     console.log('Perhaps you need to update react-scripts?')
     console.log(
       'See: https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/template/README.md#updating-to-new-releases',

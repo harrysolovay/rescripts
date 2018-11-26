@@ -1,27 +1,16 @@
-// DOESN'T WORK YET
-// TODO: make jest configurable
+process.env.NODE_ENV = process.env.BABEL_ENV = 'test'
 
-process.env.BABEL_ENV = 'test'
-process.env.NODE_ENV = 'test'
-process.env.PUBLIC_URL = ''
+const patch = require('../patch')
 
-const compose = require('../compose')
-const rootPreset = require('../rootPreset')
+const gatherPipes = require('../loader')
+const {jest: transformJest} = gatherPipes(['jest'])
 
-const [webpack, devServer] = compose(
-  rootPreset,
-  ['jest'],
-)
+const {paths} = require('@rescripts/utilities')
+const {createJestConfig, loadFromReactScriptsNodeModules, root, test} = paths
 
-const {paths, monkeyPatch} = require('@rescripts/utilities')
+const getConfig = require(createJestConfig)
+const config = () => getConfig(loadFromReactScriptsNodeModules, root, false)
 
-const {join} = require('path')
-const {ownConfigsPath, ownScriptsPath} = paths
+patch(transformJest, config)
 
-const webpackConfigDevPath = join(ownConfigsPath, '...NOOOOO')
-monkeyPatch(webpackConfigDevPath, webpack)
-
-const devServerConfigPath = join(ownConfigsPath, 'webpackDevServer.config')
-monkeyPatch(devServerConfigPath, devServer)
-
-require(join(ownScriptsPath, 'test'))
+require(test)

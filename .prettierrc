@@ -8,5 +8,6 @@
   "trailingComma": "all",
   "bracketSpacing": false,
   "jsxBracketSameLine": false,
-  "proseWrap": "never"
+  "proseWrap": "never",
+  "printWidth": 80
 }
