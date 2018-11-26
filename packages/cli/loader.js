@@ -46,7 +46,7 @@ const isolate = (scope, o) =>
 
 const mergePipes = reduceRight(mergeWith((x, y) => flatten([x, y])), {})
 
-const gatherPipes = (scope, rescript = rootRescript) =>
+module.exports = (scope, rescript = rootRescript) =>
   rescript &&
   reduce(
     (pipes, e) => {
@@ -82,5 +82,3 @@ const gatherPipes = (scope, rescript = rootRescript) =>
     {},
     rescript,
   )
-
-module.exports = gatherPipes
