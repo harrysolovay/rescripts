@@ -5,6 +5,7 @@ const {
   identity,
   flatten,
   intersperse,
+  compose,
   type,
 } = require('ramda')
 
@@ -17,7 +18,7 @@ module.exports = (transforms, path, middleware) => {
   if (transforms) {
     const normalized = normalize(transforms)
     const middlewareApplied = middleware && intersperse(middleware, normalized)
-    const transform = pipe(...(middlewareApplied || normalized))
+    const transform = compose(...(middlewareApplied || normalized))
 
     const config = require(path)
     const transformed =

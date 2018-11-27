@@ -1,4 +1,4 @@
-const {reduce, keys, compose} = require('ramda')
+const {reduce, keys, pipe} = require('ramda')
 const reactScriptsPaths = require('react-scripts/config/paths')
 const {join} = require('path')
 const {readFileSync} = require('fs')
@@ -81,9 +81,9 @@ const loadRaw = makeSafe(p => {
 })
 
 const createFromLoader = (loader, prefix) =>
-  compose(
-    loader,
+  pipe(
     m => join(prefix, m),
+    loader,
   )
 const {root, reactScriptsNodeModules} = paths
 const loadFromRoot = createFromLoader(load, root)
