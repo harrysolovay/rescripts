@@ -47,7 +47,6 @@ const isolate = (scope, o) =>
 const mergePipes = reduceRight(mergeWith((x, y) => flatten([x, y])), {})
 
 const gatherPipes = (scope, rescript = rootRescript) =>
-  rescript &&
   reduce(
     (pipes, e) => {
       const r = normalize(e)
