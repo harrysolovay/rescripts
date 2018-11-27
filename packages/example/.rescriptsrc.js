@@ -57,8 +57,8 @@ const acceptableFormats = [
 ]
 
 module.exports = [
-  ['use-babel-config', '.babelrc'],
-  ['use-eslint-config', '.eslintrc'],
+  ['use-babel-config', '.babelrc.js'],
+  ['use-eslint-config', '.eslintrc.js'],
   [
     'use-webpack-plugins',
     [

@@ -17,7 +17,7 @@ const useEslintConfig = (eslintConfig, webpackConfig) =>
   reduce(
     (accumulator, key) =>
       assocPath([...optionsPath, key], eslintConfig[key], webpackConfig),
-    webpackConfig,
+    clearDefaults(webpackConfig),
     keys(eslintConfig),
   )
 

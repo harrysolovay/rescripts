@@ -21,7 +21,7 @@ const useConfigFile = (babelConfig, webpackConfig) =>
   reduce(
     (accumulator, key) =>
       assocPath([...optionsPath, key], babelConfig[key], webpackConfig),
-    webpackConfig,
+    clearDefaults(webpackConfig),
     keys(babelConfig),
   )
 
