@@ -31,4 +31,9 @@ module.exports = [
     console.log('YAYAYAYAYAY')
     return config
   },
+  [
+    'use-rewire',
+    'react-app-rewire-compression-plugin',
+    {test: /\.js(\?.*)?$/i, cache: true},
+  ],
 ]
