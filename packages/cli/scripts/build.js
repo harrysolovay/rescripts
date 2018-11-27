@@ -1,13 +1,11 @@
 process.env.NODE_ENV = process.env.BABEL_ENV = 'production'
 
-const patch = require('../patch')
-
 const gatherPipes = require('../loader')
-const {webpack} = gatherPipes(['webpack'])
+const {webpack: transformations} = gatherPipes(['webpack'])
 
+const patch = require('../patch')
 const {paths} = require('@rescripts/utilities')
 const {webpackConfigProd, build} = paths
-
-patch(webpack, webpackConfigProd)
+patch(transformations, webpackConfigProd)
 
 require(build)

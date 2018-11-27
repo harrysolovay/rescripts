@@ -12,6 +12,7 @@
     "console": true,
     "process": true
   },
+  "plugins": ["ramda"],
   "rules": {
     "accessor-pairs": "error",
     "array-bracket-newline": "error",

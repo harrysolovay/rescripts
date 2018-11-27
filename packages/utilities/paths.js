@@ -29,7 +29,7 @@ const rekeyMap = {
 const configs = {
   webpackConfigDev: 'config/webpack.config.dev',
   webpackConfigProd: 'config/webpack.config.prod',
-  webpackDevServerConfig: 'config/webpackDevServer.config.js',
+  webpackDevServerConfig: 'config/webpackDevServer.config',
   createJestConfig: 'scripts/utils/createJestConfig',
 }
 
