@@ -14,10 +14,10 @@ const clearDefaults = webpackConfig =>
     ['presets', 'plugins'],
   )
 
-const useBabelrc = webpackConfig =>
+const useDotRc = webpackConfig =>
   assocPath([...optionsPath, 'babelrc'], true, clearDefaults(webpackConfig))
 
-const useBabelConfig = (babelConfig, webpackConfig) =>
+const useConfigFile = (babelConfig, webpackConfig) =>
   reduce(
     (accumulator, key) =>
       assocPath([...optionsPath, key], babelConfig[key], webpackConfig),
@@ -30,21 +30,21 @@ module.exports = options => webpackConfig => {
     case 'String': {
       switch (options) {
         case '.babelrc': {
-          return useBabelrc(webpackConfig)
+          return useDotRc(webpackConfig)
         }
         case 'package':
         case 'package.json': {
           const babelConfig = loadFromPackageField('babel')
-          return useBabelConfig(babelConfig, webpackConfig)
+          return useConfigFile(babelConfig, webpackConfig)
         }
         default: {
           const babelConfig = loadFromNodeModulesOrRoot(options)
-          return useBabelConfig(babelConfig, webpackConfig)
+          return useConfigFile(babelConfig, webpackConfig)
         }
       }
     }
     case 'Object': {
-      return useBabelConfig(options, webpackConfig)
+      return useConfigFile(options, webpackConfig)
     }
     default: {
       error('must specify babel config entry')

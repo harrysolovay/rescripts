@@ -57,20 +57,20 @@ const gatherPipes = (scope, rescript = rootRescript) =>
         case 'Array': {
           if (r) {
             const gathered = gatherPipes(scope, r)
-            return mergePipes([pipes, gathered])
+            return mergePipes([gathered, pipes])
           }
           return
         }
 
         case 'Function': {
           return includes('webpack', scope)
-            ? mergePipes([pipes, {webpack: r}])
+            ? mergePipes([{webpack: r}, pipes])
             : pipes
         }
 
         case 'Object': {
           const scoped = isolate(scope, r)
-          return mergePipes([pipes, scoped])
+          return mergePipes([scoped, pipes])
         }
 
         default: {
