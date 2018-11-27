@@ -80,18 +80,17 @@ const loadRaw = makeSafe(p => {
   return JSON.parse(raw)
 })
 
-const createFrom = (resolver, prefix) =>
+const createFromLoader = (loader, prefix) =>
   pipe(
     m => join(prefix, m),
-    resolver,
+    loader,
   )
 const {root, reactScriptsNodeModules} = paths
-const loadFromRoot = createFrom(load, root)
-const resolveFromRoot = createFrom(require.resolve, root)
-const loadRawFromRoot = createFrom(loadRaw, root)
+const loadFromRoot = createFromLoader(load, root)
+const loadRawFromRoot = createFromLoader(loadRaw, root)
 const loadFromNodeModulesOrRoot = m => load(m) || loadFromRoot(m)
 const loadFromPackageField = field => loadFromRoot('package')[field]
-const loadFromReactScriptsNodeModules = createFrom(
+const loadFromReactScriptsNodeModules = createFromLoader(
   load,
   reactScriptsNodeModules,
 )

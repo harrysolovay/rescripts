@@ -7,12 +7,15 @@
     "@rescripts/rescript-use-babel-config": "^0.1.0",
     "@rescripts/rescript-use-eslint-config": "^0.1.0",
     "@rescripts/rescript-use-rewire": "^0.1.0",
+    "@rescripts/rescript-use-webpack-plugins": "^0.1.0",
     "babel-plugin-module-resolver": "^3.1.1",
     "babel-plugin-react-require": "^3.0.1",
     "react": "^16.6.3",
     "react-app-rewire-compression-plugin": "^1.0.0",
     "react-dom": "^16.6.3",
-    "react-scripts": "2.1.1"
+    "react-scripts": "2.1.1",
+    "webpack-build-notifier": "^0.1.30",
+    "webpack-pwa-manifest": "^3.7.1"
   },
   "scripts": {
     "start": "rescripts start",

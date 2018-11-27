@@ -1,0 +1,9 @@
+{
+  "name": "@rescripts/rescript-use-webpack-plugins",
+  "version": "0.1.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "@rescripts/utilities": "^0.1.0"
+  }
+}

@@ -1,3 +1,6 @@
+const WebpackBuildNotifierPlugin = require('webpack-build-notifier')
+const WebpackPWAManifestPlugin = require('webpack-pwa-manifest')
+
 const webpack = config => {
   console.log('doing some webpack rescripting')
   return config
@@ -56,6 +59,30 @@ const acceptableFormats = [
 module.exports = [
   ['use-babel-config', '.babelrc'],
   ['use-eslint-config', '.eslintrc'],
+  [
+    'use-webpack-plugins',
+    [
+      process.env.NODE_ENV === 'production' &&
+        new WebpackPWAManifestPlugin({
+          name: 'Rescripted App',
+          short_name: 'Example',
+          description: 'An example app that uses Rescripts',
+          background_color: '#fff',
+          crossorigin: 'use-credentials',
+          icons: [
+            {
+              src: require.resolve('./public/icon.png'),
+              sizes: [96, 128, 192, 256, 384, 512],
+            },
+          ],
+        }),
+      new WebpackBuildNotifierPlugin({
+        title: 'Rescripted App',
+        logo: require.resolve('./public/icon.png'),
+        suppressSuccess: true,
+      }),
+    ].filter(Boolean),
+  ],
   [
     'use-rewire',
     'react-app-rewire-compression-plugin',
