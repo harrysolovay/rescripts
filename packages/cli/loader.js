@@ -36,6 +36,8 @@ const loadCreatorAndApplyArgs = ([creator, ...args]) =>
 const normalize = r =>
   type(r) === 'Array' ? loadCreatorAndApplyArgs(r) : normalizeLoaded(r)
 
+const mergePipes = reduceRight(mergeWith((x, y) => flatten([x, y])), {})
+
 const isolate = (scope, o) =>
   reduce(
     (accumulator, key) =>
@@ -43,8 +45,6 @@ const isolate = (scope, o) =>
     {},
     scope,
   )
-
-const mergePipes = reduceRight(mergeWith((x, y) => flatten([x, y])), {})
 
 const gatherPipes = (scope, rescript = rootRescript) =>
   reduce(
