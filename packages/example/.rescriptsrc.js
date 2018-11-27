@@ -62,4 +62,5 @@ module.exports = [
     {test: /\.js(\?.*)?$/i, cache: true},
   ],
   ...acceptableFormats,
+  require.resolve('./another-rescript'),
 ]
