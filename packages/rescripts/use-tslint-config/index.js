@@ -1,18 +1,24 @@
-const {resolveFromRootOrNodeModules} = require('@rescripts/utilities')
+const {paths, resolveFromRootOrNodeModules} = require('@rescripts/utilities')
+const {src} = paths
 // const {assocPath} = require('ramda')
 
 module.exports = path => config => {
-  config.module.rules.unshift({
+  config.module.rules.splice(1, 0, {
     test: /\.(ts|tsx)$/,
     enforce: 'pre',
     use: [
       {
-        options,
+        options: {
+          configFile: resolveFromRootOrNodeModules(path),
+          typeCheck: true,
+          tsConfigFile: 'tsconfig.json',
+          emitErrors: true,
+          failOnHint: true,
+        },
         loader: require.resolve('tslint-loader'),
       },
     ],
-    include: esLintLoader.include,
-    exclude: esLintLoader.exclude,
+    include: src,
   })
   return config
 }
