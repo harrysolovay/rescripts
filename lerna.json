@@ -1,6 +1,11 @@
 {
-  "packages": ["packages/cli", "packages/utilities", "packages/rescripts/*"],
-  "version": "independent",
+  "packages": [
+    "packages/cli",
+    "packages/utilities",
+    "packages/rescripts/*",
+    "packages/examples/*"
+  ],
+  "version": "0.0.3",
   "npmClient": "yarn",
   "useWorkspaces": true
 }
