@@ -1,6 +1,6 @@
 {
   "name": "typescript",
-  "version": "0.1.0",
+  "version": "0.0.4",
   "private": true,
   "browserslist": [
     ">0.2%",
@@ -10,7 +10,7 @@
   ],
   "dependencies": {
     "@rescripts/cli": "^0.1.0",
-    "@rescripts/rescript-use-tslint-config": "^0.1.0",
+    "@rescripts/rescript-use-tslint-config": "^0.0.4",
     "@types/jest": "23.3.9",
     "@types/node": "10.12.10",
     "@types/react": "16.7.7",

@@ -1,6 +1,6 @@
 {
   "name": "@rescripts/rescript-env",
-  "version": "0.1.0",
+  "version": "0.0.4",
   "main": "index.js",
   "license": "MIT",
   "private": false,
@@ -8,9 +8,9 @@
     "access": "public"
   },
   "dependencies": {
-    "@rescripts/rescript-use-babel-config": "^0.1.0",
-    "@rescripts/rescript-use-eslint-config": "^0.1.0",
-    "@rescripts/rescript-use-tslint-config": "^0.1.0",
+    "@rescripts/rescript-use-babel-config": "^0.0.4",
+    "@rescripts/rescript-use-eslint-config": "^0.0.4",
+    "@rescripts/rescript-use-tslint-config": "^0.0.4",
     "ramda": "^0.26.1"
   }
 }

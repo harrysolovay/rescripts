@@ -1,13 +1,13 @@
 {
   "name": "basic",
-  "version": "0.1.0",
+  "version": "0.0.4",
   "private": true,
   "dependencies": {
     "@rescripts/cli": "^0.1.0",
-    "@rescripts/rescript-use-babel-config": "^0.1.0",
-    "@rescripts/rescript-use-eslint-config": "^0.1.0",
-    "@rescripts/rescript-use-rewire": "^0.1.0",
-    "@rescripts/rescript-use-stylelint-config": "^0.1.0",
+    "@rescripts/rescript-use-babel-config": "^0.0.4",
+    "@rescripts/rescript-use-eslint-config": "^0.0.4",
+    "@rescripts/rescript-use-rewire": "^0.0.4",
+    "@rescripts/rescript-use-stylelint-config": "^0.0.4",
     "@rescripts/rescript-use-webpack-plugins": "^0.1.0",
     "babel-plugin-module-resolver": "^3.1.1",
     "babel-plugin-react-require": "^3.0.1",
