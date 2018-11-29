@@ -22,7 +22,7 @@
     "packages/cli",
     "packages/utilities",
     "packages/rescripts/*",
-    "packages/example"
+    "packages/examples/*"
   ],
   "devDependencies": {
     "doctoc": "^1.4.0",
@@ -47,6 +47,6 @@
   "scripts": {
     "lint": "eslint --ignore-path .gitignore packages/**/*.js",
     "doctoc": "doctoc README.md --maxlevel 2 --notitle",
-    "example": "cd packages/example && npm run start"
+    "example": "cd packages/examples/basic && npm run start"
   }
 }

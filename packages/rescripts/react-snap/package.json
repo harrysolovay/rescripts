@@ -1,0 +1,15 @@
+{
+  "name": "@rescripts/rescript-react-snap",
+  "version": "0.1.0",
+  "main": "index.js",
+  "license": "MIT",
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@rescripts/utilities": "^0.1.0",
+    "ramda": "^0.26.0",
+    "react-snap": "^1.21.0"
+  }
+}

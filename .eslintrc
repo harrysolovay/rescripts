@@ -247,7 +247,7 @@
     "require-atomic-updates": "error",
     "require-await": "error",
     "require-jsdoc": "error",
-    "require-unicode-regexp": "error",
+    "require-unicode-regexp": 0,
     "rest-spread-spacing": ["error", "never"],
     "semi": "off",
     "semi-spacing": "error",

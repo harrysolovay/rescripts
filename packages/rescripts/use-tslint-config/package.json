@@ -1,0 +1,16 @@
+{
+  "name": "@rescripts/rescript-use-tslint-config",
+  "version": "0.1.0",
+  "main": "index.js",
+  "license": "MIT",
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@rescripts/utilities": "^0.1.0",
+    "fork-ts-checker-webpack-plugin": "^0.5.0",
+    "ramda": "^0.26.0",
+    "typescript": "^3.1.6"
+  }
+}

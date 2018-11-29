@@ -95,6 +95,9 @@ const loadFromReactScriptsNodeModules = createFromLoader(
   reactScriptsNodeModules,
 )
 
+const resolveFromRootOrNodeModules = m =>
+  require.resolve(join(root, m)) || require.resolve(m)
+
 module.exports = {
   paths,
   load,
@@ -104,4 +107,5 @@ module.exports = {
   loadFromNodeModulesOrRoot,
   loadFromPackageField,
   loadFromReactScriptsNodeModules,
+  resolveFromRootOrNodeModules,
 }

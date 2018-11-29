@@ -1,0 +1,38 @@
+{
+  "name": "basic",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@rescripts/cli": "^0.1.0",
+    "@rescripts/rescript-use-babel-config": "^0.1.0",
+    "@rescripts/rescript-use-eslint-config": "^0.1.0",
+    "@rescripts/rescript-use-rewire": "^0.1.0",
+    "@rescripts/rescript-use-stylelint-config": "^0.1.0",
+    "@rescripts/rescript-use-webpack-plugins": "^0.1.0",
+    "babel-plugin-module-resolver": "^3.1.1",
+    "babel-plugin-react-require": "^3.0.1",
+    "react": "^16.6.3",
+    "react-app-rewire-compression-plugin": "^1.0.0",
+    "react-dom": "^16.6.3",
+    "react-scripts": "2.1.1",
+    "styled-components": "^4.1.1",
+    "stylelint": "^9.9.0",
+    "stylelint-config-recommended": "^2.1.0",
+    "stylelint-config-styled-components": "^0.1.1",
+    "stylelint-processor-styled-components": "^1.5.1",
+    "webpack-build-notifier": "^0.1.30",
+    "webpack-pwa-manifest": "^3.7.1"
+  },
+  "scripts": {
+    "start": "rescripts start",
+    "build": "rescripts build",
+    "test": "rescripts test",
+    "eject": "rescripts eject"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
+}

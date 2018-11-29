@@ -3,7 +3,7 @@
     "packages/cli",
     "packages/utilities",
     "packages/rescripts/*",
-    "packages/example"
+    "packages/examples/*"
   ],
   "version": "independent",
   "npmClient": "yarn",

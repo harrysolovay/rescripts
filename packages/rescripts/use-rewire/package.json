@@ -3,6 +3,10 @@
   "version": "0.1.0",
   "main": "index.js",
   "license": "MIT",
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
   "dependencies": {
     "ramda": "^0.26.0",
     "react-app-rewired": "^1.6.2"
