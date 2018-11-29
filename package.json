@@ -21,8 +21,7 @@
   "workspaces": [
     "packages/cli",
     "packages/utilities",
-    "packages/rescripts/*",
-    "packages/examples/*"
+    "packages/rescripts/*"
   ],
   "devDependencies": {
     "doctoc": "^1.4.0",
