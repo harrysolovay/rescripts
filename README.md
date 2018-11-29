@@ -52,6 +52,14 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
+- [Background](#background)
+- [Installation](#installation)
+- [Basic Usage](#basic-usage)
+- [Advanced Configuration](#advanced-configuration)
+- [Rescript Structure](#rescript-structure)
+- [Miscellaneous](#miscellaneous)
+- [Acknowledgements](#acknowledgements)
+
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ## Background
@@ -232,6 +240,7 @@ Rescripts transform and return the updated configurations used by the three main
 
 ```js
 // define child rescript
+
 module.exports = ['rescript-a', 'rescript-b', 'rescript-c']
 ```
 
@@ -256,6 +265,7 @@ const transformWebpackConfig = () => {...}
 module.exports = config => {
   const newConfig = transformWebpackConfig(config)
   return newConfig
+
 },
 ```
 
@@ -292,6 +302,7 @@ module.exports = {
     const newConfig = transformJestConfig(config)
     return newConfig
   },
+
 }
 ```
 
@@ -335,6 +346,7 @@ module.exports = (webpackArg, devServerArg, jestArg) => ({
 
 ```js
 // use child rescript
+
 module.exports = [
   [
     require.resolve('path/to/child-rescript'),
