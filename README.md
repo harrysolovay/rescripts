@@ -32,7 +32,7 @@
 
 <!-- SemVer -->
 <a href='https://semver.org/'>
-  <img src='https://img.shields.io/badge/semver-0.0.2-blue.svg?maxAge=2592000'/>
+  <img src='https://img.shields.io/badge/semver-0.0.3-blue.svg?maxAge=2592000'/>
 </a>
 
 </p>
@@ -44,45 +44,54 @@
 ## Highlights
 
 - 🎯 create the perfect configuration with minimal effort
-
 - 🎩 take advantage of cutting-edge software that hasn't made its way into CRA
-
-- 🥳 dozens of open-source "rescripts" (conceptually similar to Babel presets)
+- 🥳 library of open-source "rescripts"
 
 ## Guide
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-- [Background](#background)
-- [Installation](#installation)
-- [Basic Usage](#basic-usage)
-- [Advanced Configuration](#advanced-configuration)
-- [Rescripts](#rescripts)
-- [Miscellaneous](#miscellaneous)
-- [Acknowledgements](#acknowledgements)
-
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ## Background
 
-[CRA (create-react-app)](https://github.com/facebook/create-react-app) provides a first-class React developer experience. For building single-page web apps, it's not only the fastest boostrap––it's also the most carefully-curated, well-supported, and feature-fledged. There is a downside, however: in an effort to create stability and simplicity for beginners, it excludes many configuration options and newer technologies (such as Babel transformations based on early-stage [TC39](https://github.com/tc39) proposals). CRA comes with an "eject" script which––once irreversibly run––allows customization of the "start", "build", and "test" scripts, along with their corresponding configurations. While this does allow you some DX freedom, it isn't always preferable; ejection makes it impossible to upgrade to new versions of `react-scripts`, and it exposes a lot of tedious, knarly-lookin' code. Rescripts is for developers who don't want to eject or worry about configuration, but still want to use cutting-edge developer tooling.
+[CRA (create-react-app)](https://github.com/facebook/create-react-app) provides a first-class React developer experience. For building single-page web apps, it's not only the fastest boostrap––it's also the most carefully-curated, well-supported, and feature-fledged. There is a downside, however: in an effort to create stability and simplicity for beginners, it excludes many configuration options and newer technologies (such as Babel transformations based on early-stage [TC39](https://github.com/tc39) proposals). CRA comes with an "eject" script which––once irreversibly run––allows customization of the "start", "build", and "test" scripts, along with their corresponding configurations. While this does allow you some DX freedom, it isn't always preferable; ejection makes it impossible to upgrade to new versions of `react-scripts`, and it exposes a lot of tedious, knarly-lookin' code. Rescripts is for developers who don't want to eject or worry about configuration, but still want to use cutting-edge tools.
 
-Tim Arney's [react-app-rewired](https://github.com/timarney/react-app-rewired) was––in my humble opinion––the first piece of open source to successfully and reliably solve this problem with CRA. On top of offering a solution, it led to many "rewires" (community-made plugins for simpler setup). But––when CRA 2.0 came around––there were some breaking changes. Not to mention, the react-app-rewired DX was something to be further simplified. And now... without further adieu.. enter Rescripts.
+Tim Arney's [react-app-rewired](https://github.com/timarney/react-app-rewired) was the first project to successfully tackle this problem. On top of offering a solution, it led to many "rewires" (community-made plugins for simpler setup). But––when CRA 2.0 came around––there were some breaking changes. Not to mention, the react-app-rewired's DX was something to be further simplified.
 
-Rescripts tackles this same probem for CRA 2.0+ in a way that is compatible with rewires built for react-app-rewired. It introduces a default "rescript" (similar to a rewire) which automatically scans your project for the existence of ESLint and Babel configurations. Rescripts are loaded in a modular style, with a DX similar to that of Babel preset loading. The default rescript also installs must-have optimizations, which result in higher lighthouse scores (aka. better performance and shorter load times). Rescripts is highly configurable, yet can be used in two (extremely simple) steps. If you end up liking this library, please tweet at [@gearon](https://twitter.com/dan_abramov) requesting a `rescripts-everything-i-did-not-include` package 🤩
+Rescripts tackles this same probem for CRA 2.0+ with several key DX differences. It was designed to be the focal point for all non-standard configuration. The underlaying loader can handle deeply nested "rescripts" (conceptually similar to babel plugins), all of which can modify any CRA process. The API also exposes a middleware entrance, so that you can track the configuration as it gets transformed. It should be noted that Rescripts is compatible with Webpack rewires built for react-app-rewired.
+
+If you like this framework, please tweet at [@gearon](https://twitter.com/dan_abramov) requesting a `everything-i-did-not-include` rescript 🤩
 
 ## Installation
 
-Install `@rescripts/cli` as a dev dependency.
+#### Install `@rescripts/cli` as a dev dependency:
 
 ```sh
 yarn add -D @rescripts/cli
 ```
 
+#### Install the rescript(s) you wish to use:
+
+```sh
+yarn add -D @rescripts/rescript-env
+```
+
+#### Mix and match for your prefered setup:
+
+- [env](https://github.com/rescripts/rescripts/blob/master/packages/rescripts/env) – use Babel, ESLint, and/or TSLint
+- [use-babel-config](https://github.com/rescripts/rescripts/blob/master/packages/rescripts/use-babel-config) – specify a Babel configuration
+- [use-eslint-config](https://github.com/rescripts/rescripts/blob/master/packages/rescripts/use-eslint-config) – specify an ESLint configuration
+- [use-tslint-config](https://github.com/rescripts/rescripts/blob/master/packages/rescripts/use-tslint-config) – specify a TSLint configuration
+- [use-rewire](https://github.com/rescripts/rescripts/blob/master/packages/rescripts/use-rewire) – use a rewire designed for react-app-rewired
+- [use-webpack-plugin](https://github.com/rescripts/rescripts/blob/master/packages/rescripts/use-webpack-plugin) – add a webpack plugin(s)
+
 ## Basic Usage
 
 #### 1) Replace `react-scripts` calls with `rescripts` calls
+
+`package.json`
 
 ```diff
 {
@@ -93,8 +102,10 @@ yarn add -D @rescripts/cli
     "react": "^16.6.1",
     "react-dom": "^16.6.1",
     "react-scripts": "2.1.1"
-+   "@rescripts/cli": "^0.1.0"
   }
++ "devDependencies": {
++   "@rescripts/cli": "^0.1.0"
++ }
   "scripts": {
 -   "start": "react-scripts start",
 +   "start": "rescripts start",
@@ -116,15 +127,9 @@ yarn add -D @rescripts/cli
 }
 ```
 
-#### 2) Add custom Babel & ESLint configs
+#### 2) Define a rescripts field and specify which to use
 
-Add custom configurations for Babel and/or/nor ESLint at your project's root directory. For file name, use whatever convention you prefer:
-
-**Babel:** `.babelrc`, `.babelrc.js`, `.babelrc.json`, or `babel.config.js`
-
-**ESLint:** `.eslint`, `.eslintrc.js`, `.eslintrc.json`, or `eslint.config.js`
-
-Or specify the configuration in your package.json:
+`package.json`
 
 ```diff
 {
@@ -135,7 +140,7 @@ Or specify the configuration in your package.json:
     "react": "^16.6.1",
     "react-dom": "^16.6.1",
     "react-scripts": "2.1.1"
-  },
+  }
   "devDependencies": {
     "@rescripts/cli": "^0.1.0"
   }
@@ -144,221 +149,203 @@ Or specify the configuration in your package.json:
     "build": "rescripts build",
     "test": "rescripts test"
   },
-+ "eslintConfig": {
-+   "extends": "react-app",
-+   "rules": {
-+     "some-rule": [1, "always"]
-+   }
-+ },
-+ "babel": {
-+   "presets": [
-+     "react-app"
-+   ],
-+   "plugins": [
-+     "some-babel-plugin"
-+   ]
-+ }
+  "eslintConfig": {
+    "extends": "react-app"
+  },
   "browserslist": [
     ">0.2%",
     "not dead",
     "not ie <= 11",
     "not op_mini all"
+  ],
+  "rescripts": [
+    ["env", {
+      "babel": ".babelrc.js",
+      "eslint": "package.json"
+    }]
   ]
 }
 ```
 
-Note: when specifying the destination of a config/preset from your package.json, you cannot specify an rc file (only accepts js or json formats).
+#### 3) Use the newly-enabled feature(s)
 
-#### Specifying ESLint plugin & config paths
+In the case of [@rescripts/rescript-env](https://github.com/rescripts/rescripts/blob/master/packages/rescripts/env), you will now be able to use a `.babelrc.js` to configure [Babel](https://babeljs.io/), and the "eslintConfig" field in `package.json` to configure [ESLint](https://eslint.org/).
 
-When specifying ESLint plugin & config paths, be sure to wrap the path with `require.resolve` (might need to convert your file to an `.eslintrc.js` or `eslint.config.js`). You don't need to do this for your Babel configurations (Babel handles module resolution by recursively tracking the parent preset path).
-
-This `.eslintrc.js`, for instance...
-
-```js
-module.exports = {
-  extends: './path/to/config/.eslint-config.js',
-}
-```
-
-... will produce the following error...
-
-```sh
-Failed to compile.
-
-./src/index.js
-Error: Cannot find module 'eslint-config-path/to/config/.eslint-config.js'  . In /Users/harrysolovay/Desktop/rescripts/packages/examples/basic/.babel-preset.js
-Referenced from:
-    at Array.reduceRight (<anonymous>)
-```
-
-..., which can be fixed with...
-
-```js
-module.exports = {
-  extends: require.resolve('./path/to/config/.eslint-config.js'),
-}
-```
-
-Although you don't need to do this for your babel configuration paths, it's recommended:
-
-`.babelrc.js`
-
-```js
-const {BABEL_ENV} = process.env
-
-{
-  "preset": [
-    "react-app",
-    BABEL_ENV === 'development'
-      ? require.resolve('./.babelrc.dev.js')
-      : require.resolve('./.babelrc.prod.js')
-  ]
-}
-```
+By default, there are two ways to specify your "root rescript". Either define a "rescripts" field in your `package.json` (as is done above), or create a `.rescriptsrc` file in your project root (use whatever convention you prefer: `.js`, `.json`, or no extension.)
 
 ## Advanced Configuration
 
-### Processes
+Your root rescript should be an array of other rescripts. Some rescripts take in options and/or other parameters. Some do not. Some contain functions that transform your webpack config. Some contain transformations for any combination of processes (`webpack`, `devServer` and `jest`). Consider the following:
 
-Rescripts exposes the three main configurable processes of CRA:
+In this example, the root rescript contains [@rescripts/rescript-use-babel-config]() with no configuration (it will scan the `package.json` and project root for the Babel config):
 
-1. **Webpack** is responsible for both development and production builds. This is likely where the bulk of your rescripting will go.
-2. **Development server**
-3. **Jest**––Rescripts takes care of prepping any custom babel configuration to play well with Jest. If you look at [the testing script](https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/scripts/test.js) in `react-scripts`, you'll find comments about plans for a more stable replacement. Keyboard blood & tears may ensue. Please file issues!
-
-### Configuration
-
-#### The "Root Rescript"
-
-By default, rescripts will look for a rescripts.js file in the root directory of your app. This file (a "rescript") should export an object with any combination of the following:
-
-| property    | type & return                                 | description                                                                                                | purpose                                                                                                                                                  |
-| ----------- | --------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `rescripts` | Array\<string> => void                        | Relative or node modules paths to other "rescripts" to be applied before the current (in sequential order) | Allows for a more modular composition of rescripts                                                                                                       |  |
-| `webpack`   | WebpackConfig => Modified                     | This function takes in the webpack configuration, transforms it, and returns the new config                | Allows you to edit your Webpack development and production configurations as a single object                                                             |  |
-| `devServer` | () => (proxy, allowedHost) => DevServerConfig | Returns a function that calls the supplied (via sole argument) function and returns the altered value      | decide how you want your development server to behave––alternatively, disable this and create your own (for instance with a little docker + NGINX magic) |  |
-| `jest`      | Array\<FillInLater>                           |                                                                                                            |                                                                                                                                                          |  |
-
-#### Example rescript
-
-`rescript-example.js`
-
-```js
-module.exports = {
-  rescripts: [
-    // composing rescripts from node_modules
-    require('@rescripts/rescript-default'),
-    require('@rescripts/rescript-lighthouse'),
-    // relative paths will also work
-    require('./path/to/rescript'),
-  ],
-  webpack: config => {
-    // good practice to create (and later on return) a copy of the original
-    const reconfig = {...config}
-    // edit the config (in this example, we disable webpack's caching mechanism)
-    reconfig.module.rules[2].oneOf[1].options.cacheDirectory = false
-    // return the updated config
-    return reconfig
-  },
-  devServer: configFn => (proxy, allowedHost) => ({
-    // destructure the options returned
-    ...configFn(proxy, allowedHost),
-    // and override the headers to enable CORS
-    headers: {
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Methods': 'GET, PUT, POST, DELETE, PATCH, OPTIONS',
-      'Access-Control-Allow-Headers':
-        'X-Requested-With, Content-Type, Authorization',
-    },
-  }),
-}
+```json
+["use-babel-config"]
 ```
 
-Note: rescripts are applied before the rescript in which they are specified (in sequential order). In the example above rescripts get applied like this:
+You could also specify the rescript by its full NPM name:
 
-1. `@rescripts/rescript-default`
-2. `@rescripts/rescript-lighthouse`
-3. `./path/to/rescript`
-4. `rescript-example.js`
+```json
+["@rescripts/rescript-use-babel-config"]
+```
 
-#### Point to your rescript(s)
+To pass in arguments, wrap the rescript inside of another array and add the arguments as subsequent elements. In the following example, we specify where to look for the babel configuration (so that there's no need to waste resources scanning for the config):
 
-By default, rescripts will scan your project's root directory for a "rescripts.js" file. You can also explicitly point to a rescript from your `package.json`:
+```json
+[["use-babel-config", ".babelrc"]]
+```
 
-```diff
-{
-  "name": "built-with-rescripts",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "react": "^16.6.1",
-    "react-dom": "^16.6.1",
-    "react-scripts": "2.1.1"
-  },
-  "devDependencies": {
-    "@rescripts/cli": "^0.1.0"
-  }
-  "scripts": {
-    "start": "rescripts start",
-    "build": "rescripts build",
-    "test": "rescripts test"
-  },
-+ "rescripts": "path/to/rescript",
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
+We could also pass the configuration into the rescript directly:
+
+```json
+[
+  [
+    "use-babel-config",
+    {
+      "presets": ["react-app"],
+      "plugins": [
+        [
+          "module-resolver",
+          {
+            "root": ".",
+            "alias": {
+              "~": "./src"
+            }
+          }
+        ]
+      ]
+    }
   ]
-}
+]
 ```
 
-... or point to a rescript in node_modules:
+## Rescript Structure
 
-```diff
-+ "rescripts": "@rescripts/rescript-lighthouse",
-```
+Rescripts transform and return the updated configurations used by the three main processes of CRA (Webpack, Developement Server, Jest). They can also trigger other changes to the project, such as writing logs, caching files, and triggering other node processes.
 
-... or point to multiple rescripts:
+#### A rescript can be...
 
-```diff
-+ "rescripts": [
-+   "@rescripts/rescript-default",
-+   "@rescripts/rescript-lighthouse"
-+ ],
-```
+<details>
+<summary>an array of other rescripts</summary>
 
-#### Webpack-only
-
-If your reconfiguration targets Webpack only, your rescript can directly export the Webpack function:
+`child-rescript.js`
 
 ```js
+// define child rescript
+module.exports = ['rescript-a', 'rescript-b', 'rescript-c']
+```
+
+`parent-rescript.js`
+
+```js
+// use child rescript
+module.exports = [require.resolve('path/to/child-rescript')]
+```
+
+</details>
+
+<details>
+<summary>a function that takes in and returns the webpack config</summary>
+
+`child-rescript.js`
+
+```js
+// define child rescript
+const transformWebpackConfig = () => {...}
+
 module.exports = config => {
-  const reconfig = {...config}
-  // do something to `reconfig`
-  return reconfig
-}
+  const newConfig = transformWebpackConfig(config)
+  return newConfig
+},
 ```
 
-#### Development vs. Production
-
-To differentiate between development and production reconfiguration, go ahead and reference environment variables as necessary. For example:
+`parent-rescript.js`
 
 ```js
-module.exports => {
-  "rescript": [
-    process.env.NODE_ENV === 'production' &&
-      require('@rescripts/rescript-image-compression')
-  ]
+// use child rescript
+module.exports = [require.resolve('path/to/child-rescript')]
+```
+
+</details>
+
+<details>
+<summary>an object containing (any combination of) `webpack`, `devServer`, and `jest` functions, which take in and returns their respective configs</summary>
+
+`child-rescript.js`
+
+```js
+// define child rescript
+const transformWebpackConfig = () => {...}
+const transformDevServerConfig = () => {...}
+const transformJestConfig = () => {...}
+
+module.exports = {
+  webpack: config => {
+    const newConfig = transformWebpackConfig(config)
+    return newConfig
+  },
+  devServer: config => {
+    const newConfig = transformDevServerConfig(config)
+    return newConfig
+  },
+  jest: config => {
+    const newConfig = transformJestConfig(config)
+    return newConfig
+  },
 }
 ```
 
-## Rescripts
+`parent-rescript.js`
 
-- [rescript-default](https://github.com) – scans for Babel and ESLint configurations and uses them if preset
-- [rescript-lighthouse](https://github.com) – optimizations for higher lighthouse scores
-- [rescript-image-compression](https://github.com) – compresses your images
+```js
+// use child rescript
+module.exports = [require.resolve('path/to/child-rescript')]
+```
+
+</details>
+
+<details>
+<summary>a function that takes in arguments and outputs a new rescript</summary>
+
+`child-rescript.js`
+
+```js
+// define child rescript
+const transformWebpackConfig = () => {...}
+const transformDevServerConfig = () => {...}
+const transformJestConfig = () => {...}
+
+module.exports = (webpackArg, devServerArg, jestArg) => ({
+  webpack: config => {
+    const newConfig = transformWebpackConfig(config, webpackArg)
+    return newConfig
+  },
+  devServer: config => {
+    const newConfig = transformDevServerConfig(config, devServerArg)
+    return newConfig
+  },
+  jest: config => {
+    const newConfig = transformJestConfig(config, jestArg)
+    return newConfig
+  },
+})
+```
+
+`parent-rescript.js`
+
+```js
+// use child rescript
+module.exports = [
+  [
+    require.resolve('path/to/child-rescript'),
+    'webpackArg',
+    'devServerArg',
+    'jestArg',
+  ],
+]
+```
+
+</details>
 
 ## Miscellaneous
 
