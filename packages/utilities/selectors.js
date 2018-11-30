@@ -1,16 +1,6 @@
-const {evolve, append, flatten} = require('ramda')
-
-const addWebpackPlugin = (plugins, config) =>
-  evolve(
-    {
-      plugins: x => {
-        const appended = append(plugins, x)
-        return flatten(appended)
-      },
-    },
-    config,
-  )
+// TODO: Write webpack helper functions
+// const {} = require('ramda')
 
 module.exports = {
-  addWebpackPlugin,
+  somethingSoon: () => 'this is gonna be cool',
 }

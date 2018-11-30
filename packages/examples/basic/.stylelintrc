@@ -1,9 +1,0 @@
-{
-  "extends": [
-    "stylelint-config-recommended",
-    "stylelint-config-styled-components"
-  ],
-  "rules": {
-    "declaration-no-important": true
-  }
-}

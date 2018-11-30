@@ -21,7 +21,8 @@
   "workspaces": [
     "packages/cli",
     "packages/utilities",
-    "packages/rescripts/*"
+    "packages/rescripts/*",
+    "packages/examples/*"
   ],
   "devDependencies": {
     "doctoc": "^1.4.0",
@@ -46,6 +47,7 @@
   "scripts": {
     "lint": "eslint --ignore-path .gitignore packages/**/*.js",
     "doctoc": "doctoc README.md --maxlevel 2 --notitle",
-    "example": "cd packages/examples/typescript && npm run start"
+    "example": "cd packages/examples/basic && npm run start",
+    "clean": "rm -rf node_modules"
   }
 }

@@ -1,0 +1,27 @@
+{
+  "name": "using-rewire",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@rescripts/cli": "^0.0.3",
+    "@rescripts/rescript-use-rewire": "^0.0.1-alpha.57",
+    "react": "^16.6.3",
+    "react-app-rewire-compression-plugin": "^1.0.0",
+    "react-dom": "^16.6.3",
+    "react-scripts": "2.1.1"
+  },
+  "scripts": {
+    "start": "rescripts start",
+    "build": "rescripts build",
+    "test": "rescripts test"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
+}

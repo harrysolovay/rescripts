@@ -1,19 +1,32 @@
-const {findIndex, over, lensProp, remove, lensPath, insert} = require('ramda')
-const {paths, resolveFromRootOrNodeModules} = require('@rescripts/utilities')
+const {
+  findIndex,
+  over,
+  lensProp,
+  remove,
+  lensPath,
+  insert,
+  type,
+  pipe,
+} = require('ramda')
+const {
+  paths,
+  resolveFromRootOrNodeModules,
+  error,
+} = require('@rescripts/utilities')
 const {src} = paths
 
 const isTSPlugin = ({constructor: {name}}) =>
   name === 'ForkTsCheckerWebpackPlugin'
 
 const pluginsLens = lensProp('plugins')
+
 const clearOfTSPlugin = config => {
-  const {plugins} = config
-  const pluginIndex = findIndex(isTSPlugin, plugins)
+  const pluginIndex = findIndex(isTSPlugin, config.plugins)
   const removePlugin = remove(pluginIndex, 1)
   return over(pluginsLens, removePlugin, config)
 }
 
-const addTSLintLoader = path =>
+const createAddTSLintLoader = path =>
   over(
     lensPath(['module', 'rules']),
     insert(1, {
@@ -36,7 +49,22 @@ const addTSLintLoader = path =>
   )
 
 module.exports = path => config => {
-  const withoutPlugin = clearOfTSPlugin(config)
-  const resolved = resolveFromRootOrNodeModules(path, withoutPlugin)
-  return addTSLintLoader(resolved)(withoutPlugin)
+  const pathType = type(path)
+  pathType !== 'String' &&
+    error(
+      `@rescripts/rescript-use-tslint-config expects argument of type 'string' but recieved ${pathType}`,
+    )
+
+  const resolved = resolveFromRootOrNodeModules(path)
+  !resolved &&
+    error(
+      `Could not load TSLint configuration '${path}' relative to your project root nor node_modules'`,
+    )
+
+  const addTSLintLoader = createAddTSLintLoader(resolved)
+
+  return pipe(
+    clearOfTSPlugin,
+    addTSLintLoader,
+  )(config)
 }

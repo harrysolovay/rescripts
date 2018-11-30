@@ -3,4 +3,6 @@ const error = message => {
   process.exit(1)
 }
 
-module.exports = {error}
+module.exports = {
+  error,
+}
