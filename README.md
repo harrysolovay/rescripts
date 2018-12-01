@@ -39,7 +39,7 @@
 
 <hr />
 
-> Take control of your [create-react-app](https://github.com/facebook/create-react-app) project configurations. No ejecting, no custom react-scripts fork, no more limitations.
+> Take control of your [create-react-app](https://github.com/facebook/create-react-app) project configurations. No ejecting, no custom react-scripts fork, no limitations.
 
 ## Highlights
 
@@ -57,8 +57,9 @@
 - [Background](#background)
 - [Installation](#installation)
 - [Basic Usage](#basic-usage)
-- [Advanced Configuration](#advanced-configuration)
+- [Advanced Usage](#advanced-usage)
 - [Rescript Structure](#rescript-structure)
+- [Rescript Library](#rescript-library)
 - [Miscellaneous](#miscellaneous)
 - [Acknowledgements](#acknowledgements)
 
