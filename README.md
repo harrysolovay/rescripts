@@ -187,7 +187,7 @@ In the case of [@rescripts/rescript-env](https://github.com/rescripts/rescripts/
 
 Your root rescript should be an array of other rescripts. Some rescripts take in options and/or other parameters. Some do not. Some contain functions that transform your webpack config. Some contain transformations for any combination of processes (`webpack`, `devServer` and `jest`). Consider the following:
 
-In this example, the root rescript refers to [@rescripts/rescript-env](https://github.com/rescripts/rescripts/blob/master/packages/rescripts/env). This rescript takes in no arguments, which means that it has to scan your project at every run.
+In this example, the root rescript makes reference to [@rescripts/rescript-env](https://github.com/rescripts/rescripts/blob/master/packages/rescripts/env). This rescript takes in no arguments, which means that it has to scan your project at every run.
 
 ```js
 module.exports = ['env']
