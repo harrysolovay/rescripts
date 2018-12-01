@@ -373,6 +373,43 @@ module.exports = [
 
 </details>
 
+#### Webpack Example
+
+`.rescriptsrc.js`
+
+```js
+const WebpackBuildNotifierPlugin = require('webpack-build-notifier')
+const WebpackPWAManifestPlugin = require('webpack-pwa-manifest')
+
+module.exports = [config => {
+  const newConfig = {...config}
+
+  newConfig.plugins.push(
+    new WebpackBuildNotifierPlugin({
+      title: 'Rescripted App',
+      logo: require.resolve('./public/icon.png'),
+      suppressSuccess: true,
+    })
+  )
+
+  process.env.NODE_ENV === 'production' &&
+    newConfig.plugins.push(
+      new WebpackPWAManifestPlugin({
+      name: 'Rescripted App',
+      short_name: 'Example',
+      description: 'An example app that uses Rescripts',
+      background_color: '#fff',
+      crossorigin: 'use-credentials',
+      icons: [{
+        src: require.resolve('./public/icon.png'),
+        sizes: [96, 128, 192, 256, 384, 512],
+      }],
+    })
+
+  return newConfig
+}]
+```
+
 ## Rescript Library
 
 - [env](https://github.com/rescripts/rescripts/blob/master/packages/rescripts/env) – use Babel, ESLint, and/or TSLint
