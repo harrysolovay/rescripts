@@ -47,7 +47,9 @@
 
 - 🎩 take advantage of cutting-edge software that hasn't made its way into CRA
 
-- 🥳 library of open-source "rescripts"
+- 🥳 draw from a library of open-source "rescripts"
+
+- 👽 use "rewires" initially designed for react-app-rewired
 
 ## Guide
 
