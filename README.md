@@ -110,7 +110,8 @@ yarn add -D @rescripts/rescript-env
     "react-scripts": "2.1.1"
   }
 + "devDependencies": {
-+   "@rescripts/cli": "^0.1.0"
++   "@rescripts/cli": "^0.0.3",
++   "@rescript/rescript-env"
 + }
   "scripts": {
 -   "start": "react-scripts start",
