@@ -208,38 +208,38 @@ The eventual goal of Rescripts is to provide a single, simple interface for deep
 
 `.rescriptsrc.js`
 
-```json
-(module.exports = [
+```js
+module.exports = [
   [
-    "use-babel-config",
+    'use-babel-config',
     {
-      "presets": ["react-app"],
-      "plugins": [
-        "react-require",
+      presets: ['react-app'],
+      plugins: [
+        'react-require',
         [
-          "module-resolver",
+          'module-resolver',
           {
-            "root": ".",
-            "alias": {
-              "~": "./src"
-            }
-          }
-        ]
-      ]
-    }
+            root: '.',
+            alias: {
+              '~': './src',
+            },
+          },
+        ],
+      ],
+    },
   ],
   [
-    "use-eslint-config",
+    'use-eslint-config',
     {
-      "extends": ["react-app"],
-      "plugins": ["ramda"],
-      "rules": {
-        "ramda/compose-pipe-style": "error",
-        "react/react-in-jsx-scope": 0
-      }
-    }
-  ]
-])
+      extends: ['react-app'],
+      plugins: ['ramda'],
+      rules: {
+        'ramda/compose-pipe-style': 'error',
+        'react/react-in-jsx-scope': 0,
+      },
+    },
+  ],
+]
 ```
 
 ## Rescript Structure
