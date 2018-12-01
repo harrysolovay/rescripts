@@ -26,7 +26,8 @@ const useConfigFile = (babelConfig, webpackConfig) =>
   )
 
 module.exports = options => webpackConfig => {
-  switch (type(options)) {
+  const optionsType = type(options)
+  switch (optionsType) {
     case 'String': {
       switch (options) {
         case '.babelrc': {
@@ -47,7 +48,9 @@ module.exports = options => webpackConfig => {
       return useConfigFile(options, webpackConfig)
     }
     default: {
-      error('must specify babel config entry')
+      error(
+        `@rescripts/rescript-use-eslint-config expects argument of type 'String' or 'Object' but recieved ${optionsType}`,
+      )
     }
   }
 }

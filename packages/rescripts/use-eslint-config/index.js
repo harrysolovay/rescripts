@@ -22,7 +22,8 @@ const useEslintConfig = (eslintConfig, webpackConfig) =>
   )
 
 module.exports = options => webpackConfig => {
-  switch (type(options)) {
+  const optionsType = type(options)
+  switch (optionsType) {
     case 'String': {
       switch (options) {
         case '.eslintrc': {
@@ -43,7 +44,9 @@ module.exports = options => webpackConfig => {
       return useEslintConfig(options, webpackConfig)
     }
     default: {
-      error('must specify eslint config entry')
+      error(
+        `@rescripts/rescript-use-eslint-config expects argument of type 'String' or 'Object' but recieved ${optionsType}`,
+      )
     }
   }
 }

@@ -79,12 +79,20 @@ const loadRaw = makeSafe(p => {
   const raw = readFileSync(p)
   return JSON.parse(raw)
 })
+const resolve = makeSafe(p => {
+  try {
+    return require.resolve(p)
+  } catch (error) {
+    return null
+  }
+})
 
 const createFromLoader = (loader, prefix) =>
   pipe(
     m => join(prefix, m),
     loader,
   )
+
 const {root, reactScriptsNodeModules} = paths
 const loadFromRoot = createFromLoader(load, root)
 const loadRawFromRoot = createFromLoader(loadRaw, root)
@@ -95,17 +103,19 @@ const loadFromReactScriptsNodeModules = createFromLoader(
   reactScriptsNodeModules,
 )
 
-const resolveFromRootOrNodeModules = m =>
-  require.resolve(join(root, m)) || require.resolve(m)
+const resolveFromRoot = createFromLoader(resolve, root)
+const resolveFromRootOrNodeModules = m => resolveFromRoot(m) || resolve(m)
 
 module.exports = {
   paths,
   load,
   loadRaw,
+  resolve,
   loadFromRoot,
   loadRawFromRoot,
   loadFromNodeModulesOrRoot,
   loadFromPackageField,
   loadFromReactScriptsNodeModules,
+  resolveFromRoot,
   resolveFromRootOrNodeModules,
 }

@@ -19,7 +19,9 @@ const rootRescript =
   loadFromPackageField('rescripts') ||
   loadRawFromRoot('.rescriptsrc') ||
   loadFromRoot('.rescriptsrc') ||
-  error('UNABLE TO LOAD ROOT RESCRIPT')
+  error(
+    "You're likely seeing this bug because you haven't defined a root rescript or your root rescript contains a syntactical error. If you're certain of otherwise, please file an issue.",
+  )
 
 const normalizeLoaded = x =>
   type(x) === 'String'
@@ -73,7 +75,9 @@ const gatherPipes = (scope, rescript = rootRescript) =>
         }
 
         default: {
-          error('invalid config')
+          error(
+            'It seems that your Rescripts configuration is invalid. Please refer to the docs or post an issue if you believe this to be an internal bug. Thank you!',
+          )
           return
         }
       }

@@ -3,12 +3,13 @@ const {
   findIndex,
   lensPath,
   over,
+  type,
   map,
   append,
   compose,
 } = require('ramda')
 const styleLint = require('styleLint')
-const {resolveFromRootOrNodeModules} = require('@rescripts/utilities')
+const {resolveFromRootOrNodeModules, error} = require('@rescripts/utilities')
 
 const postCSSLoaderPath = require.resolve('postcss-loader')
 const isPostCSSLoader = propEq('loader', postCSSLoaderPath)
@@ -52,7 +53,19 @@ const formatTransformMap = {
 }
 
 module.exports = ({path, formats}) => config => {
+  const pathType = type(path)
+  pathType !== 'String' &&
+    error(
+      `@rescripts/rescript-use-stylelint-config expects argument of type 'string' but recieved ${pathType}`,
+    )
+
   const resolved = resolveFromRootOrNodeModules(path)
+
+  !resolved &&
+    error(
+      `Could not load StyleLint configuration '${path}' relative to your project root nor node_modules'`,
+    )
+
   const transforms = map(key => formatTransformMap[key](resolved), formats)
   const transform = compose(...transforms)
   return transform(config)
