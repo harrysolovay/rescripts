@@ -47,7 +47,7 @@
   "scripts": {
     "lint": "eslint --ignore-path .gitignore packages/**/*.js",
     "doctoc": "doctoc README.md --maxlevel 2 --notitle",
-    "example": "cd packages/examples/basic && npm run start",
+    "example": "cd packages/examples/adding-webpack-plugins && npm run start",
     "clean": "rm -rf node_modules"
   }
 }
