@@ -175,7 +175,7 @@ You can also specify your "root rescript" in a root-level `.rescriptsrc` file (u
 
 #### 3) Use the newly-enabled feature(s)
 
-In the case of [@rescripts/rescript-env](https://github.com/rescripts/rescripts/blob/master/packages/rescripts/env), you will now be able to use custom Babel, ESLint and TSLint configurations. Use any of the following conventions to specify your configs:
+In the case of [@rescripts/rescript-env](https://github.com/rescripts/rescripts/blob/master/packages/rescripts/env), you will now be able to use custom Babel, ESLint and TSLint configurations. Use any of the following conventions:
 
 **Babel:** place config inside of a root-level `.babelrc`, `.babelrc.js`, `.babelrc.json`, or `babel.config.js` file, or inside of the `babel` field of your `package.json`
 
@@ -187,16 +187,19 @@ In the case of [@rescripts/rescript-env](https://github.com/rescripts/rescripts/
 
 Your root rescript should be an array of other rescripts. Some rescripts take in options and/or other parameters. Some do not. Some contain functions that transform your webpack config. Some contain transformations for any combination of processes (`webpack`, `devServer` and `jest`). Consider the following:
 
-In this example, the root rescript contains [@rescripts/rescript-env](https://github.com/rescripts/rescripts/blob/master/packages/rescripts/env). This rescript takes in no arguments, which means that it has to scan your project at every run.
+In this example, the root rescript refers to [@rescripts/rescript-env](https://github.com/rescripts/rescripts/blob/master/packages/rescripts/env). This rescript takes in no arguments, which means that it has to scan your project at every run.
 
-```json
-["env"]
+```js
+module.exports = ['env']
 ```
 
 Alternatively, you could use [@rescripts/rescript-use-babel-config](https://github.com/rescripts/rescripts/blob/master/packages/rescripts/use-babel-config) and [@rescripts/rescript-use-eslint-config](https://github.com/rescripts/rescripts/blob/master/packages/rescripts/use-eslint-config) (or [@rescripts/rescript-use-tslint-config](https://github.com/rescripts/rescripts/blob/master/packages/rescripts/use-tslint-config) if you prefer TypeScript):
 
-```json
-[["use-babel-config", ".babelrc"]]
+```js
+module.exports = [
+  ['use-babel-config', '.babelrc'],
+  ['use-eslint-config', '.eslintrc'],
+]
 ```
 
 This example illustrates how arguments can be passed to a rescript by wrapping its reference inside of another array and adding the arguments as subsequent elements.
