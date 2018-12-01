@@ -49,7 +49,7 @@
 
 - 🥳 draw from a library of open-source "rescripts"
 
-- 👽 use "rewires" initially designed for react-app-rewired
+- 👽 compatible with "rewires" designed for react-app-rewired
 
 ## Guide
 
