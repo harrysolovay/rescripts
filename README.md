@@ -39,11 +39,11 @@
 
 <hr />
 
-> Advance your [create-react-app](https://github.com/facebook/create-react-app) project configurations. No ejecting, no custom react-scripts fork, no more limitations.
+> Take control of your [create-react-app](https://github.com/facebook/create-react-app) project configurations. No ejecting, no custom react-scripts fork, no more limitations.
 
 ## Highlights
 
-- 🎯 create the perfect configuration with minimal effort
+- 🎯 create the perfect config with minimal effort
 
 - 🎩 take advantage of cutting-edge software that hasn't made its way into CRA
 
