@@ -10,8 +10,6 @@ npm i -D @rescripts/rescript-use-babel-config
 
 #### From a `.babelrc`:
 
-`.rescriptsrc`
-
 ```json
 [["use-babel-config", ".babelrc"]]
 ```
@@ -22,8 +20,6 @@ npm i -D @rescripts/rescript-use-babel-config
 
 Call `use-babel-config` with `.babelrc.js`, `.babelrc.json`, or any other file name (must have `.js` or `.json` extension).
 
-`.rescriptsrc`
-
 ```json
 [["use-babel-config", "name-your-babel-config-whatever.js"]]
 ```
@@ -32,8 +28,6 @@ Call `use-babel-config` with `.babelrc.js`, `.babelrc.json`, or any other file n
 
 #### From `package.json`
 
-`.rescriptsrc`
-
 ```json
 [["use-babel-config", "package"]]
 ```
@@ -41,8 +35,6 @@ Call `use-babel-config` with `.babelrc.js`, `.babelrc.json`, or any other file n
 > Searches for the config within the `babel` field of your `package.json`.
 
 #### Inline config
-
-`.rescriptsrc`
 
 ```json
 [
