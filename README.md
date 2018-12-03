@@ -373,6 +373,37 @@ module.exports = [
 
 </details>
 
+<details>
+<summary>a combination of formats</summary>
+
+`child-rescript.js`
+
+```js
+// define child rescript
+module.exports = [
+  'some-rescripts',
+  [
+    'rescript-that-takes-args',
+    {
+      docsQuality: 'helpful?',
+    },
+  ],
+  config => {
+    const newConfig = doSomethingToTheConfig(config)
+    return newConfig
+  },
+]
+```
+
+`parent-rescript.js`
+
+```js
+// use child rescript
+module.exports = [require.resolve('path/to/child-rescript')]
+```
+
+</details>
+
 #### Webpack Example
 
 `.rescriptsrc.js`
