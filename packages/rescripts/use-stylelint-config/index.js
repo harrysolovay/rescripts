@@ -21,15 +21,6 @@ const {
   error,
 } = require('@rescripts/utilities')
 
-const postCSSLoaderPath = require.resolve('postcss-loader')
-const isPostCSSLoader = propEq('loader', postCSSLoaderPath)
-const getPostCSSPluginsLens = ({use}) => {
-  const postCSSLoaderIndex = findIndex(isPostCSSLoader, use)
-  return postCSSLoaderIndex >= 0
-    ? lensPath(['use', postCSSLoaderIndex, 'options', 'plugins'])
-    : false
-}
-
 const isPostCSSOptions = allPass([
   prop('ident'),
   propSatisfies(includes('postcss'), 'ident'),
@@ -69,20 +60,17 @@ const addStylelintCustomProcessorLoader = path => config =>
     config,
   )
 
-const formatTransformMap = {
-  css: addStyleLintPluginToPostCSSLoaders,
-  scss: addStyleLintPluginToPostCSSLoaders,
-  js: addStylelintCustomProcessorLoader,
-}
-
-module.exports = ({path, formats}) => config => {
+module.exports = path => config => {
   const resolved = resolveFromRootOrNodeModules(path)
   !resolved &&
     error(
       `Could not load StyleLint configuration '${path}' relative to your project root nor node_modules'`,
     )
 
-  const transforms = map(key => formatTransformMap[key](resolved), formats)
+  const transforms = map(fn => fn(resolved), [
+    addStyleLintPluginToPostCSSLoaders,
+    addStylelintCustomProcessorLoader,
+  ])
   const transform = compose(...transforms)
   return transform(config)
 }

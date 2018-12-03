@@ -16,7 +16,7 @@ module.exports = config => {
     nameOnly(resolveFromRoot('.eslintrc') || resolveFromRoot('config.eslint'))
 
   const tslintConfig =
-    resolveFromRoot('tsconfig.json') && resolveFromRoot('tslint.json')
+    resolveFromRoot('tsconfig.json') && resolveFromRoot('tslint')
 
   const transforms = reduce(
     (accumulator, [rescript, path]) =>
