@@ -1,9 +1,19 @@
-const {reduce, type, toPairs, map, lensPath, over, curry} = require('ramda')
+const {
+  reduce,
+  type,
+  toPairs,
+  map,
+  lensPath,
+  over,
+  curry,
+  assocPath,
+  dissocPath,
+} = require('ramda')
 
 const isObjectOrArray = inQuestion =>
   type(inQuestion) === 'Array' || type(inQuestion) === 'Object'
 
-const getPath = (predicate, parentValue, parentPath = []) =>
+const getPaths = curry((predicate, parentValue, parentPath = []) =>
   reduce(
     (paths, [key, value]) => {
       if (value) {
@@ -12,25 +22,39 @@ const getPath = (predicate, parentValue, parentPath = []) =>
         return predicate(value)
           ? [...paths, currentPath]
           : isObjectOrArray(value)
-          ? [...paths, ...getPath(predicate, value, currentPath)]
+          ? [...paths, ...getPaths(predicate, value, currentPath)]
           : paths
       }
       return paths
     },
     [],
     toPairs(parentValue),
-  )
+  ),
+)
 
-const edit = curry((predicate, transform, config) => {
-  const paths = getPath(predicate, config)
-  const lenses = map(lensPath, paths)
-  return reduce(
+const edit = curry((transform, paths, config) =>
+  reduce(
     (configStage, lens) => over(lens, c => transform(c), configStage),
     config,
-    lenses,
-  )
-})
+    map(lensPath, paths),
+  ),
+)
+
+const replace = curry((replacement, paths, config) =>
+  reduce(
+    (configStage, path) => assocPath(path, replacement, configStage),
+    config,
+    paths,
+  ),
+)
+
+const remove = curry((paths, config) =>
+  reduce((configStage, path) => dissocPath(path, configStage), config, paths),
+)
 
 module.exports = {
+  getPaths,
   edit,
+  replace,
+  remove,
 }

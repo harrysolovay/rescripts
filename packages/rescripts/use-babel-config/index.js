@@ -1,70 +1,76 @@
 const {
-  type,
-  keys,
-  reduce,
-  assocPath,
-  dissocPath,
-  includes,
   allPass,
   prop,
   propSatisfies,
+  includes,
+  reduce,
+  assocPath,
+  dissocPath,
   __,
+  keys,
+  type,
 } = require('ramda')
 const {
   loadFromPackageField,
   loadFromNodeModulesOrRoot,
-  error,
   edit,
+  getPaths,
+  error,
 } = require('@rescripts/utilities')
 
-const clearDefaults = reduce((c, key) => dissocPath(['options', key], c), __, [
-  'presets',
-  'plugins',
+const isSrcBabelLoader = allPass([
+  prop('loader'),
+  propSatisfies(includes('babel-loader'), 'loader'),
+  prop('include'),
 ])
 
-const useDotRc = c => assocPath(['options', 'babelrc'], true, clearDefaults(c))
+const clearDefaults = reduce(
+  (config, key) => dissocPath(['options', key], config),
+  __,
+  ['presets', 'plugins'],
+)
 
-const useConfigFile = (babelConfig, c) =>
+const useDotRc = config =>
+  assocPath(['options', 'babelrc'], true, clearDefaults(config))
+
+const useConfigFile = (options, config) =>
   reduce(
-    (stage, key) => assocPath(['options', key], babelConfig[key], stage),
-    clearDefaults(c),
-    keys(babelConfig),
+    (stage, key) => assocPath(['options', key], options[key], stage),
+    clearDefaults(config),
+    keys(options),
   )
 
-module.exports = options =>
+module.exports = source => config =>
   edit(
-    allPass([
-      prop('loader'),
-      propSatisfies(includes('babel-loader'), 'loader'),
-      prop('include'),
-    ]),
-    c => {
-      const optionsType = type(options)
-      switch (optionsType) {
+    subConfig => {
+      const sourceType = type(source)
+      switch (sourceType) {
         case 'String': {
-          switch (options) {
+          switch (source) {
             case '.babelrc': {
-              return useDotRc(c)
+              return useDotRc(subConfig)
             }
             case 'package':
             case 'package.json': {
               const babelConfig = loadFromPackageField('babel')
-              return useConfigFile(babelConfig, c)
+              return useConfigFile(babelConfig, subConfig)
             }
             default: {
-              const babelConfig = loadFromNodeModulesOrRoot(options)
-              return useConfigFile(babelConfig, c)
+              const babelConfig = loadFromNodeModulesOrRoot(source)
+              return useConfigFile(babelConfig, subConfig)
             }
           }
         }
         case 'Object': {
-          return useConfigFile(options, c)
+          return useConfigFile(source, subConfig)
         }
         default: {
           error(
-            `@rescripts/rescript-use-eslint-config expects argument of type 'String' or 'Object' but recieved ${optionsType}`,
+            `@rescripts/rescript-use-eslint-config expects argument of type 'String' or 'Object' but recieved ${sourceType}`,
           )
         }
       }
     },
+    getPaths(isSrcBabelLoader, config),
+    config,
   )

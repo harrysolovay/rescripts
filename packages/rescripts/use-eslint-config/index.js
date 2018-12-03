@@ -1,52 +1,71 @@
-const {keys, type, reduce, assocPath, dissocPath} = require('ramda')
+const {
+  both,
+  prop,
+  propSatisfies,
+  includes,
+  reduce,
+  assocPath,
+  dissocPath,
+  keys,
+  type,
+} = require('ramda')
 const {
   loadFromPackageField,
   loadFromNodeModulesOrRoot,
+  edit,
+  getPaths,
   error,
 } = require('@rescripts/utilities')
 
-const optionsPath = ['module', 'rules', 1, 'use', 0, 'options']
+const isESLintLoader = both(
+  prop('loader'),
+  propSatisfies(includes('eslint-loader'), 'loader'),
+)
 
-const clearDefaults = webpackConfig =>
-  dissocPath([...optionsPath, 'baseConfig'], webpackConfig)
+const clearDefaults = dissocPath(['options', 'baseConfig'])
 
-const useEslintrc = webpackConfig =>
-  assocPath([...optionsPath, 'useEslintrc'], true, clearDefaults(webpackConfig))
+const useDotRc = config =>
+  assocPath(['options', 'useEslintrc'], true, clearDefaults(config))
 
-const useEslintConfig = (eslintConfig, webpackConfig) =>
+const useConfigFile = (options, config) =>
   reduce(
-    (accumulator, key) =>
-      assocPath([...optionsPath, key], eslintConfig[key], webpackConfig),
-    clearDefaults(webpackConfig),
-    keys(eslintConfig),
+    (stage, key) =>
+      assocPath(['options', 'baseConfig', key], options[key], stage),
+    clearDefaults(config),
+    keys(options),
   )
 
-module.exports = options => webpackConfig => {
-  const optionsType = type(options)
-  switch (optionsType) {
-    case 'String': {
-      switch (options) {
-        case '.eslintrc': {
-          return useEslintrc(webpackConfig)
+module.exports = source => config =>
+  edit(
+    subConfig => {
+      const sourceType = type(source)
+      switch (sourceType) {
+        case 'String': {
+          switch (source) {
+            case '.eslintrc': {
+              return useDotRc(subConfig)
+            }
+            case 'package':
+            case 'package.json': {
+              const eslintConfig = loadFromPackageField('babel')
+              return useConfigFile(eslintConfig, subConfig)
+            }
+            default: {
+              const eslintConfig = loadFromNodeModulesOrRoot(source)
+              return useConfigFile(eslintConfig, subConfig)
+            }
+          }
         }
-        case 'package':
-        case 'package.json': {
-          const eslintConfig = loadFromPackageField('eslintConfig')
-          return useEslintConfig(eslintConfig, webpackConfig)
+        case 'Object': {
+          return useConfigFile(source, subConfig)
         }
         default: {
-          const eslintConfig = loadFromNodeModulesOrRoot(options)
-          return useEslintConfig(eslintConfig, webpackConfig)
+          error(
+            `@rescripts/rescript-use-eslint-config expects argument of type 'String' or 'Object' but recieved ${sourceType}`,
+          )
         }
       }
-    }
-    case 'Object': {
-      return useEslintConfig(options, webpackConfig)
-    }
-    default: {
-      error(
-        `@rescripts/rescript-use-eslint-config expects argument of type 'String' or 'Object' but recieved ${optionsType}`,
-      )
-    }
-  }
-}
+    },
+    getPaths(isESLintLoader, config),
+    config,
+  )

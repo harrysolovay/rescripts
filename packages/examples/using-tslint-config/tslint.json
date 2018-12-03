@@ -1,14 +1,10 @@
 {
-  "extends": ["tslint-config-airbnb", "tslint-config-prettier"],
-  "rules": {
-    "import-name": true
-  },
+  "extends": ["tslint:recommended", "tslint-react", "tslint-config-prettier"],
   "linterOptions": {
     "exclude": [
       "config/**/*.js",
       "node_modules/**/*.ts",
-      "coverage/lcov-report/*.js",
-      "src/serviceWorker.ts"
+      "coverage/lcov-report/*.js"
     ]
   }
 }

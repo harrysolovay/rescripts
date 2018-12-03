@@ -1,4 +1,5 @@
 const {
+  curry,
   lensProp,
   lensPath,
   over,
@@ -12,30 +13,32 @@ const {error} = '@rescripts/utilities'
 
 const pluginsLens = lensProp('plugins')
 
-const getPluginIndex = (constructorName, {plugins}) => {
+const getPluginIndex = curry((constructorName, {plugins}) => {
   const isMatch = ({constructor: {name}}) => name === constructorName
   return findIndex(isMatch, plugins)
-}
+})
 
-const injectPluginIndex = (constructorName, fn, config) => {
+const injectPluginIndex = curry((constructorName, fn, config) => {
   const i = getPluginIndex(constructorName, config)
   i === -1 &&
     error(`No plugin with constructor name ${constructorName} was found`)
   return fn(i)
-}
+})
 
-const getWebpackPlugin = (constructorName, config) => {
+const getWebpackPlugin = curry((constructorName, config) => {
   const i = getPluginIndex(constructorName, config)
   return i >= 0 ? config.plugins[i] : null
-}
+})
 
-const prependWebpackPlugin = (plugin, config) =>
-  over(pluginsLens, prepend(plugin), config)
+const prependWebpackPlugin = curry((plugin, config) =>
+  over(pluginsLens, prepend(plugin), config),
+)
 
-const appendWebpackPlugin = (plugin, config) =>
-  over(pluginsLens, append(plugin), config)
+const appendWebpackPlugin = curry((plugin, config) =>
+  over(pluginsLens, append(plugin), config),
+)
 
-const editWebpackPlugin = (constructorName, transform, config) =>
+const editWebpackPlugin = curry((constructorName, transform, config) =>
   injectPluginIndex(
     constructorName,
     i => {
@@ -43,21 +46,24 @@ const editWebpackPlugin = (constructorName, transform, config) =>
       return over(pluginLens, transform, config)
     },
     config,
-  )
+  ),
+)
 
-const replaceWebpackPlugin = (constructorName, replacement, config) =>
+const replaceWebpackPlugin = curry((constructorName, replacement, config) =>
   injectPluginIndex(
     constructorName,
     i => assocPath(['plugins', i], replacement, config),
     config,
-  )
+  ),
+)
 
-const removeWebpackPlugin = (constructorName, config) =>
+const removeWebpackPlugin = curry((constructorName, config) =>
   injectPluginIndex(
     constructorName,
     i => over(pluginsLens, remove(i, 1), config),
     config,
-  )
+  ),
+)
 
 module.exports = {
   getWebpackPlugin,
