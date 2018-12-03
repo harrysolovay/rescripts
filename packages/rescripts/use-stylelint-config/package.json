@@ -1,6 +1,6 @@
 {
   "name": "@rescripts/rescript-use-stylelint-config",
-  "version": "0.0.1-alpha.57",
+  "version": "0.0.1",
   "main": "index.js",
   "license": "MIT",
   "private": false,
@@ -8,7 +8,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@rescripts/utilities": "^0.0.2-alpha.57",
+    "@rescripts/utilities": "^0.0.2",
     "ramda": "^0.26.1",
     "stylelint": "^9.9.0",
     "stylelint-custom-processor-loader": "^0.5.0"
