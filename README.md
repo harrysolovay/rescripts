@@ -82,13 +82,13 @@ If you like this framework, please tweet at [@gearon](https://twitter.com/dan_ab
 #### Install `@rescripts/cli` as a dev dependency:
 
 ```sh
-yarn add -D @rescripts/cli
+npm i -D @rescripts/cli
 ```
 
 #### Install the rescript(s) you wish to use:
 
 ```sh
-yarn add -D @rescripts/rescript-env
+npm i -D @rescripts/rescript-env
 ```
 
 > @rescripts/rescript-env scans your `package.json` & project root for Babel, ESLint and TSLint configuration files. If present, these configurations will override the CRA defaults.
