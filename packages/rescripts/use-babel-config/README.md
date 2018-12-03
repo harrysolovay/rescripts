@@ -1,5 +1,9 @@
 # @rescripts/rescript-use-babel-config
 
+## About
+
+Use your own Babel configuration.
+
 ## Installation
 
 ```sh
@@ -42,7 +46,7 @@ Call `use-babel-config` with `.babelrc.js`, `.babelrc.json`, or any other file n
     "use-babel-config",
     {
       "presets": ["react-app"],
-      "plugins": ["someBabelPlugin"]
+      "plugins": ["some-plugin"]
     }
   ]
 ]
