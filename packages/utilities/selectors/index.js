@@ -1,5 +1,7 @@
-const webpackPluginSelectors = require('./webpack-plugins')
+const plugins = require('./plugins')
+const general = require('./general')
 
 module.exports = {
-  ...webpackPluginSelectors,
+  ...plugins,
+  ...general,
 }

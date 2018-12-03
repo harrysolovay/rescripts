@@ -105,6 +105,12 @@ const loadFromReactScriptsNodeModules = createFromLoader(
 
 const resolveFromRoot = createFromLoader(resolve, root)
 const resolveFromRootOrNodeModules = m => resolveFromRoot(m) || resolve(m)
+const resolveFromReactScriptsNodeModules = createFromLoader(
+  resolve,
+  reactScriptsNodeModules,
+)
+const resolveFromReactScriptsNMOrNM = m =>
+  resolve(m) || resolveFromReactScriptsNodeModules(m)
 
 module.exports = {
   paths,
@@ -118,4 +124,6 @@ module.exports = {
   loadFromReactScriptsNodeModules,
   resolveFromRoot,
   resolveFromRootOrNodeModules,
+  resolveFromReactScriptsNodeModules,
+  resolveFromReactScriptsNMOrNM,
 }

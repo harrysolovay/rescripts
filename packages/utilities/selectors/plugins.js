@@ -1,6 +1,5 @@
 const {
   lensProp,
-  identity,
   lensPath,
   over,
   prepend,
@@ -25,8 +24,10 @@ const injectPluginIndex = (constructorName, fn, config) => {
   return fn(i)
 }
 
-const getWebpackPlugin = (constructorName, config) =>
-  getPluginIndex(constructorName, config)
+const getWebpackPlugin = (constructorName, config) => {
+  const i = getPluginIndex(constructorName, config)
+  return i >= 0 ? config.plugins[i] : null
+}
 
 const prependWebpackPlugin = (plugin, config) =>
   over(pluginsLens, prepend(plugin), config)
