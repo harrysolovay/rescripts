@@ -1,12 +1,12 @@
-## @rescripts/rescript-use-babel-config
+# @rescripts/rescript-use-babel-config
 
-### Installation
+## Installation
 
 ```sh
 npm i -D @rescripts/rescript-use-babel-config
 ```
 
-### Usage
+## Usage
 
 #### From a `.babelrc`:
 
