@@ -52,7 +52,7 @@ const addStylelintCustomProcessorLoader = path => config =>
     prepend({
       loader: require.resolve('stylelint-custom-processor-loader'),
       options: {
-        configPath: null,
+        configPath: path,
         emitWarning: true,
       },
     }),
