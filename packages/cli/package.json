@@ -10,6 +10,7 @@
     "access": "public"
   },
   "peerDependencies": {
+    "react-dev-utils": "^6.1.1",
     "react-scripts": "^2.1.1"
   },
   "dependencies": {
