@@ -32,7 +32,7 @@
 
 <!-- SemVer -->
 <a href='https://semver.org/'>
-  <img src='https://img.shields.io/badge/semver-0.0.3-blue.svg?maxAge=2592000'/>
+  <img src='https://img.shields.io/badge/semver-0.0.4-blue.svg?maxAge=2592000'/>
 </a>
 
 </p>
@@ -404,42 +404,307 @@ module.exports = [require.resolve('path/to/child-rescript')]
 
 </details>
 
-#### Webpack Example
+## Rescript SDK
 
-`.rescriptsrc.js`
+### Installation
+
+```sh
+npm i -D @rescripts/utilities
+```
+
+> @rescripts/utilities comes with @rescripts/cli (so there's no need to install if you're already working on a rescripted project)
+
+### Why?
+
+The `@rescripts/utilities` package makes it far easier to interact with configuration, while also reducing code size and the amount of conflict you'd otherwise see from composing numerous rescripts. You can use the tools in this package to identify and transform parts of any configuration without an exact path.
+
+### Reference
+
+##### General-purpose
+
+- [getPaths]()
+- [edit]()
+- [replace]()
+- [remove]()
+
+##### Webpack plugin-specific
+
+- [getWebpackPlugin]()
+- [prependWebpackPlugin]()
+- [appendWebpackPlugin]()
+- [editWebpackPlugin]()
+- [replaceWebpackPlugin]()
+- [removeWebpackPlugin]()
+
+> For FP-lovers: all of `@rescripts/utilities`' methods are curried, so feel free to call them in stages. Use Ramda's [`R.__`](https://ramdajs.com/docs/#__) placeholder for intentional reordering of how arguments are pieced together with the resulting function.
+
+#### `getPaths(predicate, scanTarget)`
+
+Recursively traverses your config (or any object for that matter) and returns an array of paths to any nodes that match the predicate. This is useful for editing parts of a config that may change location at runtime (ostensibly because of another rescript in the transformation pipeline).
+
+<details>
+<summary>usage example</summary>
 
 ```js
+const {getPaths} = require('@rescripts/utilities')
+
+const isBabelLoader = inQuestion =>
+  inQuestion && inQuestion.loader && inQuestion.loader.includes('babel-loader')
+
+module.exports = config => {
+  const babelLoaderPaths = getPaths(isBabelLoader, config)
+  console.log(babelLoaderPaths) // [['module', 'rules', 2, 'oneOf', 1]]
+  return config
+}
+```
+
+</details>
+
+#### `edit(transform, paths, config)`
+
+Takes in the paths at which a transformation function (the second argument) should be applied, along with the object on which to apply it.
+
+<details>
+<summary>usage example</summary>
+
+```js
+const {getPaths, edit} = require('@rescripts/utilities')
+
+module.exports = config => {
+  const paths = getPaths(somePredicate, config)
+  return edit(
+    matchedSection => {
+      // change something about the subsection
+      const updatedSection = someTransformation(matchedSection)
+      return updatedSection
+    },
+    paths,
+    config,
+  )
+}
+```
+
+</details>
+
+#### `replace(replacement, paths, config)`
+
+Works the same as `edit`, only it takes in a replacement for the specified path rather than a transformation function.
+
+<details>
+<summary>usage example</summary>
+
+```js
+const {getPaths, replace} = require('@rescripts/utilities')
+
+module.exports = config => {
+  const paths = getPaths(somePredicate, config)
+  return replace('some replacement', paths, config)
+}
+```
+
+</details>
+
+#### `remove(paths, config)`
+
+Takes in the specified path and the object for the path-specified deletion.
+
+<details>
+<summary>usage example</summary>
+
+```js
+const {getPaths, remove} = require('@rescripts/utilities')
+
+module.exports = config => {
+  const paths = getPaths(somePredicate, config)
+  return remove(paths, config)
+}
+```
+
+</details>
+
+#### `getWebpackPlugin(constructorName, config)`
+
+Retrieve a plugin instance from the webpack config with the plugin's constructor name.
+
+<details>
+<summary>usage example</summary>
+
+```js
+const {getWebpackPlugin} = require('@rescripts/utilities')
+
+module.exports = config => {
+  getWebpackPlugin('ForkTsCheckerWebpackPlugin', config) &&
+    console.log('TypeScript enabled')
+  return config
+}
+```
+
+</details>
+
+#### `prependWebpackPlugin(pluginInstance, config)`
+
+Add a plugin instance to the first slot of the Webpack configuration's `plugins` array.
+
+<details>
+<summary>usage example</summary>
+
+```js
+const {prependWebpackPlugin} = require('@rescripts/utilities')
 const WebpackBuildNotifierPlugin = require('webpack-build-notifier')
-const WebpackPWAManifestPlugin = require('webpack-pwa-manifest')
 
-module.exports = [config => {
-  const newConfig = {...config}
-
-  newConfig.plugins.push(
+module.exports = config => {
+  return prependWebpackPlugin(
     new WebpackBuildNotifierPlugin({
       title: 'Rescripted App',
       logo: require.resolve('./public/icon.png'),
       suppressSuccess: true,
-    })
+    }),
+    config,
   )
+}
 
-  process.env.NODE_ENV === 'production' &&
-    newConfig.plugins.push(
-      new WebpackPWAManifestPlugin({
+// or simplified...
+
+module.exports = prependWebpackPlugin(
+  new WebpackBuildNotifierPlugin({
+    title: 'Rescripted App',
+    logo: require.resolve('./public/icon.png'),
+    suppressSuccess: true,
+  }),
+)
+```
+
+</details>
+
+#### `appendWebpackPlugin(pluginInstance, config)`
+
+Add a plugin instance to the last slot of the Webpack configuration's `plugins` array.
+
+<details>
+<summary>usage example</summary>
+
+```js
+const {appendWebpackPlugin} = require('@rescripts/utilities')
+const WebpackBuildNotifierPlugin = require('webpack-build-notifier')
+
+module.exports = config => {
+  return appendWebpackPlugin(
+    new WebpackBuildNotifierPlugin({
+      title: 'Rescripted App',
+      logo: require.resolve('./public/icon.png'),
+      suppressSuccess: true,
+    }),
+    config,
+  )
+}
+
+// or simplified...
+
+module.exports = appendWebpackPlugin(
+  new WebpackBuildNotifierPlugin({
+    title: 'Rescripted App',
+    logo: require.resolve('./public/icon.png'),
+    suppressSuccess: true,
+  }),
+)
+```
+
+</details>
+
+#### `editWebpackPlugin(transform, constructorName, config)`
+
+Applies the `transform` function to the Webpack plugin whose constructor name is a match.
+
+<details>
+<summary>usage example</summary>
+
+```js
+const {editWebpackPlugin} = require('@rescripts/utilities')
+
+module.exports = config => {
+  const edited = editWebpackPlugin(
+    p => {
+      p.someOption = 'changed'
+      return p
+    },
+    'DefinePlugin',
+    config,
+  )
+  return edited
+}
+
+// or simplified...
+
+module.exports = editWebpackPlugin(
+  p => {
+    p.someOption = 'changed some option'
+    return p
+  },
+  'DefinePlugin',
+  config,
+)
+```
+
+</details>
+
+#### `replaceWebpackPlugin(replacement, constructorName, config)`
+
+Replaces the matched plugin with another.
+
+<details>
+<summary>usage example</summary>
+
+```js
+const {replaceWebpackPlugin} = require('@rescripts/utilities')
+const WebpackPWAManifestPlugin = require('webpack-pwa-manifest')
+
+module.exports = config => {
+  const replaced = replaceWebpackPlugin(
+    new WebpackPWAManifestPlugin({
       name: 'Rescripted App',
       short_name: 'Example',
       description: 'An example app that uses Rescripts',
       background_color: '#fff',
       crossorigin: 'use-credentials',
-      icons: [{
-        src: require.resolve('./public/icon.png'),
-        sizes: [96, 128, 192, 256, 384, 512],
-      }],
-    })
-
-  return newConfig
-}]
+      icons: [
+        {
+          src: require.resolve('./public/icon.png'),
+          sizes: [96, 128, 192, 256, 384, 512],
+        },
+      ],
+    }),
+    'ManifestPlugin',
+    config,
+  )
+  return replaced
+}
 ```
+
+</details>
+
+#### `removeWebpackPlugin(constructorName, config)`
+
+Remove the matched plugin from your config.
+
+<details>
+<summary>usage example</summary>
+
+```js
+const {removeWebpackPlugin} = require('@rescripts/utilities')
+
+module.exports = config => {
+  const withoutIgnorePlugin = removeWebpackPlugin('IgnorePlugin', config)
+  return withoutIgnorePlugin
+}
+
+// or simplified ...
+
+const {removeWebpackPlugin} = require('@rescripts/utilities')
+
+module.exports = removeWebpackPlugin('IgnorePlugin', config)
+```
+
+</details>
 
 ## Rescript Library
 

@@ -38,7 +38,7 @@ const appendWebpackPlugin = curry((plugin, config) =>
   over(pluginsLens, append(plugin), config),
 )
 
-const editWebpackPlugin = curry((constructorName, transform, config) =>
+const editWebpackPlugin = curry((transform, constructorName, config) =>
   injectPluginIndex(
     constructorName,
     i => {
@@ -49,7 +49,7 @@ const editWebpackPlugin = curry((constructorName, transform, config) =>
   ),
 )
 
-const replaceWebpackPlugin = curry((constructorName, replacement, config) =>
+const replaceWebpackPlugin = curry((replacement, constructorName, config) =>
   injectPluginIndex(
     constructorName,
     i => assocPath(['plugins', i], replacement, config),

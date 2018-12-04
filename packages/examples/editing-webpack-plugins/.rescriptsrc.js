@@ -23,16 +23,15 @@ module.exports = [
     )
 
     const edited = editWebpackPlugin(
-      'DefinePlugin',
       p => {
         p.someOption = 'changed'
         return p
       },
+      'DefinePlugin',
       appended,
     )
 
     const replaced = replaceWebpackPlugin(
-      'ManifestPlugin',
       new WebpackPWAManifestPlugin({
         name: 'Rescripted App',
         short_name: 'Example',
@@ -46,6 +45,7 @@ module.exports = [
           },
         ],
       }),
+      'ManifestPlugin',
       edited,
     )
 
