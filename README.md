@@ -407,7 +407,7 @@ module.exports = [require.resolve('path/to/child-rescript')]
 
 ## Rescript SDK
 
-### Installation
+The `@rescripts/utilities` package makes it far easier to interact with configuration, while also reducing code size and the amount of conflict you'd otherwise see from composing numerous rescripts. You can use the tools in this package to identify and transform parts of any configuration without an exact path.
 
 ```sh
 npm i -D @rescripts/utilities
@@ -415,13 +415,9 @@ npm i -D @rescripts/utilities
 
 > @rescripts/utilities comes with @rescripts/cli (so there's no need to install if you're already working on a rescripted project)
 
-### Why?
-
-The `@rescripts/utilities` package makes it far easier to interact with configuration, while also reducing code size and the amount of conflict you'd otherwise see from composing numerous rescripts. You can use the tools in this package to identify and transform parts of any configuration without an exact path.
-
 ### Reference
 
-> For FP-lovers: all of `@rescripts/utilities`' methods are curried, so feel free to call them in stages. Use Ramda's [`R.__`](https://ramdajs.com/docs/#__) placeholder for intentional reordering of how arguments are pieced together with the resulting function.
+> **For FP-lovers: all of `@rescripts/utilities`' methods are curried, so feel free to call them in stages. Use Ramda's [`R.__`](https://ramdajs.com/docs/#__) placeholder for intentional reordering of how arguments are pieced together with the resulting function.**
 
 #### `getPaths(predicate, scanTarget)`
 
