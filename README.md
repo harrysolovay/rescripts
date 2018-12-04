@@ -421,22 +421,6 @@ The `@rescripts/utilities` package makes it far easier to interact with configur
 
 ### Reference
 
-##### General-purpose
-
-- [getPaths]()
-- [edit]()
-- [replace]()
-- [remove]()
-
-##### Webpack plugin-specific
-
-- [getWebpackPlugin]()
-- [prependWebpackPlugin]()
-- [appendWebpackPlugin]()
-- [editWebpackPlugin]()
-- [replaceWebpackPlugin]()
-- [removeWebpackPlugin]()
-
 > For FP-lovers: all of `@rescripts/utilities`' methods are curried, so feel free to call them in stages. Use Ramda's [`R.__`](https://ramdajs.com/docs/#__) placeholder for intentional reordering of how arguments are pieced together with the resulting function.
 
 #### `getPaths(predicate, scanTarget)`
