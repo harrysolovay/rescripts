@@ -45,7 +45,7 @@
 
 - 🥳 draw from a library of open-source "rescripts"
 
-- 👽 compatible with "rewires" designed for react-app-rewired
+- 👽 compatibility with "rewires" designed for react-app-rewired
 
 ## Guide
 
@@ -72,7 +72,7 @@ Tim Arney's [react-app-rewired](https://github.com/timarney/react-app-rewired) w
 
 Rescripts tackles this same probem for CRA 2.0+ with several key DX differences. First off, it was designed to be more of a focal point for all non-standard configuration. The underlaying loader can handle deeply nested "rescripts" (conceptually similar to babel plugins), all of which can modify any CRA process. The API also exposes a middleware entry, so that you can track your configurations as they are transformed. It should also be noted that Rescripts is compatible with many Webpack rewires built for react-app-rewired.
 
-If you like this framework, please tweet at [@gearon](https://twitter.com/dan_abramov) requesting an `everything-i-did-not-include` rescript!
+If you like this framework, please tweet at [@gearon](https://twitter.com/dan_abramov) requesting an "everything-i-did-not-include" rescript!
 
 ## Installation
 
@@ -168,7 +168,26 @@ npm i -D @rescripts/rescript-env
 }
 ```
 
-You can also specify your "root rescript" in a root-level `.rescriptsrc` file (use whatever convention you prefer: `.js`, `.json`, or no extension.)
+You could also––instead of placing this in your `package.json`––specify your "root rescript" in a root-level `.rescriptsrc` file (with whatever convention you prefer: `.js`, `.json`, or no extension.)
+
+#### Good practice with the `env` rescript
+
+`@rescripts/rescript-env` actually installs 3 rescripts:
+
+- [`@rescripts/rescript-use-babel-config`](https://github.com/rescripts/rescripts/tree/master/packages/rescripts/use-babel-config)
+- [`@rescripts/rescript-use-eslint-config`](https://github.com/rescripts/rescripts/tree/master/packages/rescripts/use-eslint-config)
+- [`@rescripts/rescript-use-tslint-config`](https://github.com/rescripts/rescripts/tree/master/packages/rescripts/use-tslint-config)
+
+For an incrementally faster dev server load-time, use these independently and actually specify their configurations. Aka...
+
+`.rescriptsrc`
+
+```js
+module.exports = [
+  ['use-babel-config', '.babel.json'],
+  ['use-tslint-config', 'tslint.json'],
+]
+```
 
 #### 3) Use the newly-enabled feature(s)
 
