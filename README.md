@@ -6,9 +6,9 @@
 
 <p align='center'>
 
-<!--<a href='https://github.com/rescripts/rescripts/blob/master/LICENSE'>
+<a href='https://github.com/rescripts/rescripts/blob/master/LICENSE'>
   <img src='https://img.shields.io/npm/l/rescripts.svg?style=flat-square' />
-</a>-->
+</a>
 
 <!-- LICENSE -->
 <a href='https://github.com/rescripts/rescripts/blob/master/LICENSE'>
@@ -39,7 +39,7 @@
 
 <hr />
 
-> Take control of your [create-react-app](https://github.com/facebook/create-react-app) project configurations. No ejecting, no custom react-scripts fork, no limitations.
+> Take control of your [create-react-app](https://github.com/facebook/create-react-app) project's configuration. No ejecting, no custom react-scripts fork, no limitations.
 
 ## Highlights
 
