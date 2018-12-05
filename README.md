@@ -180,7 +180,7 @@ In the case of [@rescripts/rescript-env](https://github.com/rescripts/rescripts/
 
 **TSLint:** place config inside of a root-level`tslint.js` or `tslint.json` file
 
-#### Good practice with the `env` rescript
+#### **Good practice with the `env` rescript**
 
 `@rescripts/rescript-env` actually installs 3 rescripts:
 
