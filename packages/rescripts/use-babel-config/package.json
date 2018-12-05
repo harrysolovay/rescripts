@@ -7,6 +7,7 @@
   "publishConfig": {
     "access": "public"
   },
+  "repository": "https://github.com/rescripts/rescripts/tree/master/packages/rescripts/use-babel-config",
   "dependencies": {
     "@rescripts/utilities": "^0.0.2"
   }
