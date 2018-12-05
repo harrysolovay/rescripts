@@ -188,7 +188,7 @@ In the case of [@rescripts/rescript-env](https://github.com/rescripts/rescripts/
 - [`@rescripts/rescript-use-eslint-config`](https://github.com/rescripts/rescripts/tree/master/packages/rescripts/use-eslint-config)
 - [`@rescripts/rescript-use-tslint-config`](https://github.com/rescripts/rescripts/tree/master/packages/rescripts/use-tslint-config)
 
-For an incrementally faster dev server load-time, use these independently and actually specify their configurations. Aka...
+For an incrementally faster boot time, use these independently and actually specify their configurations. Aka...
 
 `.rescriptsrc`
 
@@ -432,7 +432,7 @@ npm i -D @rescripts/utilities
 
 ### Reference
 
-> **For FP-lovers: all of `@rescripts/utilities`' methods are curried, so feel free to call them in stages. Use Ramda's [`R.__`](https://ramdajs.com/docs/#__) placeholder for intentional reordering of how arguments are pieced together with the resulting function.**
+> **For FP-lovers: all of `@rescripts/utilities`' methods are curried, so feel free to call them in stages. Use Ramda's [`R.__`](https://ramdajs.com/docs/#__) placeholder to reorder how arguments are pieced together in the resulting function.**
 
 #### `getPaths(predicate, scanTarget)`
 
@@ -458,7 +458,7 @@ module.exports = config => {
 
 #### `edit(transform, paths, config)`
 
-Takes in the paths at which a transformation function (the second argument) should be applied, along with the object on which to apply it.
+Takes in a transformation function and the paths at which that function should be applied, along with the object on which to apply it.
 
 <details>
 <summary>usage example</summary>
