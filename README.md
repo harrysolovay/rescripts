@@ -170,6 +170,16 @@ npm i -D @rescripts/rescript-env
 
 You could also––instead of placing this in your `package.json`––specify your "root rescript" in a root-level `.rescriptsrc` file (with whatever convention you prefer: `.js`, `.json`, or no extension.)
 
+#### 3) Use the newly-enabled feature(s)
+
+In the case of [@rescripts/rescript-env](https://github.com/rescripts/rescripts/blob/master/packages/rescripts/env), you will now be able to use custom Babel, ESLint and TSLint configurations. Use any of the following conventions:
+
+**Babel:** place config inside of a root-level `.babelrc`, `.babelrc.js`, `.babelrc.json`, or `babel.config.js` file, or inside of the `babel` field of your `package.json`
+
+**ESLint:** place config inside of a root-level`.eslintrc`, `.eslintrc.js`, `.eslintrc.json`, or `eslint.config.js` file, or inside of the `eslintConfig` field of your `package.json`
+
+**TSLint:** place config inside of a root-level`tslint.js` or `tslint.json` file
+
 #### Good practice with the `env` rescript
 
 `@rescripts/rescript-env` actually installs 3 rescripts:
@@ -188,16 +198,6 @@ module.exports = [
   ['use-tslint-config', 'tslint.json'],
 ]
 ```
-
-#### 3) Use the newly-enabled feature(s)
-
-In the case of [@rescripts/rescript-env](https://github.com/rescripts/rescripts/blob/master/packages/rescripts/env), you will now be able to use custom Babel, ESLint and TSLint configurations. Use any of the following conventions:
-
-**Babel:** place config inside of a root-level `.babelrc`, `.babelrc.js`, `.babelrc.json`, or `babel.config.js` file, or inside of the `babel` field of your `package.json`
-
-**ESLint:** place config inside of a root-level`.eslintrc`, `.eslintrc.js`, `.eslintrc.json`, or `eslint.config.js` file, or inside of the `eslintConfig` field of your `package.json`
-
-**TSLint:** place config inside of a root-level`tslint.js` or `tslint.json` file
 
 ## Advanced Usage
 
