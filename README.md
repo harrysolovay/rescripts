@@ -70,7 +70,7 @@
 
 Tim Arney's [react-app-rewired](https://github.com/timarney/react-app-rewired) was the first project to successfully tackle this problem. It offered a solution that led to many "rewires" (community-made plugins for simpler setup). But––when CRA 2.0 came around––there were some breaking changes. Not to mention, the react-app-rewired DX was something to be further simplified.
 
-Rescripts tackles this same probem for CRA 2.0+ with several key DX differences. First off, it was designed to be more of a focal point for all non-standard configuration. The underlaying loader can handle deeply nested "rescripts" (conceptually similar to babel plugins), all of which can modify any CRA process. The API also exposes a middleware entry, so that you can track your configurations as they are transformed. It should also be noted that Rescripts is compatible with many Webpack rewires built for react-app-rewired.
+Rescripts tackles this same probem for CRA 2.0+ with several key DX differences. First off, it was designed to be more of a focal point for all non-standard configuration. The underlaying loader can handle deeply nested "rescripts" (conceptually similar to babel plugins), all of which can modify any CRA process. The tools used to transform configuration are more robust and flexible than its predecessor's ([@rescripts/utilities](#rescript-sdk)), and should weather most updates. The API also exposes a middleware entry, so that you can track your configurations as they are transformed. It should also be noted that Rescripts is compatible with many Webpack rewires built for react-app-rewired.
 
 If you like this framework, please tweet at [@gearon](https://twitter.com/dan_abramov) requesting an "everything-i-did-not-include" rescript!
 
@@ -408,6 +408,13 @@ module.exports = [
     const newConfig = doSomethingToTheConfig(config)
     return newConfig
   },
+  [
+    someArg => config => {
+      const newConfig = doSomethingToTheConfig(config, someArg)
+      return newConfig
+    },
+    'some argument',
+  ],
 ]
 ```
 
