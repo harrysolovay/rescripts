@@ -1,24 +1,23 @@
 const {
-  pipe,
-  insert,
-  __,
+  insertAll,
   identity,
   flatten,
   intersperse,
   compose,
   type,
+  partition,
+  has,
 } = require('ramda')
 
-const normalize = pipe(
-  insert(1, __, [identity, identity]),
-  flatten,
-)
+const isMiddleware = has('isMiddleware')
 
-module.exports = (transforms, path, middleware) => {
-  if (transforms) {
-    const normalized = normalize(transforms)
-    const middlewareApplied = middleware && intersperse(middleware, normalized)
-    const transform = compose(...(middlewareApplied || normalized))
+module.exports = (gathered, path) => {
+  if (gathered) {
+    const [middleware, transforms] = partition(isMiddleware, gathered)
+    const padded = insertAll(1, transforms, [identity, identity])
+    const middlewareApplied = middleware && intersperse(middleware, padded)
+    const flattened = flatten(middlewareApplied || padded)
+    const transform = compose(...flattened)
 
     const config = require(path)
     const transformed =

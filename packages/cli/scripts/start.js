@@ -10,6 +10,7 @@ const {forEach} = require('ramda')
 const patch = require('../patch')
 const {paths} = require('@rescripts/utilities')
 const {webpackConfigDev, webpackDevServerConfig, start} = paths
+
 forEach(args => patch(...args), [
   [webpackTransforms, webpackConfigDev],
   [devServerTransforms, webpackDevServerConfig],
