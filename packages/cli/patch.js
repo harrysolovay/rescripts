@@ -1,12 +1,12 @@
 const {
+  has,
+  partition,
   insertAll,
   identity,
-  flatten,
   intersperse,
+  flatten,
   compose,
   type,
-  partition,
-  has,
 } = require('ramda')
 
 const isMiddleware = has('isMiddleware')
@@ -19,7 +19,8 @@ module.exports = (gathered, path) => {
     const flattened = flatten(middlewareApplied || padded)
     const transform = compose(...flattened)
 
-    const config = require(path)
+    const resolved = require.resolve(path)
+    const config = require(resolved)
     const transformed =
       type(config) === 'Function'
         ? (...args) => {
@@ -27,8 +28,6 @@ module.exports = (gathered, path) => {
             return transform(original)
           }
         : transform(config)
-
-    const resolved = require.resolve(path)
     require.cache[resolved].exports = transformed
   }
 }

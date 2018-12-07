@@ -57,6 +57,7 @@
 - [Basic Usage](#basic-usage)
 - [Advanced Usage](#advanced-usage)
 - [Rescript Structure](#rescript-structure)
+- [Middleware](#middleware)
 - [Rescript SDK](#rescript-sdk)
 - [Rescript Library](#rescript-library)
 - [Miscellaneous](#miscellaneous)
