@@ -463,8 +463,8 @@ Don't be afraid to track data in the outer scope:
 let lastConfig = null
 
 const logConfig = config => {
-  console.log(config === lastConfig ? 'config unchanged' : 'config changed')
-
+  const changed = config === lastConfig
+  console.log(changed ? 'config unchanged' : 'config changed')
   lastConfig = config
   return config
 }
