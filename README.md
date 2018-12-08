@@ -57,8 +57,8 @@
 - [Basic Usage](#basic-usage)
 - [Advanced Usage](#advanced-usage)
 - [Rescript Structure](#rescript-structure)
-- [Middleware](#middleware)
 - [Rescript SDK](#rescript-sdk)
+- [Middleware](#middleware)
 - [Rescript Library](#rescript-library)
 - [Miscellaneous](#miscellaneous)
 - [Acknowledgements](#acknowledgements)
@@ -428,85 +428,6 @@ module.exports = [require.resolve('path/to/child-rescript')]
 
 </details>
 
-## Middleware
-
-#### The term "middleware" in Rescripts describes a kind of rescript that runs between all other rescripts.
-
-Let's say your stack of rescripts looks like this:
-
-```js
-const logConfig = config => {
-  console.log(config)
-  return config
-}
-
-logConfig.isMiddleware = true
-
-module.exports = [
-  ['use-babel-config', '.babelrc'],
-  ['use-tslint-config', 'tslint.json'],
-  logConfig,
-]
-```
-
-The execution order will be as follows:
-
-1. `logConfig`
-2. `use-babel-config`
-3. `logConfig`
-4. `use-tslint-config`
-5. `logConfig`
-
-Don't be afraid to track data in the outer scope:
-
-```js
-const equal = require('deep-equal')
-let lastConfig = null
-
-const logConfig = config => {
-  const unchanged = equal(config, lastConfig)
-  console.log(unchanged ? 'config unchanged' : 'config changed')
-  lastConfig = config
-  return config
-}
-
-logConfig.isMiddleware = true
-
-module.exports = [
-  ['use-babel-config', '.babelrc'],
-  ['use-tslint-config', 'tslint.json'],
-  logConfig,
-]
-```
-
-<details>
-<summary>In simplified form</summary>
-
-```js
-const equal = require('deep-equal')
-let lastConfig = null
-
-logConfig.isMiddleware = true
-
-module.exports = [
-  ['use-babel-config', '.babelrc'],
-  ['use-tslint-config', 'tslint.json'],
-  Object.assign(
-    config => {
-      const unchanged = equal(config, lastConfig)
-      console.log(unchanged ? 'config unchanged' : 'config changed')
-      lastConfig = config
-      return config
-    },
-    {isMiddleware: true},
-  ),
-]
-```
-
-</details>
-
-We prefer to keep and mutate a `lastConfig` reference incase other middleware is applied before `logConfig`; middleware isn't spread around other middleware (this would be chaos), and yet middleware can transform what's passed to subsequent rescripts (including other middleware). This can get messy if you're not deliberate about your middleware's behavior.
-
 ## Rescript SDK
 
 The `@rescripts/utilities` package makes it far easier to interact with configuration, while also reducing code size and the amount of conflict you'd otherwise see from composing numerous rescripts. You can use the tools in this package to identify and transform parts of any configuration without an exact path.
@@ -788,6 +709,85 @@ module.exports = removeWebpackPlugin('IgnorePlugin', config)
 ```
 
 </details>
+
+## Middleware
+
+#### The term "middleware" in Rescripts describes a kind of rescript that runs between all other rescripts.
+
+Let's say your stack of rescripts looks like this:
+
+```js
+const logConfig = config => {
+  console.log(config)
+  return config
+}
+
+logConfig.isMiddleware = true
+
+module.exports = [
+  ['use-babel-config', '.babelrc'],
+  ['use-tslint-config', 'tslint.json'],
+  logConfig,
+]
+```
+
+The execution order will be as follows:
+
+1. `logConfig`
+2. `use-babel-config`
+3. `logConfig`
+4. `use-tslint-config`
+5. `logConfig`
+
+Don't be afraid to track data in the outer scope:
+
+```js
+const equal = require('deep-equal')
+let lastConfig = null
+
+const logConfig = config => {
+  const unchanged = equal(config, lastConfig)
+  console.log(unchanged ? 'config unchanged' : 'config changed')
+  lastConfig = config
+  return config
+}
+
+logConfig.isMiddleware = true
+
+module.exports = [
+  ['use-babel-config', '.babelrc'],
+  ['use-tslint-config', 'tslint.json'],
+  logConfig,
+]
+```
+
+<details>
+<summary>In simplified form</summary>
+
+```js
+const equal = require('deep-equal')
+let lastConfig = null
+
+logConfig.isMiddleware = true
+
+module.exports = [
+  ['use-babel-config', '.babelrc'],
+  ['use-tslint-config', 'tslint.json'],
+  Object.assign(
+    config => {
+      const unchanged = equal(config, lastConfig)
+      console.log(unchanged ? 'config unchanged' : 'config changed')
+      lastConfig = config
+      return config
+    },
+    {isMiddleware: true},
+  ),
+]
+```
+
+</details>
+
+We prefer to keep and mutate a `lastConfig` reference incase other middleware is applied before `logConfig`; middleware isn't spread around other middleware (this would be chaos), and yet middleware can transform what's passed to subsequent rescripts (including other middleware). This can get messy if you're not deliberate about your middleware's behavior.
 
 ## Rescript Library
 
