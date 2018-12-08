@@ -28,7 +28,7 @@
 
 <!-- SemVer -->
 <a href='https://semver.org/'>
-  <img src='https://img.shields.io/badge/semver-0.0.4-blue.svg?maxAge=2592000'/>
+  <img src='https://img.shields.io/badge/semver-0.0.5-blue.svg?maxAge=2592000'/>
 </a>
 
 </p>
