@@ -1,9 +1,9 @@
 {
   "name": "editing-webpack-plugins",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "private": true,
   "dependencies": {
-    "@rescripts/cli": "^0.0.4",
+    "@rescripts/cli": "^0.0.5",
     "ramda": "^0.26.1",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
