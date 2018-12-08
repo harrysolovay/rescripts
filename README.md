@@ -483,6 +483,7 @@ module.exports = [
 <summary>In simplified form</summary>
 
 ```js
+const equal = require('deep-equal')
 let lastConfig = null
 
 logConfig.isMiddleware = true
@@ -492,7 +493,8 @@ module.exports = [
   ['use-tslint-config', 'tslint.json'],
   Object.assign(
     config => {
-      console.log(config === lastConfig ? 'config unchanged' : 'config changed')
+      const unchanged = equal(config, lastConfig)
+      console.log(unchanged ? 'config unchanged' : 'config changed')
       lastConfig = config
       return config
     },
