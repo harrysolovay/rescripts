@@ -6,6 +6,7 @@ const {jest: transforms} = gatherPipes(['jest'])
 const patch = require('../patch')
 const {paths} = require('@rescripts/utilities')
 const {createJestConfig, test} = paths
+
 patch(transforms, createJestConfig)
 
 require(test)
