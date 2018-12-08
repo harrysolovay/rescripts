@@ -460,10 +460,11 @@ The execution order will be as follows:
 Don't be afraid to track data in the outer scope:
 
 ```js
+const equal = require('deep-equal')
 let lastConfig = null
 
 const logConfig = config => {
-  const unchanged = config === lastConfig
+  const unchanged = equal(config, lastConfig)
   console.log(unchanged ? 'config unchanged' : 'config changed')
   lastConfig = config
   return config
