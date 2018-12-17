@@ -1,9 +1,9 @@
 {
   "name": "using-babel-eslint-and-stylelint-configs",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "private": true,
   "dependencies": {
-    "@rescripts/cli": "^0.0.5",
+    "@rescripts/cli": "^0.0.6",
     "@rescripts/rescript-use-babel-config": "^0.0.3",
     "@rescripts/rescript-use-eslint-config": "^0.0.3",
     "@rescripts/rescript-use-stylelint-config": "^0.0.2",
