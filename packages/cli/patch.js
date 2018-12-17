@@ -13,7 +13,11 @@ const isMiddleware = has('isMiddleware')
 
 module.exports = (gathered, path) => {
   if (gathered) {
-    const [middleware, transforms] = partition(isMiddleware, gathered)
+    const [middleware, transforms] =
+      type(gathered) === 'Array'
+        ? partition(isMiddleware, gathered)
+        : [false, gathered]
+
     const padded = insertAll(1, transforms, [identity, identity])
     const middlewareApplied = middleware && intersperse(middleware, padded)
     const flattened = flatten(middlewareApplied || padded)
