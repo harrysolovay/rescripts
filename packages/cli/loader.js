@@ -55,7 +55,7 @@ const mergePipes = reduceRight(mergeWith((x, y) => flatten([x, y])), {})
 const isolate = (scope, o) =>
   reduce(
     (accumulator, key) =>
-      o[key] ? assoc(key, o[key], accumulator) : accumulator,
+      o[key] ? assoc(key, [o[key]], accumulator) : accumulator,
     {},
     scope,
   )
