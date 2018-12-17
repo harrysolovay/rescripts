@@ -23,12 +23,12 @@
 
 <!-- NPM -->
 <a href='https://www.npmjs.com/package/@rescripts/cli'>
-  <img src='https://img.shields.io/npm/v/@rescripts/cli.svg?style=flat-square' />
+  <img src='https://img.shields.io/badge/npm-0.0.6-orange.svg?maxAge=2592000' />
 </a>
 
 <!-- SemVer -->
 <a href='https://semver.org/'>
-  <img src='https://img.shields.io/badge/semver-0.0.5-blue.svg?maxAge=2592000'/>
+  <img src='https://img.shields.io/badge/semver-0.0.6-blue.svg?maxAge=2592000'/>
 </a>
 
 </p>
