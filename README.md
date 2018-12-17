@@ -22,8 +22,8 @@
 </a>
 
 <!-- NPM -->
-<a href='https://www.npmjs.com/package/@rescripts/cli'>
-  <img src='https://img.shields.io/badge/npm-0.0.6-orange.svg?maxAge=2592000' />
+<a href='https://www.npmjs.com/settings/rescripts/packages'>
+  <img src='https://img.shields.io/npm/v/@rescripts/cli.svg?style=flat-square' />
 </a>
 
 <!-- SemVer -->
