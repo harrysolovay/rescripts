@@ -11,11 +11,11 @@
   },
   "repository": "https://github.com/rescripts/rescripts/tree/master/packages/cli",
   "peerDependencies": {
-    "react-dev-utils": "^6.1.1",
-    "react-scripts": "^2.1.1"
+    "react-scripts": "^2.1.2"
   },
   "dependencies": {
     "@rescripts/utilities": "^0.0.3",
-    "ramda": "^0.26.0"
+    "ramda": "^0.26.0",
+    "react-dev-utils": "^7.0.0"
   }
 }

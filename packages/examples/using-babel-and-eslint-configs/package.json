@@ -1,5 +1,5 @@
 {
-  "name": "using-babel-eslint-and-stylelint-configs",
+  "name": "using-babel-and-eslint-configs",
   "version": "0.0.4",
   "private": true,
   "dependencies": {
@@ -11,7 +11,7 @@
     "babel-plugin-react-require": "^3.0.1",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
-    "react-scripts": "2.1.1",
+    "react-scripts": "2.1.2",
     "styled-components": "^4.1.1",
     "styled-normalize": "^8.0.4",
     "stylelint": "^9.9.0",
