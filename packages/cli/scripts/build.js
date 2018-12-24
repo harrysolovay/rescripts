@@ -5,8 +5,8 @@ const {webpack: transforms} = gatherPipes(['webpack'])
 
 const patch = require('../patch')
 const {paths} = require('@rescripts/utilities')
-const {webpackConfigProd, build} = paths
+const {webpackConfig, build} = paths
 
-patch(transforms, webpackConfigProd)
+patch(transforms, webpackConfig)
 
 require(build)

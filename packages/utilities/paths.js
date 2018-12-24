@@ -27,8 +27,7 @@ const rekeyMap = {
 }
 
 const configs = {
-  webpackConfigDev: 'config/webpack.config.dev',
-  webpackConfigProd: 'config/webpack.config.prod',
+  webpackConfig: 'config/webpack.config',
   webpackDevServerConfig: 'config/webpackDevServer.config',
   createJestConfig: 'scripts/utils/createJestConfig',
 }
