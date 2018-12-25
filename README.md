@@ -83,6 +83,8 @@ If you like this framework, please tweet at [@gearon](https://twitter.com/dan_ab
 npm i -D @rescripts/cli
 ```
 
+> react-scripts@^2.1.2 requires you be using at least @rescripts/utilities^0.0.4 and @rescripts/cli^0.0.7
+
 #### Install the rescript(s) you wish to use:
 
 ```sh
