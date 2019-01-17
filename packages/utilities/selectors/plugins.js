@@ -9,7 +9,8 @@ const {
   remove,
   assocPath,
 } = require('ramda')
-const {error} = '@rescripts/utilities'
+
+const {error} = '../errors'
 
 const pluginsLens = lensProp('plugins')
 
