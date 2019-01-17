@@ -1,6 +1,6 @@
 {
   "name": "@rescripts/rescript-use-tslint-config",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "main": "index.js",
   "license": "MIT",
   "private": false,
@@ -9,7 +9,7 @@
   },
   "repository": "https://github.com/rescripts/rescripts/tree/master/packages/rescripts/use-tslint-config",
   "dependencies": {
-    "@rescripts/utilities": "^0.0.4",
+    "@rescripts/utilities": "^0.0.5",
     "ramda": "^0.26.0",
     "tslint-loader": "^3.5.4"
   }
