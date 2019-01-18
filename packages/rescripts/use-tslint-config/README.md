@@ -7,7 +7,7 @@ Use your own TSLint configuration.
 ## Installation
 
 ```sh
-npm i -D @rescripts/rescript-use-tsint-config
+npm i -D @rescripts/rescript-use-tslint-config
 ```
 
 ## Usage
