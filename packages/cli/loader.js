@@ -1,4 +1,7 @@
 const {
+  findIndex,
+  either,
+  equals,
   type,
   reduce,
   assoc,
@@ -16,13 +19,21 @@ const {
 } = require('@rescripts/utilities')
 
 const rootRescript = (() => {
+  const configKeyI = findIndex(
+    either(equals('--config'), equals('-c')),
+    process.argv,
+  )
+
   const loaded =
-    loadFromPackageField('rescripts') ||
-    loadRawFromRoot('.rescriptsrc') ||
-    loadFromRoot('.rescriptsrc') ||
-    error(
-      "You're likely seeing this bug because you haven't defined a root rescript or your root rescript contains a syntactical error. If you're certain of otherwise, please file an issue.",
-    )
+    configKeyI >= 0
+      ? loadRawFromRoot(process.argv[configKeyI + 1]) ||
+        loadFromRoot(process.argv[configKeyI + 1])
+      : loadFromPackageField('rescripts') ||
+        loadRawFromRoot('.rescriptsrc') ||
+        loadFromRoot('.rescriptsrc') ||
+        error(
+          'You\'re likely seeing this bug because you haven\'t defined a root rescript or your root rescript contains a syntactical error. If you\'re certain of otherwise, please file an issue.',
+        )
 
   switch (type(loaded)) {
     case 'Function':
