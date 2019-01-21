@@ -1,9 +1,9 @@
 {
   "name": "using-rewire",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "private": true,
   "dependencies": {
-    "@rescripts/cli": "^0.0.8",
+    "@rescripts/cli": "^0.0.9",
     "@rescripts/rescript-use-rewire": "^0.0.4",
     "react": "^16.6.3",
     "react-app-rewire-compression-plugin": "^1.0.0",

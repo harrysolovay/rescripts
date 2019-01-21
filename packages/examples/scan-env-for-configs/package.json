@@ -1,10 +1,10 @@
 {
   "name": "scan-env-for-configs",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "private": true,
   "dependencies": {
-    "@rescripts/cli": "^0.0.8",
-    "@rescripts/rescript-env": "^0.0.4",
+    "@rescripts/cli": "^0.0.9",
+    "@rescripts/rescript-env": "^0.0.5",
     "babel-plugin-module-resolver": "^3.1.1",
     "babel-plugin-react-require": "^3.0.1",
     "react": "^16.6.3",
