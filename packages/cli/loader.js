@@ -27,12 +27,13 @@ const rootRescript = (() => {
   const loaded =
     configKeyI >= 0
       ? loadRawFromRoot(process.argv[configKeyI + 1]) ||
-        loadFromRoot(process.argv[configKeyI + 1])
+        loadFromRoot(process.argv[configKeyI + 1]) ||
+        load(process.argv[configKeyI + 1])
       : loadFromPackageField('rescripts') ||
         loadRawFromRoot('.rescriptsrc') ||
         loadFromRoot('.rescriptsrc') ||
         error(
-          'You\'re likely seeing this bug because you haven\'t defined a root rescript or your root rescript contains a syntactical error. If you\'re certain of otherwise, please file an issue.',
+          "You're likely seeing this bug because you haven't defined a root rescript or your root rescript contains a syntactical error. If you're certain of otherwise, please file an issue.",
         )
 
   switch (type(loaded)) {
