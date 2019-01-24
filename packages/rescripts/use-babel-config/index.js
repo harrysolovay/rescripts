@@ -68,7 +68,7 @@ module.exports = source => config =>
         }
         default: {
           error(
-            `@rescripts/rescript-use-eslint-config expects argument of type 'String' or 'Object' but recieved ${sourceType}`,
+            `@rescripts/rescript-use-babel-config expects argument of type 'String' or 'Object' but recieved ${sourceType}`,
           )
         }
       }
