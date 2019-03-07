@@ -770,8 +770,6 @@ module.exports = [
 const equal = require('deep-equal')
 let lastConfig = null
 
-logConfig.isMiddleware = true
-
 module.exports = [
   ['use-babel-config', '.babelrc'],
   ['use-tslint-config', 'tslint.json'],
