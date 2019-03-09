@@ -47,7 +47,7 @@ module.exports = source => config =>
             }
             case 'package':
             case 'package.json': {
-              const eslintConfig = loadFromPackageField('babel')
+              const eslintConfig = loadFromPackageField('eslintConfig')
               return useConfigFile(eslintConfig, subConfig)
             }
             default: {
