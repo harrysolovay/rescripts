@@ -1,5 +1,3 @@
-// fix any babel configuration
-
 const {
   allPass,
   prop,
