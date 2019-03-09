@@ -1,10 +1,10 @@
 {
   "name": "configs-in-package",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "private": true,
   "dependencies": {
     "@rescripts/cli": "^0.0.10",
-    "@rescripts/rescript-use-babel-config": "^0.0.6",
+    "@rescripts/rescript-use-babel-config": "^0.0.7",
     "babel-plugin-module-resolver": "^3.1.1",
     "babel-plugin-react-require": "^3.0.1",
     "react": "^16.6.3",
