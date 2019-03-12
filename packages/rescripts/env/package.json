@@ -1,6 +1,6 @@
 {
   "name": "@rescripts/rescript-env",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "main": "index.js",
   "license": "MIT",
   "private": false,
@@ -9,7 +9,7 @@
   },
   "repository": "https://github.com/rescripts/rescripts/tree/master/packages/rescripts/env",
   "dependencies": {
-    "@rescripts/rescript-use-babel-config": "^0.0.7",
+    "@rescripts/rescript-use-babel-config": "^0.0.8",
     "@rescripts/rescript-use-eslint-config": "^0.0.9",
     "@rescripts/rescript-use-tslint-config": "^0.0.5",
     "@rescripts/utilities": "^0.0.5",
