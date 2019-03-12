@@ -74,3 +74,5 @@ module.exports = source => config =>
     getPaths(isSrcBabelLoader, config),
     config,
   )
+
+//
