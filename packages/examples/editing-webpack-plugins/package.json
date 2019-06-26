@@ -7,9 +7,9 @@
     "ramda": "^0.26.1",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
-    "react-scripts": "2.1.2",
-    "webpack-build-notifier": "^0.1.30",
-    "webpack-pwa-manifest": "^3.7.1"
+    "react-scripts": "3.0.1",
+    "webpack-build-notifier": "^1.0.3",
+    "webpack-pwa-manifest": "^4.0.0"
   },
   "scripts": {
     "start": "rescripts start",
