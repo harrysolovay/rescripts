@@ -1,0 +1,23 @@
+{
+  "groups": {
+    "default": {
+      "packages": [
+        "package.json",
+        "packages/cli/package.json",
+        "packages/examples/configs-in-package/package.json",
+        "packages/examples/editing-webpack-plugins/package.json",
+        "packages/examples/scan-env-for-configs/package.json",
+        "packages/examples/using-babel-and-eslint-configs/package.json",
+        "packages/examples/using-rewire/package.json",
+        "packages/examples/using-tslint-config/package.json",
+        "packages/rescripts/env/package.json",
+        "packages/rescripts/use-babel-config/package.json",
+        "packages/rescripts/use-eslint-config/package.json",
+        "packages/rescripts/use-rewire/package.json",
+        "packages/rescripts/use-stylelint-config/package.json",
+        "packages/rescripts/use-tslint-config/package.json",
+        "packages/utilities/package.json"
+      ]
+    }
+  }
+}
