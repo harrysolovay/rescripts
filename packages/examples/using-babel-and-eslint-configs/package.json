@@ -11,10 +11,10 @@
     "babel-plugin-react-require": "^3.0.1",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
-    "react-scripts": "2.1.2",
+    "react-scripts": "3.0.1",
     "styled-components": "^4.1.1",
     "styled-normalize": "^8.0.4",
-    "stylelint": "^9.9.0",
+    "stylelint": "^10.1.0",
     "stylelint-config-recommended": "^2.1.0"
   },
   "scripts": {
