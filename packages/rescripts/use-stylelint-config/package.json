@@ -11,7 +11,7 @@
   "dependencies": {
     "@rescripts/utilities": "^0.0.5",
     "ramda": "^0.26.1",
-    "stylelint": "^9.9.0",
-    "stylelint-custom-processor-loader": "^0.5.0"
+    "stylelint": "^10.1.0",
+    "stylelint-custom-processor-loader": "^0.6.0"
   }
 }
