@@ -26,9 +26,9 @@
   ],
   "devDependencies": {
     "doctoc": "^1.4.0",
-    "eslint": "^5.9.0",
+    "eslint": "^6.0.1",
     "eslint-plugin-ramda": "^2.5.1",
-    "husky": "^1.2.0",
+    "husky": "^2.4.1",
     "lerna": "^3.4.3",
     "lint-staged": "^8.1.0",
     "prettier": "^1.15.2"
