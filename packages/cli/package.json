@@ -16,6 +16,6 @@
   "dependencies": {
     "@rescripts/utilities": "^0.0.5",
     "ramda": "^0.26.0",
-    "react-dev-utils": "^7.0.0"
+    "react-dev-utils": "^9.0.1"
   }
 }
