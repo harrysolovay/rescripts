@@ -11,6 +11,6 @@
   "dependencies": {
     "@rescripts/utilities": "^0.0.5",
     "ramda": "^0.26.0",
-    "react-app-rewired": "^1.6.2"
+    "react-app-rewired": "^2.1.3"
   }
 }
