@@ -39,6 +39,8 @@
 
 ## Highlights
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/harrysolovay/rescripts.svg)](https://greenkeeper.io/)
+
 - 🎯 create the perfect config with minimal effort
 
 - 🎩 take advantage of cutting-edge software that hasn't made its way into CRA
