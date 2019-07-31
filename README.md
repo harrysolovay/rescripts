@@ -802,7 +802,6 @@ We prefer to keep and mutate a `lastConfig` reference incase other middleware is
 - [worker-loader](https://github.com/linonetwo/rescript-worker-loader) - Enable [web worker loader](https://github.com/webpack-contrib/worker-loader) in webpack
 - [disable-eslint](https://github.com/linonetwo/rescript-disable-eslint) - Disable preflight eslint check, for those who only wants to check it in the code editor and CI.
 - [service-worker-loader](https://github.com/linonetwo/rescript-service-worker-loader) - Enable serviceworker-webpack-plugin for your create-react-app project.
-- **MORE COMING SOON!**
 
 ## Miscellaneous
 
