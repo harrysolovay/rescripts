@@ -802,6 +802,7 @@ We prefer to keep and mutate a `lastConfig` reference incase other middleware is
 - [worker-loader](https://github.com/linonetwo/rescript-worker-loader) - Enable [web worker loader](https://github.com/webpack-contrib/worker-loader) in Webpack
 - [disable-eslint](https://github.com/linonetwo/rescript-disable-eslint) - Disable preflight eslint check, for those who want only to check in their code editor and CI.
 - [service-worker-loader](https://github.com/linonetwo/rescript-service-worker-loader) - Enable [serviceworker-webpack-plugin](https://github.com/oliviertassinari/serviceworker-webpack-plugin) for your create-react-app project.
+- [use-yarn-workspaces](https://github.com/Negan1911/rescripts-use-yarn-workspaces) - Allows the use of CRA under Yarn workspaces.
 
 ## Miscellaneous
 
