@@ -110,8 +110,8 @@ npm i -D @rescripts/rescript-env
     "react-scripts": "2.1.1"
   }
   "devDependencies": {
-    "@rescripts/cli": "^0.0.3",
-    "@rescript/rescript-env"
+    "@rescripts/cli": "^0.0.11",
+    "@rescripts/rescript-env": "^0.0.10"
   }
   "scripts": {
 -   "start": "react-scripts start",
