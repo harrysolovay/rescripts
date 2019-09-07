@@ -11,7 +11,7 @@
   },
   "repository": "https://github.com/rescripts/rescripts/tree/master/packages/cli",
   "peerDependencies": {
-    "react-scripts": "^2.1.2"
+    "react-scripts": "2 - 3"
   },
   "dependencies": {
     "@rescripts/utilities": "^0.0.5",
