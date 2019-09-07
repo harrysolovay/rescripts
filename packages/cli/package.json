@@ -1,6 +1,6 @@
 {
   "name": "@rescripts/cli",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "bin": {
     "rescripts": "./bin/rescripts.js"
   },
