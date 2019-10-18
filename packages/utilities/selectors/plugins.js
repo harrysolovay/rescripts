@@ -10,7 +10,7 @@ const {
   assocPath,
 } = require('ramda')
 
-const {error} = '../errors'
+const {error} = require('../errors')
 
 const pluginsLens = lensProp('plugins')
 
