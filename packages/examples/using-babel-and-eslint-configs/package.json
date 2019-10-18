@@ -1,12 +1,12 @@
 {
   "name": "using-babel-and-eslint-configs",
-  "version": "0.0.15",
+  "version": "0.0.16",
   "private": true,
   "dependencies": {
-    "@rescripts/cli": "^0.0.12",
-    "@rescripts/rescript-use-babel-config": "^0.0.8",
-    "@rescripts/rescript-use-eslint-config": "^0.0.9",
-    "@rescripts/rescript-use-stylelint-config": "^0.0.6",
+    "@rescripts/cli": "^0.0.13",
+    "@rescripts/rescript-use-babel-config": "^0.0.9",
+    "@rescripts/rescript-use-eslint-config": "^0.0.10",
+    "@rescripts/rescript-use-stylelint-config": "^0.0.7",
     "babel-plugin-module-resolver": "^3.1.1",
     "babel-plugin-react-require": "^3.0.1",
     "react": "^16.6.3",
