@@ -799,6 +799,7 @@ We prefer to keep and mutate a `lastConfig` reference incase other middleware is
 - [use-postcss-config](https://github.com/jsxtools/rescript-use-postcss-config) - specify a PostCSS configuration
 - [use-rewire](https://github.com/rescripts/rescripts/blob/master/packages/rescripts/use-rewire) – use a rewire designed for react-app-rewired
 - [use-stylelint-config](https://github.com/rescripts/rescripts/blob/master/packages/rescripts/use-stylelint-config) – specify a StyleLint config (works for CSS, SCSS & CSS-in-JS)
+- [use-antd](https://github.com/RcKeller/rescripts/tree/master/use-antd) – use [Ant Design](https://ant.design/docs/react/introduce) components with support for tree shaking and custom themes
 - [worker-loader](https://github.com/linonetwo/rescript-worker-loader) - Enable [web worker loader](https://github.com/webpack-contrib/worker-loader) in Webpack
 - [disable-eslint](https://github.com/linonetwo/rescript-disable-eslint) - Disable preflight eslint check, for those who want only to check in their code editor and CI.
 - [service-worker-loader](https://github.com/linonetwo/rescript-service-worker-loader) - Enable [serviceworker-webpack-plugin](https://github.com/oliviertassinari/serviceworker-webpack-plugin) for your create-react-app project.
