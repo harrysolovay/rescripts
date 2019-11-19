@@ -26,11 +26,6 @@
   <img src='https://img.shields.io/npm/v/@rescripts/cli.svg?style=flat-square' />
 </a>
 
-<!-- SemVer -->
-<a href='https://semver.org/'>
-  <img src='https://img.shields.io/badge/semver-0.0.7-blue.svg?maxAge=2592000'/>
-</a>
-
 </p>
 
 <hr />
