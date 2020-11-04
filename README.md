@@ -68,7 +68,7 @@ Tim Arney's [react-app-rewired](https://github.com/timarney/react-app-rewired) w
 
 Rescripts tackles this same probem for CRA 2.0+ with several key DX differences. First off, it was designed to be more of a focal point for all non-standard configuration. The underlaying loader can handle deeply nested "rescripts" (conceptually similar to babel plugins), all of which can modify any CRA process. The tools used to transform configuration are more robust and flexible than its predecessor's ([@rescripts/utilities](#rescript-sdk)), and should weather most updates. The API also exposes a middleware entry, so that you can track your configurations as they are transformed. It should also be noted that Rescripts is compatible with many Webpack rewires built for react-app-rewired.
 
-If you like this framework, please tweet at [@gearon](https://twitter.com/dan_abramov) requesting an "everything-i-did-not-include" rescript!
+If you like this framework, please tweet at [@gaearon](https://twitter.com/dan_abramov) requesting an "everything-i-did-not-include" rescript!
 
 ## Installation
 
