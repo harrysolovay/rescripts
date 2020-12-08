@@ -1,6 +1,6 @@
 {
   "name": "@rescripts/cli",
-  "version": "0.0.14",
+  "version": "0.0.15",
   "bin": {
     "rescripts": "./bin/rescripts.js"
   },
@@ -14,7 +14,7 @@
     "react-scripts": "2 - 4"
   },
   "dependencies": {
-    "@rescripts/utilities": "^0.0.7",
+    "@rescripts/utilities": "^0.0.8",
     "ramda": "^0.26.0",
     "react-dev-utils": "^7.0.0"
   }

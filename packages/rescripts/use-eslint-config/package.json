@@ -1,6 +1,6 @@
 {
   "name": "@rescripts/rescript-use-eslint-config",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "main": "index.js",
   "license": "MIT",
   "private": false,
@@ -9,6 +9,6 @@
   },
   "repository": "https://github.com/rescripts/rescripts/tree/master/packages/rescripts/use-eslint-config",
   "dependencies": {
-    "@rescripts/utilities": "^0.0.7"
+    "@rescripts/utilities": "^0.0.8"
   }
 }
