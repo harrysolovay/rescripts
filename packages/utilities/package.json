@@ -9,7 +9,7 @@
   },
   "repository": "https://github.com/rescripts/rescripts/tree/master/packages/utilities",
   "peerDependencies": {
-    "react-scripts": "2 - 3"
+    "react-scripts": "2 - 4"
   },
   "dependencies": {
     "ramda": "^0.26.0"
