@@ -1,12 +1,11 @@
 import React, {Component} from 'react'
-import logoSvg from './logo.svg'
 import './App.css'
+import logoSvg from './logo.svg'
 
 class App extends Component {
-  state = {greeting: 'dawg'}
+  private state = {greeting: 'dawg'}
 
-  render() {
-    console.log(require('ramda'))
+  public render() {
     return (
       <div className='App'>
         <header className='App-header'>
