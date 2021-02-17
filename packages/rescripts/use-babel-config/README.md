@@ -12,14 +12,19 @@ Use your own Babel configuration. You probably want to use the Create React App 
       {
         "loaderMap": {
           "svg": {
-            "ReactComponent": "@svgr/webpack?-svgo![path]"
+            "ReactComponent": "@svgr/webpack?-svgo,+titleProp,+ref![path]"
           }
         }
       }
     ]
   ],
   "presets": [
-    "react-app"
+    [
+      "react-app",
+      {
+        "runtime": "automatic"
+      }
+    ]
   ]
 }
 ```
