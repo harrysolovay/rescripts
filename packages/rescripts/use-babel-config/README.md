@@ -2,7 +2,27 @@
 
 ## About
 
-Use your own Babel configuration.
+Use your own Babel configuration. You probably want to use the Create React App babel config as a starting point:
+
+```json
+{
+  "plugins": [
+    [
+      "babel-plugin-named-asset-import",
+      {
+        "loaderMap": {
+          "svg": {
+            "ReactComponent": "@svgr/webpack?-svgo![path]"
+          }
+        }
+      }
+    ]
+  ],
+  "presets": [
+    "react-app"
+  ]
+}
+```
 
 ## Installation
 
