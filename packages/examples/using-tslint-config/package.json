@@ -1,6 +1,6 @@
 {
   "name": "using-tslint-config",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "private": true,
   "browserslist": [
     ">0.2%",
@@ -9,7 +9,7 @@
     "not op_mini all"
   ],
   "dependencies": {
-    "@rescripts/cli": "^0.0.15",
+    "@rescripts/cli": "^0.0.16",
     "@rescripts/rescript-use-tslint-config": "^0.0.8",
     "@types/jest": "23.3.9",
     "@types/node": "10.12.10",
