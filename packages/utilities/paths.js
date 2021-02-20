@@ -66,10 +66,11 @@ const paths = {
   ),
 }
 
-const makeSafe = loader => p => {
+const makeSafe = loader => (p, r) => {
   try {
     return loader(p)
   } catch (e) {
+    r?.(e)
     return null
   }
 }
@@ -86,11 +87,7 @@ const resolve = makeSafe(p => {
   }
 })
 
-const createFromLoader = (loader, prefix) =>
-  pipe(
-    m => join(prefix, m),
-    loader,
-  )
+const createFromLoader = (loader, prefix) => (m, r) => loader(join(prefix, m), r)
 
 const {root, reactScriptsNodeModules} = paths
 const loadFromRoot = createFromLoader(load, root)

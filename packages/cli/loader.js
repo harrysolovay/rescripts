@@ -15,8 +15,15 @@ const {
   loadRawFromRoot,
   loadFromRoot,
   error,
+  exitWithError,
   load,
 } = require('@rescripts/utilities')
+
+const errorReporter = (error) => {
+  if (error.code !== "ENOENT" && error.code !== "MODULE_NOT_FOUND") {
+    console.log(error);
+  }
+}
 
 const rootRescript = (() => {
   const configKeyI = findIndex(
@@ -25,15 +32,15 @@ const rootRescript = (() => {
   )
 
   const loaded =
-    configKeyI >= 0
-      ? loadRawFromRoot(process.argv[configKeyI + 1]) ||
-        loadFromRoot(process.argv[configKeyI + 1]) ||
-        load(process.argv[configKeyI + 1])
+    (configKeyI >= 0
+      ? loadRawFromRoot(process.argv[configKeyI + 1], errorReporter) ||
+        loadFromRoot(process.argv[configKeyI + 1], errorReporter) ||
+        load(process.argv[configKeyI + 1], errorReporter)
       : loadFromPackageField('rescripts') ||
-        loadRawFromRoot('.rescriptsrc') ||
-        loadFromRoot('.rescriptsrc') ||
-        error(
-          "You're likely seeing this bug because you haven't defined a root rescript or your root rescript contains a syntactical error. If you're certain of otherwise, please file an issue.",
+        loadRawFromRoot('.rescriptsrc', errorReporter) ||
+        loadFromRoot('.rescriptsrc', errorReporter)) ||
+        exitWithError(
+          "Rescripts ran into an error. Either your root rescript isn't defined or it contains syntactical errors. If you're certain of otherwise, please file an issue.",
         )
 
   switch (type(loaded)) {
@@ -99,7 +106,7 @@ const gatherPipes = (scope, rescript = rootRescript) =>
         }
 
         default: {
-          error(
+          exitWithError(
             'It seems that your Rescripts configuration is invalid. Please refer to the docs or post an issue if you believe this to be an internal bug. Thank you!',
           )
           return
