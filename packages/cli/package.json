@@ -16,7 +16,7 @@
   "dependencies": {
     "@rescripts/utilities": "^0.0.8",
     "ramda": "^0.26.0",
-    "react-dev-utils": "^7.0.0"
+    "react-dev-utils": "^11.0.0"
   },
   "devDependencies": {
     "lerna": "^3.4.3",
